@@ -35,17 +35,43 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0 20px; 
 }
 
-.btn-cta { 
-    background-color: var(--color-primario); 
-    color: var(--color-blanco); 
-    text-decoration: none; 
-    padding: 10px 18px; 
-    border-radius: 5px; 
-    font-weight: 600; 
-    transition: background-color 0.3s ease; 
-    white-space: nowrap; 
+/* === BOTÓN "MI CUENTA" - Estilo Optimizado y Unificado === */
+.btn-cta,
+a[href*="mi-cuenta"] {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: transparent !important;
+    border: 2px solid var(--color-blanco) !important;
+    color: var(--color-blanco) !important;
+    font-weight: 600 !important;
+    font-size: 0.9rem !important;
+    padding: 5px 12px !important;
+    line-height: 1.1 !important;
+    border-radius: 6px !important;
+    height: 32px !important;
+    text-decoration: none !important;
+    transition: all 0.25s ease-in-out !important;
+    white-space: nowrap !important;
 }
-.btn-cta:hover { background-color: var(--color-secundario); }
+
+.btn-cta:hover,
+a[href*="mi-cuenta"]:hover {
+    background-color: var(--color-blanco) !important;
+    color: var(--color-primario) !important;
+    border-color: var(--color-blanco) !important;
+    transform: scale(1.03) !important;
+}
+
+/* Ajuste móvil */
+@media (max-width: 768px) {
+    .btn-cta,
+    a[href*="mi-cuenta"] {
+        font-size: 0.85rem !important;
+        padding: 4px 10px !important;
+        height: auto !important;
+    }
+}
 
 .section-title { 
     text-align: center; 
@@ -2362,15 +2388,29 @@ h1, h2, h3, h4, h5, h6 {
     background-color: var(--color-blanco);
 }
 
-/* 6. Invertimos el BOTÃ“N "Mi Cuenta" (estilo "outline" o "fantasma") */
+/* 6. Invertimos el BOTÓN "Mi Cuenta" (estilo "outline" o "fantasma") */
 .header-wrapper .btn-cta {
-    background-color: transparent;
-    border: 2px solid var(--color-blanco);
-    color: var(--color-blanco);
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: transparent !important;
+    border: 2px solid var(--color-blanco) !important;
+    color: var(--color-blanco) !important;
+    font-weight: 600 !important;
+    font-size: 0.9rem !important;
+    padding: 5px 12px !important;
+    line-height: 1.1 !important;
+    border-radius: 6px !important;
+    height: 32px !important;
+    text-decoration: none !important;
+    transition: all 0.25s ease-in-out !important;
+    white-space: nowrap !important;
 }
 .header-wrapper .btn-cta:hover {
-    background-color: var(--color-blanco);
-    color: var(--color-primario); /* Al pasar el mouse, se vuelve blanco con texto azul */
+    background-color: var(--color-blanco) !important;
+    color: var(--color-primario) !important;
+    border-color: var(--color-blanco) !important;
+    transform: scale(1.03) !important;
 }
 
 /* 7. Empujamos el contenido principal hacia abajo */
@@ -3076,152 +3116,6 @@ main {
 .towi-btn-action:hover {
   background: var(--color-secundario, #0071ce);
 }
-/* === Botón MI CUENTA - Estilo unificado === */
-.btn-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  color: #fff !important;
-  border: 2px solid #fff;
-  border-radius: 6px;
-  font-weight: 600;
-  padding: 6px 14px;
-  font-size: 0.9rem;
-  line-height: 1.2;
-  height: 34px;
-  text-decoration: none;
-  transition: all 0.25s ease;
-}
-
-.btn-cta:hover {
-  background-color: #fff;
-  color: var(--color-primario, #004b8d) !important;
-  border-color: #fff;
-  text-decoration: none;
-  transform: scale(1.03);
-}
-
-/* Ajuste en móviles */
-@media (max-width: 768px) {
-  .btn-cta {
-    font-size: 0.85rem;
-    padding: 5px 10px;
-    height: auto;
-  }
-}
-/* === BOTÓN "MI CUENTA" UNIFICADO === */
-a[href*="mi-cuenta"],
-.btn-cta,
-.navbar a[href*="mi-cuenta"] {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  background: transparent !important;
-  border: 2px solid #ffffff !important;
-  border-radius: 6px !important;
-  color: #fff !important;
-  font-weight: 600 !important;
-  padding: 6px 14px !important;
-  font-size: 0.9rem !important;
-  line-height: 1.2 !important;
-  height: 34px !important;
-  text-decoration: none !important;
-  transition: all 0.25s ease !important;
-  vertical-align: middle !important;
-}
-
-a[href*="mi-cuenta"]:hover,
-.btn-cta:hover,
-.navbar a[href*="mi-cuenta"]:hover {
-  background-color: #fff !important;
-  color: var(--color-primario, #004b8d) !important;
-  border-color: #fff !important;
-  transform: scale(1.03) !important;
-}
-
-/* Móviles */
-@media (max-width: 768px) {
-  a[href*="mi-cuenta"],
-  .btn-cta {
-    font-size: 0.85rem !important;
-    padding: 5px 10px !important;
-    height: auto !important;
-  }
-}
-/* === BOTÓN "MI CUENTA" - Estilo igual al de estadisticas-dashboard.html === */
-.btn-cta,
-a[href*="mi-cuenta"] {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background-color: transparent;
-  border: 2px solid #ffffff;
-  color: #ffffff;
-  font-weight: 600;
-  font-size: 0.9rem;
-  line-height: 1.1;
-  padding: 5px 12px;
-  border-radius: 6px;
-  height: 32px;
-  text-decoration: none;
-  transition: all 0.25s ease-in-out;
-  vertical-align: middle;
-}
-
-.btn-cta:hover,
-a[href*="mi-cuenta"]:hover {
-  background-color: #ffffff;
-  color: var(--color-primario, #004b8d);
-  border-color: #ffffff;
-  transform: scale(1.03);
-}
-
-/* Versión móvil */
-@media (max-width: 768px) {
-  .btn-cta,
-  a[href*="mi-cuenta"] {
-    font-size: 0.85rem;
-    padding: 4px 10px;
-    height: auto;
-  }
-}
-/* === AJUSTE GLOBAL BOTÓN "MI CUENTA" === */
-a[href*="mi-cuenta"],
-.btn-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  border: 2px solid var(--color-blanco);
-  color: var(--color-blanco);
-  font-weight: 600;
-  font-size: 0.9rem;
-  padding: 5px 12px;
-  line-height: 1.1;
-  border-radius: 6px;
-  height: 32px;
-  text-decoration: none;
-  transition: all 0.25s ease-in-out;
-}
-
-a[href*="mi-cuenta"]:hover,
-.btn-cta:hover {
-  background-color: var(--color-blanco);
-  color: var(--color-primario);
-  border-color: var(--color-blanco);
-  transform: scale(1.03);
-}
-
-/* Ajuste móvil */
-@media (max-width: 768px) {
-  a[href*="mi-cuenta"],
-  .btn-cta {
-    font-size: 0.85rem;
-    padding: 4px 10px;
-    height: auto;
-  }
-}
 /* === Etiqueta sobre el botón de Towi === */
 .towi-label {
   position: fixed;
@@ -3247,3 +3141,288 @@ a[href*="mi-cuenta"]:hover,
   pointer-events: none;
 }
 
+
+/* ========================================================================== */
+/* MEDIA QUERIES ESPECÍFICAS PARA INDEX.HTML - RESPONSIVE DESIGN           */
+/* ========================================================================== */
+
+/* === TABLETS Y MÓVILES GRANDES (768px - 991px) === */
+@media (max-width: 991px) {
+    /* Hero - Ajustes para tablets */
+    .hero {
+        min-height: 400px;
+        padding: 40px 20px;
+    }
+    
+    .hero h1 {
+        font-size: 2.4rem;
+    }
+    
+    /* Quick Access Grid - 3 columnas en tablets */
+    .quick-access-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 20px !important;
+    }
+    
+    /* News cards - Ajustes para carrusel */
+    .news-card {
+        height: auto;
+    }
+    
+    /* Stats - 3 columnas en tablets */
+    .stats-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+
+/* === MÓVILES GRANDES (481px - 767px) === */
+@media (max-width: 767px) {
+    /* Hero - Móviles */
+    .hero {
+        min-height: 350px;
+        padding: 30px 15px;
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+    
+    .hero p {
+        font-size: 1rem !important;
+        margin-bottom: 20px !important;
+    }
+    
+    /* Búsqueda - Stack vertical */
+    .search-unified {
+        flex-direction: column !important;
+        max-width: 100% !important;
+    }
+    
+    .search-unified input[type="search"] {
+        border-radius: 5px 5px 0 0 !important;
+        width: 100%;
+    }
+    
+    .search-unified button {
+        border-radius: 0 0 5px 5px !important;
+        width: 100%;
+        padding: 15px !important;
+    }
+    
+    /* Quick Access Grid - 2 columnas en móviles */
+    .quick-access-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px !important;
+    }
+    
+    .policy-card {
+        padding: 20px;
+    }
+    
+    .policy-card h3 {
+        font-size: 1.1rem;
+    }
+    
+    .policy-card p {
+        font-size: 0.9rem;
+    }
+    
+    /* News Section */
+    .news {
+        padding: 40px 0;
+    }
+    
+    .news-card img {
+        height: 180px;
+    }
+    
+    /* Stats - 2 columnas en móviles */
+    .stats {
+        padding: 40px 0;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .stat-label {
+        font-size: 0.9rem;
+    }
+    
+    /* Footer - Stack vertical */
+    .footer .container {
+        flex-direction: column !important;
+        gap: 30px;
+    }
+    
+    .footer-col {
+        text-align: center;
+        width: 100%;
+    }
+    
+    .footer-col ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .footer-social-icons {
+        justify-content: center !important;
+    }
+}
+
+/* === MÓVILES PEQUEÑOS (≤480px) === */
+@media (max-width: 480px) {
+    /* Hero - Móviles pequeños */
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .hero p {
+        font-size: 0.95rem !important;
+    }
+    
+    /* Quick Access Grid - 1 columna en móviles pequeños */
+    .quick-access-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+    }
+    
+    .policy-card-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .policy-card-icon i {
+        font-size: 1.3rem;
+    }
+    
+    /* Section Title */
+    .section-title {
+        font-size: 1.6rem;
+    }
+    
+    /* Stats - 1 columna en móviles pequeños */
+    .stats-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .stat-item {
+        border-left: none !important;
+        border-right: none !important;
+        border-bottom: 1px solid var(--color-secundario);
+        padding: 20px 15px;
+    }
+    
+    .stat-item:last-child {
+        border-bottom: none;
+    }
+    
+    .stat-number {
+        font-size: 1.8rem;
+    }
+    
+    /* News cards */
+    .news-card img {
+        height: 160px;
+    }
+    
+    .news-content {
+        padding: 15px;
+    }
+    
+    .news-content h3 {
+        font-size: 1rem;
+    }
+    
+    /* Footer */
+    .footer {
+        padding: 30px 0;
+    }
+}
+
+/* === PANTALLAS MUY PEQUEÑAS (≤360px) === */
+@media (max-width: 360px) {
+    .hero h1 {
+        font-size: 1.6rem;
+    }
+    
+    .policy-card {
+        padding: 15px;
+    }
+    
+    .policy-card h3 {
+        font-size: 1rem;
+    }
+    
+    .stat-number {
+        font-size: 1.6rem;
+    }
+}
+
+/* === AJUSTES PARA HEADER RESPONSIVE === */
+@media (max-width: 991px) {
+    /* Header en tablets y móviles */
+    .header {
+        padding: 12px 15px !important;
+    }
+    
+    .logo {
+        font-size: 1.2rem !important;
+    }
+    
+    /* Botón Mi Cuenta en móviles */
+    .btn-cta {
+        font-size: 0.85rem !important;
+        padding: 4px 10px !important;
+    }
+}
+
+/* === OPTIMIZACIONES PARA LANDSCAPE EN MÓVILES === */
+@media (max-width: 767px) and (orientation: landscape) {
+    .hero {
+        min-height: 300px;
+    }
+    
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+}
+/* === FIX DEFINITIVO PARA ENLACES DE TARJETAS === */
+.policy-card .policy-card-link,
+.policy-card a[href*="mi-cuenta"],
+a.policy-card-link {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    color: var(--color-primario) !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+    transition: color 0.3s ease !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    pointer-events: auto !important;
+}
+
+.policy-card .policy-card-link:hover,
+.policy-card a[href*="mi-cuenta"]:hover {
+    color: var(--color-secundario) !important;
+}
+
+.policy-card .policy-card-link i,
+.policy-card a[href*="mi-cuenta"] i {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
