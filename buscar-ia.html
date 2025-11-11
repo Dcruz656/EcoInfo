@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pregúntale a la IA - Ecosistema Informacional</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        .chat-container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, var(--color-primario) 0%, var(--color-secundario) 100%);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .chat-header h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.8rem;
+        }
+
+        .chat-header p {
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        .chat-messages {
+            height: 500px;
+            overflow-y: auto;
+            padding: 25px;
+            background: #f8f9fa;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message-icon {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .message.user .message-icon {
+            background: var(--color-primario);
+            color: white;
+        }
+
+        .message.ai .message-icon {
+            background: var(--color-secundario);
+            color: white;
+        }
+
+        .message-content {
+            flex: 1;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 12px;
+            border: 1px solid #e0e0e0;
+            line-height: 1.6;
+        }
+
+        .message.user .message-content {
+            background: var(--color-primario);
+            color: white;
+            border-color: var(--color-primario);
+        }
+
+        .message.ai .message-content strong {
+            color: var(--color-primario);
+        }
+
+        .typing-indicator {
+            display: none;
+            padding: 15px 20px;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .typing-indicator.active {
+            display: block;
+        }
+
+        .typing-indicator span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--color-primario);
+            margin: 0 2px;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+
+        .chat-input-container {
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .chat-input-wrapper {
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 12px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-family: inherit;
+        }
+
+        .chat-input:focus {
+            outline: none;
+            border-color: var(--color-primario);
+        }
+
+        .chat-send-btn {
+            background: var(--color-primario);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .chat-send-btn:hover {
+            background: var(--color-secundario);
+        }
+
+        .chat-send-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .suggestions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .suggestion-btn {
+            background: white;
+            border: 2px solid var(--color-primario);
+            color: var(--color-primario);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .suggestion-btn:hover {
+            background: var(--color-primario);
+            color: white;
+        }
+
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-wrapper">
+        <header class="header container">
+            <a href="index.html" class="logo">Ecosistema Informacional</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="buscar.html" class="active">Buscar y Descubrir</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="apoyo-ayuda.html">Apoyo y Ayuda</a></li>
+                    <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                    <li><a href="normas-politicas.html">Normas y Políticas</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Abrir menú">
+                <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </button>
+            <a href="mi-cuenta.html" class="btn-cta">Mi Cuenta</a>
+        </header>
+    </div>
+    
+    <nav class="mobile-nav" id="mobile-nav">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="buscar.html">Buscar y Descubrir</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="apoyo-ayuda.html">Apoyo y Ayuda</a></li>
+            <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Pregúntale a la IA</h1>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="chat-container">
+                <div class="chat-header">
+                    <h2><i class="fas fa-robot"></i> Asistente de Investigación IA</h2>
+                    <p>Powered by Groq ⚡ - Ultra rápido</p>
+                </div>
+
+                <div class="chat-messages" id="chat-messages">
+                    <div class="message ai">
+                        <div class="message-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="message-content">
+                            <p>¡Hola! Soy tu asistente de investigación con IA. Puedo ayudarte con:</p>
+                            <ul>
+                                <li>Recomendaciones de recursos académicos</li>
+                                <li>Estrategias de búsqueda bibliográfica</li>
+                                <li>Citas y referencias (APA, MLA, etc.)</li>
+                                <li>Servicios de la biblioteca</li>
+                                <li>Orientación sobre bases de datos</li>
+                            </ul>
+                            <p><strong>¿En qué puedo ayudarte hoy?</strong></p>
+                        </div>
+                    </div>
+                    
+                    <div class="message ai">
+                        <div class="message-icon"></div>
+                        <div class="typing-indicator" id="typing-indicator">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-input-container">
+                   <div class="suggestions">
+    <button class="suggestion-btn" data-question="Recomendaciones de recursos académicos">
+        Recomendaciones de recursos académicos
+    </button>
+    <button class="suggestion-btn" data-question="Estrategias de búsqueda bibliográfica">
+        Estrategias de búsqueda bibliográfica
+    </button>
+    <button class="suggestion-btn" data-question="Citas y referencias (APA, MLA, etc.)">
+        Citas y referencias (APA, MLA, etc.)
+    </button>
+    <button class="suggestion-btn" data-question="Servicios de la biblioteca">
+        Servicios de la biblioteca
+    </button>
+    <button class="suggestion-btn" data-question="Orientación sobre bases de datos">
+        Orientación sobre bases de datos
+    </button>
+</div>
+
+                    <div class="chat-input-wrapper">
+                        <input type="text" class="chat-input" id="user-input" placeholder="Escribe tu pregunta aquí..." />
+                        <button class="chat-send-btn" id="send-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Enviar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-col"><h4 class="logo" style="color: var(--color-blanco);">Ecosistema Informacional</h4><p>Av. Plutarco Elías Calles #1210<br>Fovissste Chamizal, C.P. 32310</p></div>
+            <div class="footer-col"><h4>Enlaces Rápidos</h4><ul><li><a href="sobre-nosotros.html">Sobre Nosotros</a></li><li><a href="https://catalogo.uacj.mx/">Catálogo</a></li><li><a href="servicios.html">Servicios</a></li><li><a href="apoyo-ayuda.html">Contacto</a></li></ul></div>
+            <div class="footer-col"><h4>Recursos</h4><ul><li><a href="bases-de-datos.html">Bases de Datos</a></li><li><a href="#">Repositorio</a></li><li><a href="guias-tematicas.html">Guías Temáticas</a></li><li><a href="#">Preguntas Frecuentes</a></li></ul></div>
+            <div class="footer-col"><h4>Redes Sociales</h4><ul class="footer-social-icons"><li><a href="#"><i class="fa-brands fa-facebook"></i></a></li><li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li><li><a href="#"><i class="fa-brands fa-instagram"></i></a></li></ul></div>
+        </div>
+    </footer>
+    
+    <script src="app.js"></script>
+    
+    <script>
+        // ⚠️ CONFIGURA TU API KEY DE GROQ AQUÍ
+        const GROQ_API_KEY = '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';
+        const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
+
+        const chatMessages = document.getElementById('chat-messages');
+        const userInput = document.getElementById('user-input');
+        const sendBtn = document.getElementById('send-btn');
+        const typingIndicator = document.getElementById('typing-indicator');
+
+        async function sendMessage(message) {
+            if (!message.trim()) return;
+
+            addMessage(message, 'user');
+            userInput.value = '';
+            sendBtn.disabled = true;
+            typingIndicator.classList.add('active');
+            scrollToBottom();
+
+            try {
+                const response = await fetch(GROQ_API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${GROQ_API_KEY}`
+                    },
+                    body: JSON.stringify({
+                        model: "llama-3.3-70b-versatile", // ✅ Modelo actualizado
+                        messages: [
+                            {
+                                role: "system",
+                                content: "Eres un bibliotecario profesional experto de la UACJ con 15 anos de experiencia. Tu nombre es BiblioBot y eres conocido por tu capacidad de explicar conceptos complejos de forma clara y practica.  TU ROL: - Actuas como un mentor academico que guia paso a paso - Conoces a fondo los recursos de la biblioteca UACJ - Tienes experiencia ayudando a estudiantes de todas las carreras - Tu prioridad es que el usuario logre su objetivo, no solo responder  RECURSOS QUE CONOCES: - Catalogo: https://catalogo.uacj.mx - Bases de datos: EBSCO (multidisciplinaria), ProQuest (tesis), Scopus (ciencias), Web of Science (impacto), JSTOR (humanidades), IEEE (ingenieria) - Gestores bibliograficos: Zotero (gratis, recomendado), Mendeley, EndNote - Servicios: prestamo interbibliotecario, salas de estudio, apoyo personalizado  COMO AYUDAS: 1. ENTIENDE la necesidad real del usuario (no solo respondas literal) 2. GUIA paso a paso con instrucciones numeradas claras 3. DA EJEMPLOS concretos aplicados a su situacion 4. RECOMIENDA la mejor herramienta o base de datos segun su carrera 5. ANTICIPA problemas comunes y da soluciones preventivas 6. OFRECE seguimiento: pregunta si necesita mas ayuda especifica 7. USA lenguaje amigable pero profesional  ESTRUCTURA DE TUS RESPUESTAS: - Intro breve (1 oracion): reconoce la pregunta - Solucion practica (4-6 oraciones): pasos claros con ejemplos - Tip adicional (1-2 oraciones): consejo experto o alternativa - Cierre (1 oracion): ofrecete a profundizar si necesita  EJEMPLOS DE TU ESTILO: Pregunta: Como busco articulos sobre IA? Tu respuesta: Te ayudo a encontrar articulos cientificos sobre IA. Paso 1: Entra a https://catalogo.uacj.mx y selecciona Bases de datos. Paso 2: Usa Scopus para ciencias computacionales (tiene los articulos mas citados). Paso 3: Escribe: artificial intelligence AND (machine learning OR deep learning). Paso 4: Aplica filtros: ultimos 5 anos + articulos revisados por pares. Tip: Si estudias ingenieria, IEEE Xplore tiene articulos mas tecnicos. Necesitas ayuda para refinar la busqueda?  NO HAGAS: - No des respuestas de 1-2 lineas sin contexto - No digas solo contacta biblioteca sin intentar ayudar primero - No uses mucha jerga tecnica sin explicar - No des mas de 10 oraciones (se claro pero completo)"
+                            },
+                            {
+                                role: "user",
+                                content: message
+                            }
+                        ],
+                        temperature: 0.7,
+                        max_tokens: 900
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error?.message || `Error ${response.status}`);
+                }
+
+                const data = await response.json();
+                const aiResponse = data.choices[0].message.content;
+
+                typingIndicator.classList.remove('active');
+                addMessage(aiResponse, 'ai');
+                console.log('✅ Respuesta recibida correctamente');
+
+            } catch (error) {
+                console.error('❌ Error:', error);
+                typingIndicator.classList.remove('active');
+                
+                let errorMsg = '⚠️ Error al procesar tu pregunta.\n\n';
+                if (error.message.includes('401')) {
+                    errorMsg += 'API Key inválida. Verifica tu clave de Groq.';
+                } else if (error.message.includes('429')) {
+                    errorMsg += 'Has excedido el límite de solicitudes. Espera un momento.';
+                } else {
+                    errorMsg += error.message;
+                }
+                
+                addMessage(errorMsg, 'ai', true);
+            }
+
+            sendBtn.disabled = false;
+            scrollToBottom();
+        }
+
+        function addMessage(text, sender, isError = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            
+            const icon = sender === 'user' ? 'fa-user' : 'fa-robot';
+            
+            messageDiv.innerHTML = `
+                <div class="message-icon">
+                    <i class="fas ${icon}"></i>
+                </div>
+                <div class="message-content ${isError ? 'error-message' : ''}">
+                    ${formatText(text)}
+                </div>
+            `;
+            
+            const typingMsg = document.querySelector('.message.ai:last-child');
+            chatMessages.insertBefore(messageDiv, typingMsg);
+            scrollToBottom();
+        }
+
+        function formatText(text) {
+            // Limpiar texto
+            text = text.trim();
+            
+            // Convertir listas
+            text = text.replace(/^\* (.+)$/gm, '<li>$1</li>');
+            text = text.replace(/^- (.+)$/gm, '<li>$1</li>');
+            
+            // Envolver listas en <ul>
+            if (text.includes('<li>')) {
+                text = text.replace(/(<li>.*?<\/li>\n?)+/gs, function(match) {
+                    return '<ul>' + match + '</ul>';
+                });
+            }
+            
+            // Negritas
+            text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+            
+            // Párrafos
+            text = text.split('\n\n').map(p => {
+                if (!p.trim().startsWith('<')) {
+                    return '<p>' + p.trim() + '</p>';
+                }
+                return p;
+            }).join('');
+            
+            return text;
+        }
+
+        function scrollToBottom() {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Event listeners
+        sendBtn.addEventListener('click', () => sendMessage(userInput.value));
+        
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage(userInput.value);
+        });
+
+        // Botones de sugerencias
+        document.querySelectorAll('.suggestion-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const question = btn.getAttribute('data-question');
+                userInput.value = question;
+                sendMessage(question);
+            });
+        });
+
+        console.log('🤖 Chat IA inicializado con Groq');
+        console.log('⚡ Modelo: llama-3.1-70b-versatile');
+        console.log('🔑 API Key:', GROQ_API_KEY ? 'Configurada ✓' : 'Falta configurar ✗');
+    </script>
+</body>
+</html>

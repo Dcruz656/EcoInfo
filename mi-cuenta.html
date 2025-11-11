@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Cuenta - Ecosistema Informacional</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://unpkg.com/heroicons@2.0.18/24/outline/index.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-mobile.css">
+    <style>
+/* === Estilos del modal de autenticación === */
+.login-modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.login-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.login-box {
+  position: relative;
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  z-index: 10000;
+  width: 90%;
+  max-width: 380px;
+  text-align: center;
+}
+
+.login-box h3 {
+  margin-bottom: 10px;
+  color: #004b8d;
+  font-size: 1.5em;
+}
+
+.login-box p {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.login-box .session-message {
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 15px;
+  color: #856404;
+  font-size: 13px;
+  display: none;
+}
+
+.login-box .session-message.show {
+  display: block;
+}
+
+.login-box label {
+  display: block;
+  text-align: left;
+  font-weight: 600;
+  margin-top: 12px;
+  color: #333;
+  font-size: 14px;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.login-box input:focus {
+  outline: none;
+  border-color: #004b8d;
+  box-shadow: 0 0 0 3px rgba(0, 75, 141, 0.1);
+}
+
+.login-box .forgot-password {
+  display: block;
+  text-align: right;
+  margin-top: 8px;
+  color: #004b8d;
+  font-size: 13px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.login-box .forgot-password:hover {
+  text-decoration: underline;
+}
+
+.login-box button {
+  margin-top: 18px;
+  width: 100%;
+  padding: 12px;
+  background-color: #004b8d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+  transition: background-color 0.3s;
+}
+
+.login-box button:hover {
+  background-color: #003a6d;
+}
+
+.login-box .btn-cancel {
+  display: block;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: transparent;
+  color: #666;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+
+.login-box .btn-cancel:hover {
+  background-color: #f8f9fa;
+  border-color: #adb5bd;
+  color: #495057;
+}
+
+.login-box .modal-view {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.login-box .success-icon {
+  font-size: 48px;
+  margin-bottom: 15px;
+  animation: scaleIn 0.5s ease-in-out;
+}
+
+@keyframes scaleIn {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.login-box .btn-primary-full {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  background-color: #004b8d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+  transition: background-color 0.3s;
+}
+
+.login-box .btn-primary-full:hover {
+  background-color: #003a6d;
+}
+
+.logout-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #004b8d;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: all 0.3s;
+  font-size: 14px;
+}
+
+.logout-link:hover {
+  background-color: rgba(0, 75, 141, 0.1);
+  text-decoration: none;
+}
+
+.logout-link i {
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<!-- === Modal de autenticación === -->
+<div id="login-modal" class="login-modal">
+  <div class="login-overlay"></div>
+  <div class="login-box">
+    <!-- Vista 1: Login -->
+    <div id="login-view" class="modal-view">
+      <h3>🔒 Inicia sesión</h3>
+      <p id="login-message">Por seguridad, ingresa tus credenciales institucionales.</p>
+      <div id="session-alert" class="session-message"></div>
+      <form id="login-form">
+        <label for="username">Usuario</label>
+        <input type="text" id="username" placeholder="Correo institucional" required autocomplete="username">
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" placeholder="••••••••" required autocomplete="current-password">
+        <a href="#" id="forgot-password-link" class="forgot-password">¿Olvidaste la contraseña?</a>
+        <button type="submit">Iniciar sesión</button>
+        <a href="index.html" class="btn-cancel">Ir a Inicio</a>
+      </form>
+    </div>
+
+    <!-- Vista 2: Recuperación de contraseña -->
+    <div id="recovery-view" class="modal-view" style="display: none;">
+      <h3>🔑 Recuperar contraseña</h3>
+      <p>Ingresa tu correo institucional y te enviaremos las instrucciones para restablecer tu contraseña.</p>
+      <form id="recovery-form">
+        <label for="recovery-email">Correo electrónico institucional</label>
+        <input type="email" id="recovery-email" placeholder="ejemplo@uacj.mx" required autocomplete="email">
+        <button type="submit">Enviar solicitud</button>
+        <a href="#" id="back-to-login" class="btn-cancel">Volver al inicio de sesión</a>
+      </form>
+    </div>
+
+    <!-- Vista 3: Confirmación -->
+    <div id="confirmation-view" class="modal-view" style="display: none;">
+      <div class="success-icon">✅</div>
+      <h3>Solicitud enviada</h3>
+      <p>Hemos enviado las instrucciones para recuperar tu contraseña a tu correo electrónico.</p>
+      <p style="font-size: 14px; color: #666; margin-top: 15px;">
+        Por favor, revisa tu bandeja de entrada y sigue los pasos indicados. Si no recibes el correo en unos minutos, verifica tu carpeta de spam.
+      </p>
+      <button id="back-to-login-confirmed" class="btn-primary-full">Volver al inicio de sesión</button>
+      <a href="index.html" class="btn-cancel">Ir a Inicio</a>
+    </div>
+  </div>
+</div>
+    <div class="header-wrapper">
+        <header class="header container">
+            <a href="index.html" class="logo">Ecosistema Informacional</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li> 
+                    <li><a href="buscar.html">Buscar y Descubrir</a></li> 
+                    <li><a href="servicios.html">Servicios</a></li> 
+                    <li><a href="apoyo-ayuda.html">Apoyo y Ayuda</a></li>
+                    <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                    <li><a href="normas-politicas.html">Normas y Políticas</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Abrir menú">
+                <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </button>
+            <a href="#" id="logout-btn" class="btn-cta logout-link">
+                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+            </a>
+        </header>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="buscar.html">Buscar y Descubrir</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="apoyo-ayuda.html">Apoyo y Ayuda</a></li>
+            <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+            <li><a href="normas-politicas.html">Normas y Políticas</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section class="page-header">
+            <div class="container" style="text-align: left;">
+                <h1>Mi Cuenta</h1>
+            </div>
+        </section>
+        <div class="dashboard-layout container">
+            <aside class="dashboard-nav">
+                <div class="user-info">
+                    <img src="dcruz-foto.png" alt="Foto de perfil de Daniel Cruz" class="avatar">
+                    <h3>Daniel Cruz Bautista</h3>
+                    <p>dcruz@uacj.mx</p>
+                </div>
+                <ul id="dashboard-menu">
+                    <li><a class="dashboard-nav-link active" data-target="panel-prestamos">Préstamos Vigentes</a></li>
+                    <li><a class="dashboard-nav-link" data-target="panel-favoritos">Favoritos y Listas</a></li>
+                    <li><a class="dashboard-nav-link" data-target="panel-historial">Historial (Búsqueda y Préstamo)</a></li>
+                    <li><a class="dashboard-nav-link" data-target="panel-solicitudes">Solicitudes Realizadas</a></li>
+                    <li><a class="dashboard-nav-link" data-target="panel-constancias">Constancias y Trámites</a></li>
+                    <li><a class="dashboard-nav-link" data-target="panel-certificados">Certificados de Cursos</a></li>
+                    <li><a class="dashboard-nav-link" data-target="panel-perfil">Perfil y Notificaciones</a></li>
+                </ul>
+            </aside>
+            <section class="dashboard-content">
+                <div id="panel-prestamos" class="dashboard-panel active">
+                    <h2>Préstamos Vigentes</h2>
+                    <p>Aquí puedes ver el estado de tus préstamos actuales y renovarlos.</p>
+                    <div class="loan-list">
+                        <div class="loan-card">
+                            <div class="loan-cover-placeholder">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 40px; height: 40px;"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
+                            </div>
+                            <div class="loan-info">
+                                <h3>Introducción al Marketing Digital</h3>
+                                <p><strong>Autor:</strong> Philip Kotler</p>
+                                <p><strong>Fecha de Préstamo:</strong> 15 de Octubre, 2025</p>
+                                <p><strong>Fecha de Devolución:</strong> 31 de Octubre, 2025</p>
+                                <div class="loan-actions">
+                                    <a href="#" class="btn-small">Renovar</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="loan-card">
+                            <div class="loan-cover-placeholder">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 40px; height: 40px;"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
+                            </div>
+                            <div class="loan-info">
+                                <h3>Inteligencia Artificial: Un Enfoque Moderno</h3>
+                                <p><strong>Autor:</strong> Stuart Russell</p>
+                                <p><strong>Fecha de Préstamo:</strong> 18 de Octubre, 2025</p>
+                                <p class="due-soon"><strong>Fecha de Devolución:</strong> 3 de Noviembre, 2025 (¡Vence pronto!)</p>
+                                <div class="loan-actions">
+                                    <a href="#" class="btn-small">Renovar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="panel-favoritos" class="dashboard-panel">
+                    <h2>Favoritos y Listas</h2>
+                    <p>Artículos, libros y búsquedas que has guardado.</p>
+                </div>
+                <div id="panel-historial" class="dashboard-panel">
+                    <h2>Historial</h2>
+                    <p>Tu historial de préstamos y búsquedas anteriores.</p>
+                </div>
+                <div id="panel-solicitudes" class="dashboard-panel">
+                    <h2>Solicitudes Realizadas</h2>
+                    <p>Estado de tus préstamos interbibliotecarios o solicitudes de digitalización.</p>
+                </div>
+                <div id="panel-constancias" class="dashboard-panel">
+                    <h2>Constancias y Trámites</h2>
+                    <p>Genera tus documentos oficiales de biblioteca aquí.</p>
+
+                    <!-- Alerta importante -->
+                    <div style="background: #fff3cd; border: 2px solid #ffc107; border-radius: 8px; padding: 20px; margin-bottom: 25px;">
+                        <h4 style="color: #856404; margin: 0 0 10px 0; display: flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Importante: Requisitos para Constancia de No Adeudo
+                        </h4>
+                        <ul style="color: #856404; margin: 0; padding-left: 20px; line-height: 1.8;">
+                            <li><strong>Disponibilidad:</strong> Esta constancia solo estará disponible si estás libre de adeudos de material y multas.</li>
+                            <li><strong>Suspensión de servicios:</strong> Al momento de solicitar la constancia, tu servicio de préstamo será suspendido automáticamente.</li>
+                        </ul>
+                    </div>
+
+                    <div class="constancia-box">
+                        <h3>Constancia de No Adeudo</h3>
+                        <p>Genera un documento PDF oficial que certifica que no tienes adeudos de material o multas pendientes.</p>
+
+                        <!-- Estado del usuario -->
+                        <div id="user-status" style="background: #d4edda; border: 1px solid #c3e6cb; border-radius: 6px; padding: 15px; margin: 15px 0;">
+                            <p style="margin: 0; color: #155724;">
+                                <i class="fas fa-check-circle"></i>
+                                <strong>Estado actual:</strong> Sin adeudos pendientes. Puedes solicitar tu constancia.
+                            </p>
+                        </div>
+
+                        <button class="btn-generate" id="generate-constancia">
+                            Generar Constancia (Suspenderá préstamos)
+                        </button>
+                    </div>
+                    <h3 style="margin-top: 40px; color: var(--color-texto);">Historial de Solicitudes</h3>
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Documento</th>
+                                <th>Fecha de Solicitud</th>
+                                <th>Estado</th>
+                                <th>Descarga</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Constancia de No Adeudo</td>
+                                <td>15 de Mayo, 2025</td>
+                                <td>Expirado</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>Constancia de No Adeudo</td>
+                                <td>28 de Octubre, 2025</td>
+                                <td>Vigente</td>
+                                <td><a href="#" class="btn-small">Descargar PDF</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+                <div id="panel-certificados" class="dashboard-panel">
+                    <h2>Certificados de Cursos</h2>
+                    <p>Descarga los certificados de los talleres de ALFIN que has completado.</p>
+                </div>
+                <div id="panel-perfil" class="dashboard-panel">
+                    <h2>Perfil y Notificaciones</h2>
+                    <p>Configura tu correo electrónico y tus preferencias de notificación.</p>
+                </div>
+            </section>
+<section class="suggestions-ia container" style="margin-top: 40px;">
+      <h2 style="text-align:left;">Sugerencias para ti por IA</h2>
+      <div class="swiper suggestions-carousel">
+        <div class="swiper-wrapper">
+          <!-- Sugerencia 1 -->
+          <div class="swiper-slide">
+            <div class="book-card">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg" alt="Portada genérica" style="width:100%;max-width:110px;display:block;margin:0 auto 10px;">
+              <h4>Deep Learning</h4>
+              <p>Ian Goodfellow, Yoshua Bengio | MIT Press</p>
+              <a href="#" class="btn-solicitar">Solicitar</a>
+            </div>
+          </div>
+          <!-- Sugerencia 2 -->
+          <div class="swiper-slide">
+            <div class="book-card">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg" alt="Portada genérica" style="width:100%;max-width:110px;display:block;margin:0 auto 10px;">
+              <h4>Nature</h4>
+              <p>Revista líder en ciencia y tecnología.</p>
+              <a href="https://www.nature.com/" class="btn-solicitar" target="_blank">Ir a Revista</a>
+            </div>
+          </div>
+          <!-- Sugerencia 3 -->
+          <div class="swiper-slide">
+            <div class="book-card">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg" alt="Portada genérica" style="width:100%;max-width:110px;display:block;margin:0 auto 10px;">
+              <h4>Artificial Intelligence: A Modern Approach</h4>
+              <p>Russell & Norvig | Pearson</p>
+              <a href="#" class="btn-solicitar">Solicitar</a>
+            </div>
+          </div>
+          <!-- Sugerencia 4 -->
+          <div class="swiper-slide">
+            <div class="book-card">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg" alt="Portada genérica" style="width:100%;max-width:110px;display:block;margin:0 auto 10px;">
+              <h4>Science</h4>
+              <p>Revista internacional de investigación científica.</p>
+              <a href="https://www.science.org/journal/science" class="btn-solicitar" target="_blank">Ir a Revista</a>
+            </div>
+          </div>
+          <!-- Sugerencia 5 -->
+          <div class="swiper-slide">
+            <div class="book-card">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg" alt="Portada genérica" style="width:100%;max-width:110px;display:block;margin:0 auto 10px;">
+              <h4>Machine Learning: A Probabilistic Perspective</h4>
+              <p>Kevin P. Murphy | MIT Press</p>
+              <a href="#" class="btn-solicitar">Solicitar</a>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+    </section>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-col"><h4 class="logo" style="color: var(--color-blanco);">Ecosistema Informacional</h4><p>Av. Plutarco Elías Calles #1210<br>Fovissste Chamizal, C.P. 32310</p></div>
+            <div class="footer-col"><h4>Enlaces Rápidos</h4><ul><li><a href="sobre-nosotros.html">Sobre Nosotros</a></li><li><a href="https://catalogo.uacj.mx/">Catálogo</a></li><li><a href="servicios.html">Servicios</a></li><li><a href="apoyo-ayuda.html">Contacto</a></li></ul></div>
+            <div class="footer-col"><h4>Recursos</h4><ul><li><a href="bases-de-datos.html">Bases de Datos</a></li><li><a href="#">Repositorio</a></li><li><a href="guias-tematicas.html">Guías Temáticas</a></li><li><a href="#">Preguntas Frecuentes</a></li></ul></div>
+            <div class="footer-col">
+                <h4>Redes Sociales</h4>
+                <ul class="footer-social-icons">
+                    <li><a href="#" aria-label="Facebook" title="Facebook"><i class="fa-brands fa-facebook"></i></a></li>
+                    <li><a href="#" aria-label="Twitter" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a></li>
+                    <li><a href="#" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+      if (document.querySelector('.suggestions-carousel')) {
+        new Swiper('.suggestions-carousel', {
+          slidesPerView: 1,
+          spaceBetween: 20,
+          loop: true,
+          autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+          },
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
+          },
+          breakpoints: {
+            640: { slidesPerView: 2, spaceBetween: 15 },
+            1024: { slidesPerView: 3, spaceBetween: 20 }
+          }
+        });
+      }
+    </script>
+
+    <script>
+    // JavaScript para navegación del dashboard
+    document.addEventListener('DOMContentLoaded', function() {
+        const navLinks = document.querySelectorAll('.dashboard-nav-link');
+        const panels = document.querySelectorAll('.dashboard-panel');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remover clase active de todos los enlaces
+                navLinks.forEach(l => l.classList.remove('active'));
+                
+                // Agregar clase active al enlace clickeado
+                this.classList.add('active');
+                
+                // Ocultar todos los paneles
+                panels.forEach(panel => panel.classList.remove('active'));
+                
+                // Mostrar el panel correspondiente
+                const targetId = this.getAttribute('data-target');
+                const targetPanel = document.getElementById(targetId);
+                if (targetPanel) {
+                    targetPanel.classList.add('active');
+                }
+            });
+        });
+
+        // JavaScript para generar constancia
+        const btnGenerate = document.getElementById('generate-constancia');
+        if (btnGenerate) {
+            btnGenerate.addEventListener('click', function() {
+                // Validar si el usuario tiene adeudos (esto se haría con tu backend)
+                const tieneAdeudos = false; // Cambiar según consulta real
+
+                if (tieneAdeudos) {
+                    alert('No puedes generar la constancia porque tienes adeudos pendientes. Por favor, regulariza tu situación primero.');
+                    return;
+                }
+
+                const confirmar = confirm(
+                    '⚠️ IMPORTANTE:\n\n' +
+                    '• Al generar esta constancia, tu servicio de préstamo será SUSPENDIDO temporalmente.\n' +
+                    '• No podrás solicitar nuevos préstamos hasta que la constancia expire (30 días) o sea utilizada.\n' +
+                    '• La constancia certifica que actualmente no tienes adeudos.\n\n' +
+                    '¿Deseas continuar?'
+                );
+
+                if (confirmar) {
+                    alert('Constancia generada exitosamente.\n\nTu servicio de préstamo ha sido suspendido temporalmente.\nRecibirás el PDF por correo electrónico.');
+
+                    // Actualizar el estado visualmente
+                    const statusDiv = document.getElementById('user-status');
+                    if (statusDiv) {
+                        statusDiv.innerHTML = `
+                            <p style="margin: 0; color: #856404;">
+                                <i class="fas fa-pause-circle"></i>
+                                <strong>Estado actual:</strong> Servicio de préstamo suspendido por constancia vigente.
+                            </p>
+                        `;
+                    }
+                }
+            });
+        }
+    });
+    </script>
+
+    <!-- === Script de Autenticación y Control de Sesión === -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const modal = document.getElementById('login-modal');
+      const loginView = document.getElementById('login-view');
+      const recoveryView = document.getElementById('recovery-view');
+      const confirmationView = document.getElementById('confirmation-view');
+      
+      const form = document.getElementById('login-form');
+      const recoveryForm = document.getElementById('recovery-form');
+      const logoutBtn = document.getElementById('logout-btn');
+      const loginMessage = document.getElementById('login-message');
+      const sessionAlert = document.getElementById('session-alert');
+      const usernameInput = document.getElementById('username');
+      const passwordInput = document.getElementById('password');
+      const recoveryEmailInput = document.getElementById('recovery-email');
+      
+      const forgotPasswordLink = document.getElementById('forgot-password-link');
+      const backToLoginLink = document.getElementById('back-to-login');
+      const backToLoginConfirmed = document.getElementById('back-to-login-confirmed');
+      
+      let inactivityTimer;
+
+      // === Funciones para cambiar entre vistas ===
+      const showView = (viewToShow) => {
+        [loginView, recoveryView, confirmationView].forEach(view => {
+          view.style.display = 'none';
+        });
+        viewToShow.style.display = 'block';
+      };
+
+      // === Mostrar / Ocultar modal ===
+      const showLogin = (reason = '') => {
+        modal.style.display = 'flex';
+        showView(loginView);
+        
+        // Limpiar los campos del formulario
+        usernameInput.value = '';
+        passwordInput.value = '';
+        
+        // Mostrar mensaje según la razón
+        if (reason === 'logout') {
+          sessionAlert.textContent = '⚠️ Has cerrado sesión exitosamente.';
+          sessionAlert.classList.add('show');
+          loginMessage.textContent = 'Ingresa nuevamente tus credenciales para acceder.';
+        } else if (reason === 'inactivity') {
+          sessionAlert.textContent = '⏱️ Tu sesión expiró por inactividad (2 minutos).';
+          sessionAlert.classList.add('show');
+          loginMessage.textContent = 'Por seguridad, ingresa nuevamente tus credenciales.';
+        } else if (reason === 'expired') {
+          sessionAlert.textContent = '⏱️ Tu sesión ha expirado.';
+          sessionAlert.classList.add('show');
+          loginMessage.textContent = 'Por seguridad, ingresa nuevamente tus credenciales.';
+        } else {
+          sessionAlert.classList.remove('show');
+          loginMessage.textContent = 'Por seguridad, ingresa tus credenciales institucionales.';
+        }
+        
+        // Enfocar el campo de usuario
+        setTimeout(() => usernameInput.focus(), 100);
+      };
+
+      const hideLogin = () => {
+        modal.style.display = 'none';
+        sessionAlert.classList.remove('show');
+      };
+
+      // === Gestión de sesión ===
+      const startSession = () => {
+        localStorage.setItem('sessionActive', 'true');
+        localStorage.setItem('lastActivity', Date.now());
+        console.log('✅ Sesión iniciada');
+      };
+
+      const clearSession = () => {
+        localStorage.removeItem('sessionActive');
+        localStorage.removeItem('lastActivity');
+        console.log('🚪 Sesión cerrada');
+      };
+
+      const isSessionActive = () => localStorage.getItem('sessionActive') === 'true';
+
+      // === Control de inactividad (2 minutos) ===
+      function resetInactivityTimer() {
+        clearTimeout(inactivityTimer);
+        inactivityTimer = setTimeout(() => {
+          console.log('⏱️ Sesión expirada por inactividad');
+          clearSession();
+          showLogin('inactivity');
+        }, 2 * 60 * 1000); // 2 minutos
+        localStorage.setItem('lastActivity', Date.now());
+      }
+
+      // === Detectar actividad del usuario ===
+      ['click', 'mousemove', 'keypress', 'scroll', 'touchstart'].forEach(evt => {
+        document.addEventListener(evt, () => {
+          if (isSessionActive()) {
+            resetInactivityTimer();
+          }
+        }, { passive: true });
+      });
+
+      // === Iniciar sesión ===
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const user = usernameInput.value.trim();
+        const pass = passwordInput.value.trim();
+
+        if (user && pass) {
+          console.log('🔑 Iniciando sesión para:', user);
+          startSession();
+          hideLogin();
+          resetInactivityTimer();
+          console.log('✅ Bienvenido al sistema');
+        } else {
+          alert('Por favor, completa todos los campos.');
+        }
+      });
+
+      // === Cerrar sesión manualmente ===
+      logoutBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        const confirmar = confirm('¿Estás seguro de que deseas cerrar sesión?');
+        
+        if (confirmar) {
+          console.log('👋 Cerrando sesión manualmente');
+          clearSession();
+          clearTimeout(inactivityTimer);
+          showLogin('logout');
+        }
+      });
+
+      // === Recuperación de contraseña ===
+      forgotPasswordLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        showView(recoveryView);
+        setTimeout(() => recoveryEmailInput.focus(), 100);
+      });
+
+      backToLoginLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        showView(loginView);
+        recoveryEmailInput.value = '';
+        setTimeout(() => usernameInput.focus(), 100);
+      });
+
+      backToLoginConfirmed.addEventListener('click', (e) => {
+        e.preventDefault();
+        showView(loginView);
+        setTimeout(() => usernameInput.focus(), 100);
+      });
+
+      // === Envío de solicitud de recuperación ===
+      recoveryForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = recoveryEmailInput.value.trim();
+
+        if (email) {
+          // Validación básica de correo institucional
+          if (!email.includes('@uacj.mx') && !email.includes('@')) {
+            alert('Por favor, ingresa un correo electrónico válido.');
+            return;
+          }
+
+          console.log('📧 Solicitud de recuperación enviada para:', email);
+          
+          // Simular envío (en producción, aquí harías una llamada al backend)
+          setTimeout(() => {
+            showView(confirmationView);
+            recoveryEmailInput.value = '';
+          }, 500);
+        } else {
+          alert('Por favor, ingresa tu correo electrónico.');
+        }
+      });
+
+      // === Control inicial al cargar la página ===
+      const lastActivity = parseInt(localStorage.getItem('lastActivity') || 0, 10);
+      const now = Date.now();
+      const INACTIVITY_TIMEOUT = 2 * 60 * 1000; // 2 minutos en milisegundos
+
+      console.log('📊 Verificando estado de sesión...');
+      
+      if (!isSessionActive()) {
+        console.log('❌ No hay sesión activa');
+        clearSession();
+        showLogin();
+      } else if (now - lastActivity > INACTIVITY_TIMEOUT) {
+        console.log('⏱️ Sesión expirada (última actividad hace más de 2 minutos)');
+        clearSession();
+        showLogin('expired');
+      } else {
+        console.log('✅ Sesión válida - restaurando...');
+        const tiempoRestante = Math.round((INACTIVITY_TIMEOUT - (now - lastActivity)) / 1000);
+        console.log(`⏱️ Tiempo restante: ${tiempoRestante} segundos`);
+        hideLogin();
+        resetInactivityTimer();
+      }
+
+      // === Prevenir que el modal se cierre haciendo clic fuera de él ===
+      const overlay = modal.querySelector('.login-overlay');
+      if (overlay) {
+        overlay.addEventListener('click', (e) => {
+          e.stopPropagation();
+        });
+      }
+    });
+    </script>
+</body>
+</html>

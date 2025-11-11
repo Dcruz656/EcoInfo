@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Guía temática de recursos bibliográficos para Ingeniería Industrial - Bases de datos, libros y herramientas especializadas.">
+    <title>Guía Temática: Ing. Industrial (IIT) - Ecosistema Informacional UACJ</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-mobile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script src="https://unpkg.com/heroicons@2.0.18/24/outline/index.js"></script>
+</head>
+<body>
+
+    <div class="header-wrapper">
+        <header class="header container">
+            <a href="index.html" class="logo">Ecosistema Informacional</a>
+            
+            <nav class="main-nav" aria-label="Navegación principal">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="buscar.html" class="active" aria-current="page">Buscar y Descubrir</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="apoyo-ayuda.html">Apoyo y Ayuda</a></li> 
+                    <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                    <li><a href="normas-politicas.html">Normas y Políticas</a></li>
+                </ul>
+            </nav>
+
+            <button class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Abrir menú de navegación" aria-expanded="false">
+                <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </button>
+
+            <a href="mi-cuenta.html" class="btn-cta">Mi Cuenta</a>
+        </header>
+    </div>
+    
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Navegación móvil">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="buscar.html">Buscar y Descubrir</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="apoyo-ayuda.html">Apoyo y Ayuda</a></li>
+            <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Guía Temática: Ing. Industrial (IIT)</h1>
+            </div>
+        </section>
+
+        <div class="guide-layout container">
+        
+            <div class="guide-content">
+                
+                <nav class="tab-nav" role="tablist">
+                    <div class="tab-link active" data-target="panel-db" role="tab" aria-selected="true" aria-controls="panel-db">Bases de Datos Clave</div>
+                    <div class="tab-link" data-target="panel-libros" role="tab" aria-selected="false" aria-controls="panel-libros">Libros y Manuales</div>
+                    <div class="tab-link" data-target="panel-web" role="tab" aria-selected="false" aria-controls="panel-web">Recursos Abiertos</div>
+                    <div class="tab-link" data-target="panel-citar" role="tab" aria-selected="false" aria-controls="panel-citar">Citar y Publicar</div>
+                </nav>
+
+                <div id="panel-db" class="tab-panel active" role="tabpanel">
+                    <h2>Bases de Datos Esenciales</h2>
+                    <ul class="resource-list">
+                        <li>
+                            <a href="#" target="_blank" rel="noopener noreferrer">Scopus</a>
+                            <p>Ideal para análisis bibliométricos y encontrar literatura sobre manufactura, calidad y sistemas.</p>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank" rel="noopener noreferrer">Knovel</a>
+                            <p>Plataforma de libros electrónicos con manuales técnicos, datos interactivos y tablas para ingenieros.</p>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank" rel="noopener noreferrer">EBSCOhost (Business Source Complete)</a>
+                            <p>Artículos sobre gestión de operaciones, logística, cadena de suministro y gestión de la calidad.</p>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank" rel="noopener noreferrer">IEEE Xplore</a>
+                            <p>Recurso útil para temas de automatización industrial, robótica e ingeniería de sistemas.</p>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div id="panel-libros" class="tab-panel" role="tabpanel">
+                    <h2>Libros y Manuales (eBooks)</h2>
+                    <ul class="resource-list">
+                        <li>
+                            <a href="#" target="_blank" rel="noopener noreferrer">Springer eBooks (Colección Ingeniería)</a>
+                            <p>Acceso a libros electrónicos sobre optimización, logística, manufactura y ergonomía.</p>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank" rel="noopener noreferrer">Manuales de Calidad y Procesos (ISO 9000, etc.)</a>
+                            <p>Consulta en el catálogo la disponibilidad de manuales de estandarización y calidad.</p>
+                        </li>
+                        <li>
+                            <a href="https://elibro.net/" target="_blank" rel="noopener noreferrer">E-Libro Cátedra</a>
+                            <p>Colección de libros electrónicos en español sobre administración y procesos industriales.</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="panel-web" class="tab-panel" role="tabpanel">
+                    <h2>Sitios Web y Recursos Abiertos</h2>
+                    <ul class="resource-list">
+                        <li>
+                            <a href="https://www.iso.org/home.html" target="_blank" rel="noopener noreferrer">Organización Internacional de Estandarización (ISO)</a>
+                            <p>Busca y consulta estándares internacionales de calidad, medio ambiente y seguridad.</p>
+                        </li>
+                        <li>
+                            <a href="https://www.gob.mx/se" target="_blank" rel="noopener noreferrer">Secretaría de Economía</a>
+                            <p>Información sobre normatividad industrial (NOMs) y comercio en México.</p>
+                        </li>
+                        <li>
+                            <a href="acceso-abierto.html">Directorio de Acceso Abierto UACJ</a>
+                            <p>Explora más plataformas gratuitas como DOAJ y Redalyc.</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="panel-citar" class="tab-panel" role="tabpanel">
+                    <h2>Citar y Publicar</h2>
+                    <ul class="resource-list">
+                        <li>
+                            <a href="citas-ia.html">Generador de Citas IA</a>
+                            <p>Genera automáticamente tus referencias en APA o IEEE, usando un DOI o ISBN.</p>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank" rel="noopener noreferrer">Guía Rápida: Estilo APA 7ma Ed.</a>
+                            <p>Descarga el manual de estilo más usado para reportes de gestión e investigación.</p>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank" rel="noopener noreferrer">Manuales de Gestores (Zotero/Mendeley)</a>
+                            <p>Aprende a organizar tus referencias y bibliografía de forma automática.</p>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            
+            <aside class="guide-sidebar">
+                <div class="specialist-card">
+                    <h3>Tu Bibliotecario Especialista</h3>
+                    <div class="specialist-photo-placeholder" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width:50px; height:50px;">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A1.5 1.5 0 0118 21.75H6a1.5 1.5 0 01-1.499-1.632z" />
+                        </svg>
+                    </div>
+                    <strong>Ing. Luis Rentería</strong>
+                    <p>Referencista Especializado<br>Ingeniería y Tecnología (IIT)</p>
+                    <a href="agendar-cita.html" class="btn-primary">Agendar Asesoría</a>
+                </div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-col">
+                <h4 class="logo" style="color: var(--color-blanco);">Ecosistema Informacional</h4>
+                <p>Av. Plutarco Elías Calles #1210<br>Fovissste Chamizal, C.P. 32310</p>
+            </div>
+            <div class="footer-col">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                    <li><a href="https://catalogo.uacj.mx/" target="_blank" rel="noopener noreferrer">Catálogo</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="apoyo-ayuda.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Recursos</h4>
+                <ul>
+                    <li><a href="bases-de-datos.html">Bases de Datos</a></li>
+                    <li><a href="#">Repositorio</a></li>
+                    <li><a href="guias-tematicas.html">Guías Temáticas</a></li>
+                    <li><a href="#">Preguntas Frecuentes</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Redes Sociales</h4>
+                <ul class="footer-social-icons">
+                    <li><a href="#" aria-label="Síguenos en Facebook" title="Facebook" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a href="#" aria-label="Síguenos en Twitter" title="Twitter" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a></li>
+                    <li><a href="#" aria-label="Síguenos en Instagram" title="Instagram" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="app.js"></script>
+
+</body>
+</html>

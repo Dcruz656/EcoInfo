@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutoriales - Ecosistema Informacional</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script src="https://unpkg.com/heroicons@2.0.18/24/outline/index.js"></script>
+
+    <style>
+        /* Estilos para acordeón de tutoriales */
+        .tutorial-category {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .tutorial-header {
+            background-color: var(--color-fondo-claro);
+            padding: 18px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .tutorial-header:hover {
+            background-color: #e8e8e8;
+        }
+
+        .tutorial-header h3 {
+            margin: 0;
+            font-size: 1.15rem;
+            color: var(--color-primario);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tutorial-header i {
+            font-size: 1.3rem;
+        }
+
+        .tutorial-arrow {
+            font-size: 1.2rem;
+            color: var(--color-texto-sec);
+            transition: transform 0.3s ease;
+        }
+
+        .tutorial-category.active .tutorial-arrow {
+            transform: rotate(180deg);
+        }
+
+        .tutorial-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .tutorial-category.active .tutorial-content {
+            max-height: 5000px;
+        }
+
+        .tutorial-list {
+            padding: 20px;
+        }
+
+        .tutorial-item {
+            display: flex;
+            gap: 15px;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-left: 3px solid var(--color-primario);
+            background-color: #f9f9f9;
+            border-radius: 6px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .tutorial-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .tutorial-icon {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            background-color: var(--color-primario);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .tutorial-info h4 {
+            margin: 0 0 5px 0;
+            font-size: 1rem;
+            color: var(--color-texto);
+        }
+
+        .tutorial-info p {
+            margin: 0 0 8px 0;
+            font-size: 0.9rem;
+            color: var(--color-texto-sec);
+            line-height: 1.5;
+        }
+
+        .tutorial-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 0.85rem;
+            color: var(--color-texto-sec);
+            margin-bottom: 12px;
+        }
+
+        .tutorial-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .tutorial-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tutorial-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .tutorial-btn-video {
+            background-color: var(--color-primario);
+            color: white;
+        }
+
+        .tutorial-btn-video:hover {
+            background-color: var(--color-secundario);
+            transform: translateY(-2px);
+        }
+
+        .tutorial-btn-audio {
+            background-color: #f39c12;
+            color: white;
+        }
+
+        .tutorial-btn-audio:hover {
+            background-color: #e67e22;
+            transform: translateY(-2px);
+        }
+
+        .tutorial-btn-pdf {
+            background-color: #27ae60;
+            color: white;
+        }
+
+        .tutorial-btn-pdf:hover {
+            background-color: #229954;
+            transform: translateY(-2px);
+        }
+
+        .tutorial-btn i {
+            font-size: 0.9rem;
+        }
+
+        .intro-banner {
+            background: linear-gradient(135deg, var(--color-primario) 0%, var(--color-secundario) 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .intro-banner h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.8rem;
+        }
+
+        .intro-banner p {
+            margin: 0;
+            font-size: 1rem;
+            opacity: 0.95;
+        }
+
+        @media (max-width: 768px) {
+            .tutorial-item {
+                flex-direction: column;
+            }
+            
+            .tutorial-meta {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .tutorial-actions {
+                flex-direction: column;
+            }
+
+            .tutorial-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-wrapper">
+        <header class="header container">
+            <a href="index.html" class="logo">Ecosistema Informacional</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="buscar.html">Buscar y Descubrir</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="apoyo-ayuda.html" class="active">Apoyo y Ayuda</a></li>
+                    <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                    <li><a href="normas-politicas.html">Normas y Políticas</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Abrir menú">
+                <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </button>
+            <a href="mi-cuenta.html" class="btn-cta">Mi Cuenta</a>
+        </header>
+    </div>
+    
+    <nav class="mobile-nav" id="mobile-nav">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="buscar.html">Buscar y Descubrir</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="apoyo-ayuda.html">Apoyo y Ayuda</a></li>
+            <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+            <li><a href="normas-politicas.html">Normas y Políticas</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Tutoriales Interactivos</h1>
+            </div>
+        </section>
+
+        <section class="container">
+            
+            <div class="intro-banner">
+                <h2>Aprende a tu ritmo</h2>
+                <p>Tutoriales en video, audio y guías PDF para dominar las habilidades esenciales de investigación.</p>
+            </div>
+
+            <!-- Categoría 1: Búsqueda y Descubrimiento -->
+            <div class="tutorial-category">
+                <div class="tutorial-header">
+                    <h3>
+                        <i class="fas fa-search"></i>
+                        Búsqueda y Descubrimiento
+                    </h3>
+                    <i class="fas fa-chevron-down tutorial-arrow"></i>
+                </div>
+                <div class="tutorial-content">
+                    <div class="tutorial-list">
+                        
+                        <!-- Tutorial 1 -->
+                        <div class="tutorial-item">
+                            <div class="tutorial-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="tutorial-info">
+                                <h4>Cómo usar el Catálogo de la Biblioteca</h4>
+                                <p>Aprende a buscar y localizar libros, revistas y recursos multimedia en nuestro catálogo en línea.</p>
+                                <div class="tutorial-meta">
+                                    <span><i class="far fa-clock"></i> 8 min</span>
+                                    <span><i class="fas fa-signal"></i> Básico</span>
+                                </div>
+                                <div class="tutorial-actions">
+                                    <a class="tutorial-btn tutorial-btn-video" 
+                                       data-video-id="bZTO7ca0AoA">
+
+                                        <i class="fas fa-play"></i> Ver Video
+                                    </a>
+                                    <a class="tutorial-btn tutorial-btn-audio" 
+                                       data-audio-url="<amp-iframe src="Aqui la liga"></amp-img><iframe src="https://www.ivoox.com/player_ej_162338669_6_1.html" width="100%" height="200" frameborder="0" allowfullscreen="" scrolling="no" loading="lazy"></iframe></amp-iframe>">
+                                        <i class="fas fa-headphones"></i> Escuchar Audio
+                                    </a>
+                                    <a class="tutorial-btn tutorial-btn-pdf" 
+                                       data-pdf-url="PONER_AQUI_URL_PDF_1">
+                                        <i class="fas fa-file-pdf"></i> Descargar PDF
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tutorial 2 -->
+                        <div class="tutorial-item">
+                            <div class="tutorial-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="tutorial-info">
+                                <h4>Estrategias de Búsqueda Avanzada</h4>
+                                <p>Mejora tus resultados usando operadores booleanos (AND, OR, NOT) y técnicas de refinamiento.</p>
+                                <div class="tutorial-meta">
+                                    <span><i class="far fa-clock"></i> 12 min</span>
+                                    <span><i class="fas fa-signal"></i> Intermedio</span>
+                                </div>
+                                <div class="tutorial-actions">
+                                    <a class="tutorial-btn tutorial-btn-video" 
+                                       data-video-id="PONER_AQUI_ID_VIDEO_2">
+                                        <i class="fas fa-play"></i> Ver Video
+                                    </a>
+                                    <a class="tutorial-btn tutorial-btn-audio" 
+                                       data-audio-url="PONER_AQUI_URL_AUDIO_2">
+                                        <i class="fas fa-headphones"></i> Escuchar Audio
+                                    </a>
+                                    <a class="tutorial-btn tutorial-btn-pdf" 
+                                       data-pdf-url="PONER_AQUI_URL_PDF_2">
+                                        <i class="fas fa-file-pdf"></i> Descargar PDF
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tutorial 3 -->
+                        <div class="tutorial-item">
+                            <div class="tutorial-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="tutorial-info">
+                                <h4>Búsqueda en Bases de Datos Especializadas</h4>
+                                <p>Guía para usar Scopus, Web of Science, EBSCO y otras bases de datos académicas.</p>
+                                <div class="tutorial-meta">
+                                    <span><i class="far fa-clock"></i> 15 min</span>
+                                    <span><i class="fas fa-signal"></i> Avanzado</span>
+                                </div>
+                                <div class="tutorial-actions">
+                                    <a class="tutorial-btn tutorial-btn-video" 
+                                       data-video-id="PONER_AQUI_ID_VIDEO_3">
+                                        <i class="fas fa-play"></i> Ver Video
+                                    </a>
+                                    <a class="tutorial-btn tutorial-btn-audio" 
+                                       data-audio-url="PONER_AQUI_URL_AUDIO_3">
+                                        <i class="fas fa-headphones"></i> Escuchar Audio
+                                    </a>
+                                    <a class="tutorial-btn tutorial-btn-pdf" 
+                                       data-pdf-url="PONER_AQUI_URL_PDF_3">
+                                        <i class="fas fa-file-pdf"></i> Descargar PDF
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categoría 2: Citación y Referencias -->
+            <div class="tutorial-category">
+                <div class="tutorial-header">
+                    <h3>
+                        <i class="fas fa-quote-right"></i>
+                        Citación y Referencias
+                    </h3>
+                    <i class="fas fa-chevron-down tutorial-arrow"></i>
+                </div>
+                <div class="tutorial-content">
+                    <div class="tutorial-list">
+                        
+                        <!-- Tutorial 4 -->
+                        <div class="tutorial-item">
+                            <div class="tutorial-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="tutorial-info">
+                                <h4>Citar en formato APA 7ª Edición</h4>
+                                <p>Tutorial completo sobre las nuevas normas APA: citas en texto, lista de referencias y casos especiales.</p>
+                                <div class="tutorial-meta">
+                                    <span><i class="far fa-clock"></i> 20 min</span>
+                                    <span><i class="fas fa-signal"></i> Intermedio</span>
+                                </div>
+                                <div class="tutorial-actions">
+                                    <a class="tutorial-btn tutorial-btn-video" 
+                                       data-video-id="PONER_AQUI_ID_VIDEO_4">
+                                        <i class="fas fa-play"></i> Ver Video
+                                    </a>
+                                    <a class="tutorial-btn tutorial-btn-audio" 
+                                       data-audio-url="PONER_AQUI_URL_AUDIO_4">
+                                        <i class="fas fa-headphones"></i> Escuchar Audio
+                                    </a>
+                                    <a class="tutorial-btn tutorial-btn-pdf" 
+                                       data-pdf-url="PONER_AQUI_URL_PDF_4">
+                                        <i class="fas fa-file-pdf"></i> Descargar PDF
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tutorial 5 -->
+                        <div class="tutorial-item">
+                            <div class="tutorial-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="tutorial-info">
+                                <h4>Introducción a Zotero (Gestor Bibliográfico)</h4>
+                                <p>Organiza tus referencias, genera bibliografías automáticas y sincroniza tu biblioteca en todos tus dispositivos.</p>
+                                <div class="tutorial-meta">
+                                    <span><i class="far fa-clock"></i> 25 min</span>
+                                    <span><i class="fas fa-signal"></i> Intermedio</span>
+                                </div>
+                                <div class="tutorial-actions">
+                                    <a class="tutorial-btn tutorial-btn-video" 
+                                       data-video-id="PONER_AQUI_ID_VIDEO_5">
+                                        <i class="fas fa-play"></i> Ver Video
+                                    </a>
+                                    <a class="tutorial-btn tutorial-btn-audio" 
+                                       data-audio-url="PONER_AQUI_URL_AUDIO_5">
+                                        <i class="fas fa-headphones"></i> Escuchar Audio
+                                    </a>
+                                    <a class="tutorial-btn tutorial-btn-pdf" 
+                                       data-pdf-url="PONER_AQUI_URL_PDF_5">
+                                        <i class="fas fa-file-pdf"></i> Descargar PDF
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tutorial 6 -->
+                        <div class="tutorial-item">
+                            <div class="tutorial-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="tutorial-info">
+                                <h4>Evitar el Plagio: Guía de Buenas Prácticas</h4>
+                                <p>Comprende qué es el plagio, cómo evitarlo y la importancia de la integridad académica.</p>
+                                <div class="tutorial-meta">
+                                    <span><i class="far fa-clock"></i> 10 min</span>
+                                    <span><i class="fas fa-signal"></i> Básico</span>
+                                </div>
+                                <div class="tutorial-actions">
+                                    <a class="tutorial-btn tutorial-btn-video" 
+                                       data-video-id="PONER_AQUI_ID_VIDEO_6">
+                                        <i class="fas fa-play"></i> Ver Video
+                                    </a>
+                                    <a class="tutorial-btn tutorial-btn-audio" 
+                                       data-audio-url="PONER_AQUI_URL_AUDIO_6">
+                                        <i class="fas fa-headphones"></i> Escuchar Audio
+                                    </a>
+                                    <a class="tutorial-btn tutorial-btn-pdf" 
+                                       data-pdf-url="PONER_AQUI_URL_PDF_6">
+                                        <i class="fas fa-file-pdf"></i> Descargar PDF
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categoría 3: Evaluación de Fuentes -->
+            <div class="tutorial-category">
+                <div class="tutorial-header">
+                    <h3>
+                        <i class="fas fa-check-circle"></i>
+                        Evaluación de Fuentes
+                    </h3>
+                    <i class="fas fa-chevron-down tutorial-arrow"></i>
+                </div>
+                <div class="tutorial-content">
+                    <div class="tutorial-list">
+                        
+                        <!-- Tutorial 7 -->
+                        <div class="tutorial-item">
+                            <div class="tutorial-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="tutorial-info">
+                                <h4>Identificar Fuentes Académicas Confiables</h4>
+                                <p>Aprende a distinguir fuentes revisadas por pares, evaluar credibilidad y verificar la calidad académica.</p>
+                                <div class="tutorial-meta">
+                                    <span><i class="far fa-clock"></i> 14 min</span>
+                                    <span><i class="fas fa-signal"></i> Intermedio</span>
+                                </div>
+                                <div class="tutorial-actions">
+                                    <a class="tutorial-btn tutorial-btn-video" 
+                                       data-video-id="PONER_AQUI_ID_VIDEO_7">
+                                        <i class="fas fa-play"></i> Ver Video
+                                    </a>
+                                    <a class="tutorial-btn tutorial-btn-audio" 
+                                       data-audio-url="PONER_AQUI_URL_AUDIO_7">
+                                        <i class="fas fa-headphones"></i> Escuchar Audio
+                                    </a>
+                                    <a class="tutorial-btn tutorial-btn-pdf" 
+                                       data-pdf-url="PONER_AQUI_URL_PDF_7">
+                                        <i class="fas fa-file-pdf"></i> Descargar PDF
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tutorial 8 -->
+                        <div class="tutorial-item">
+                            <div class="tutorial-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="tutorial-info">
+                                <h4>Detectar Fake News y Desinformación</h4>
+                                <p>Herramientas y técnicas para verificar noticias, identificar sesgos y combatir la desinformación.</p>
+                                <div class="tutorial-meta">
+                                    <span><i class="far fa-clock"></i> 12 min</span>
+                                    <span><i class="fas fa-signal"></i> Básico</span>
+                                </div>
+                                <div class="tutorial-actions">
+                                    <a class="tutorial-btn tutorial-btn-video" 
+                                       data-video-id="PONER_AQUI_ID_VIDEO_8">
+                                        <i class="fas fa-play"></i> Ver Video
+                                    </a>
+                                    <a class="tutorial-btn tutorial-btn-audio" 
+                                       data-audio-url="PONER_AQUI_URL_AUDIO_8">
+                                        <i class="fas fa-headphones"></i> Escuchar Audio
+                                    </a>
+                                    <a class="tutorial-btn tutorial-btn-pdf" 
+                                       data-pdf-url="PONER_AQUI_URL_PDF_8">
+                                        <i class="fas fa-file-pdf"></i> Descargar PDF
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categoría 4: Habilidades de Investigación -->
+            <div class="tutorial-category">
+                <div class="tutorial-header">
+                    <h3>
+                        <i class="fas fa-graduation-cap"></i>
+                        Habilidades de Investigación
+                    </h3>
+                    <i class="fas fa-chevron-down tutorial-arrow"></i>
+                </div>
+                <div class="tutorial-content">
+                    <div class="tutorial-list">
+                        
+                        <!-- Tutorial 9 -->
+                        <div class="tutorial-item">
+                            <div class="tutorial-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="tutorial-info">
+                                <h4>Cómo elegir un tema de investigación</h4>
+                                <p>Estrategias para seleccionar, delimitar y enfocar tu tema de tesis o proyecto académico.</p>
+                                <div class="tutorial-meta">
+                                    <span><i class="far fa-clock"></i> 16 min</span>
+                                    <span><i class="fas fa-signal"></i> Intermedio</span>
+                                </div>
+                                <div class="tutorial-actions">
+                                    <a class="tutorial-btn tutorial-btn-video" 
+                                       data-video-id="PONER_AQUI_ID_VIDEO_9">
+                                        <i class="fas fa-play"></i> Ver Video
+                                    </a>
+                                    <a class="tutorial-btn tutorial-btn-audio" 
+                                       data-audio-url="PONER_AQUI_URL_AUDIO_9">
+                                        <i class="fas fa-headphones"></i> Escuchar Audio
+                                    </a>
+                                    <a class="tutorial-btn tutorial-btn-pdf" 
+                                       data-pdf-url="PONER_AQUI_URL_PDF_9">
+                                        <i class="fas fa-file-pdf"></i> Descargar PDF
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tutorial 10 -->
+                        <div class="tutorial-item">
+                            <div class="tutorial-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="tutorial-info">
+                                <h4>Lectura crítica de artículos científicos</h4>
+                                <p>Guía para leer, analizar y extraer información clave de papers académicos de forma eficiente.</p>
+                                <div class="tutorial-meta">
+                                    <span><i class="far fa-clock"></i> 15 min</span>
+                                    <span><i class="fas fa-signal"></i> Avanzado</span>
+                                </div>
+                                <div class="tutorial-actions">
+                                    <a class="tutorial-btn tutorial-btn-video" 
+                                       data-video-id="PONER_AQUI_ID_VIDEO_10">
+                                        <i class="fas fa-play"></i> Ver Video
+                                    </a>
+                                    <a class="tutorial-btn tutorial-btn-audio" 
+                                       data-audio-url="PONER_AQUI_URL_AUDIO_10">
+                                        <i class="fas fa-headphones"></i> Escuchar Audio
+                                    </a>
+                                    <a class="tutorial-btn tutorial-btn-pdf" 
+                                       data-pdf-url="PONER_AQUI_URL_PDF_10">
+                                        <i class="fas fa-file-pdf"></i> Descargar PDF
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categoría 5: Inteligencia Artificial -->
+            <div class="tutorial-category">
+                <div class="tutorial-header">
+                    <h3>
+                        <i class="fas fa-robot"></i>
+                        Inteligencia Artificial y Tecnología
+                    </h3>
+                    <i class="fas fa-chevron-down tutorial-arrow"></i>
+                </div>
+                <div class="tutorial-content">
+                    <div class="tutorial-list">
+                        
+                        <!-- Tutorial 11 -->
+                        <div class="tutorial-item">
+                            <div class="tutorial-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="tutorial-info">
+                                <h4>Uso ético de ChatGPT en investigación académica</h4>
+                                <p>Aprende cuándo y cómo usar IA generativa de forma ética, sus limitaciones y mejores prácticas.</p>
+                                <div class="tutorial-meta">
+                                    <span><i class="far fa-clock"></i> 14 min</span>
+                                    <span><i class="fas fa-signal"></i> Intermedio</span>
+                                </div>
+                                <div class="tutorial-actions">
+                                    <a class="tutorial-btn tutorial-btn-video" 
+                                       data-video-id="PONER_AQUI_ID_VIDEO_11">
+                                        <i class="fas fa-play"></i> Ver Video
+                                    </a>
+                                    <a class="tutorial-btn tutorial-btn-audio" 
+                                       data-audio-url="PONER_AQUI_URL_AUDIO_11">
+                                        <i class="fas fa-headphones"></i> Escuchar Audio
+                                    </a>
+                                    <a class="tutorial-btn tutorial-btn-pdf" 
+                                       data-pdf-url="PONER_AQUI_URL_PDF_11">
+                                        <i class="fas fa-file-pdf"></i> Descargar PDF
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tutorial 12 -->
+                        <div class="tutorial-item">
+                            <div class="tutorial-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="tutorial-info">
+                                <h4>Herramientas de IA para estudiantes</h4>
+                                <p>Descubre herramientas de IA especializadas en investigación y cómo usarlas efectivamente.</p>
+                                <div class="tutorial-meta">
+                                    <span><i class="far fa-clock"></i> 20 min</span>
+                                    <span><i class="fas fa-signal"></i> Avanzado</span>
+                                </div>
+                                <div class="tutorial-actions">
+                                    <a class="tutorial-btn tutorial-btn-video" 
+                                       data-video-id="PONER_AQUI_ID_VIDEO_12">
+                                        <i class="fas fa-play"></i> Ver Video
+                                    </a>
+                                    <a class="tutorial-btn tutorial-btn-audio" 
+                                       data-audio-url="PONER_AQUI_URL_AUDIO_12">
+                                        <i class="fas fa-headphones"></i> Escuchar Audio
+                                    </a>
+                                    <a class="tutorial-btn tutorial-btn-pdf" 
+                                       data-pdf-url="PONER_AQUI_URL_PDF_12">
+                                        <i class="fas fa-file-pdf"></i> Descargar PDF
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categoría 6: Servicios de Biblioteca -->
+            <div class="tutorial-category">
+                <div class="tutorial-header">
+                    <h3>
+                        <i class="fas fa-book-open"></i>
+                        Servicios de la Biblioteca
+                    </h3>
+                    <i class="fas fa-chevron-down tutorial-arrow"></i>
+                </div>
+                <div class="tutorial-content">
+                    <div class="tutorial-list">
+                        
+                        <!-- Tutorial 13 -->
+                        <div class="tutorial-item">
+                            <div class="tutorial-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="tutorial-info">
+                                <h4>Tour Virtual de la Biblioteca</h4>
+                                <p>Recorre nuestras instalaciones, conoce las áreas de estudio, acervos y servicios disponibles.</p>
+                                <div class="tutorial-meta">
+                                    <span><i class="far fa-clock"></i> 8 min</span>
+                                    <span><i class="fas fa-signal"></i> Básico</span>
+                                </div>
+                                <div class="tutorial-actions">
+                                    <a class="tutorial-btn tutorial-btn-video" 
+                                       data-video-id="PONER_AQUI_ID_VIDEO_13">
+                                        <i class="fas fa-play"></i> Ver Video
+                                    </a>
+                                    <a class="tutorial-btn tutorial-btn-audio" 
+                                       data-audio-url="PONER_AQUI_URL_AUDIO_13">
+                                        <i class="fas fa-headphones"></i> Escuchar Audio
+                                    </a>
+                                    <a class="tutorial-btn tutorial-btn-pdf" 
+                                       data-pdf-url="PONER_AQUI_URL_PDF_13">
+                                        <i class="fas fa-file-pdf"></i> Descargar PDF
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tutorial 14 -->
+                        <div class="tutorial-item">
+                            <div class="tutorial-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="tutorial-info">
+                                <h4>Acceso remoto a recursos electrónicos</h4>
+                                <p>Guía para acceder a bases de datos, e-books y revistas desde fuera del campus.</p>
+                                <div class="tutorial-meta">
+                                    <span><i class="far fa-clock"></i> 8 min</span>
+                                    <span><i class="fas fa-signal"></i> Básico</span>
+                                </div>
+                                <div class="tutorial-actions">
+                                    <a class="tutorial-btn tutorial-btn-video" 
+                                       data-video-id="PONER_AQUI_ID_VIDEO_14">
+                                        <i class="fas fa-play"></i> Ver Video
+                                    </a>
+                                    <a class="tutorial-btn tutorial-btn-audio" 
+                                       data-audio-url="PONER_AQUI_URL_AUDIO_14">
+                                        <i class="fas fa-headphones"></i> Escuchar Audio
+                                    </a>
+                                    <a class="tutorial-btn tutorial-btn-pdf" 
+                                       data-pdf-url="PONER_AQUI_URL_PDF_14">
+                                        <i class="fas fa-file-pdf"></i> Descargar PDF
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-col"><h4 class="logo" style="color: var(--color-blanco);">Ecosistema Informacional</h4><p>Av. Plutarco Elías Calles #1210<br>Fovissste Chamizal, C.P. 32310</p></div>
+            <div class="footer-col"><h4>Enlaces Rápidos</h4><ul><li><a href="sobre-nosotros.html">Sobre Nosotros</a></li><li><a href="https://catalogo.uacj.mx/">Catálogo</a></li><li><a href="servicios.html">Servicios</a></li><li><a href="apoyo-ayuda.html">Contacto</a></li></ul></div>
+            <div class="footer-col"><h4>Recursos</h4><ul><li><a href="bases-de-datos.html">Bases de Datos</a></li><li><a href="#">Repositorio</a></li><li><a href="guias-tematicas.html">Guías Temáticas</a></li><li><a href="#">Preguntas Frecuentes</a></li></ul></div>
+            
+            <div class="footer-col">
+                <h4>Redes Sociales</h4>
+                <ul class="footer-social-icons">
+                    <li><a href="#" aria-label="Facebook" title="Facebook"><i class="fa-brands fa-facebook"></i></a></li>
+                    <li><a href="#" aria-label="Twitter" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a></li>
+                    <li><a href="#" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+                </ul>
+            </div>
+
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="app.js"></script>
+
+    <script>
+        // Sistema de acordeón para categorías
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryHeaders = document.querySelectorAll('.tutorial-header');
+            
+            categoryHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const category = this.parentElement;
+                    const isActive = category.classList.contains('active');
+                    
+                    document.querySelectorAll('.tutorial-category').forEach(cat => {
+                        cat.classList.remove('active');
+                    });
+                    
+                    if (!isActive) {
+                        category.classList.add('active');
+                    }
+                });
+            });
+
+            // Sistema para manejar botones de tutoriales
+            const tutorialBtns = document.querySelectorAll('.tutorial-btn');
+
+            tutorialBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Botón de VIDEO - Abre YouTube en nueva ventana
+                    if (this.classList.contains('tutorial-btn-video')) {
+                        const videoId = this.getAttribute('data-video-id');
+                        
+                        if (videoId && !videoId.startsWith('PONER_AQUI')) {
+                            window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
+                        } else {
+                            alert('Video aún no configurado. Agrega el ID del video de YouTube.');
+                        }
+                    }
+                    
+                    // Botón de AUDIO - Abre en nueva ventana
+                    if (this.classList.contains('tutorial-btn-audio')) {
+                        const audioUrl = this.getAttribute('data-audio-url');
+                        if (audioUrl && !audioUrl.startsWith('PONER_AQUI')) {
+                            window.open(audioUrl, '_blank');
+                        } else {
+                            alert('Audio aún no configurado. Agrega la URL del archivo de audio.');
+                        }
+                    }
+                    
+                    // Botón de PDF - Abre en nueva ventana
+                    if (this.classList.contains('tutorial-btn-pdf')) {
+                        const pdfUrl = this.getAttribute('data-pdf-url');
+                        if (pdfUrl && !pdfUrl.startsWith('PONER_AQUI')) {
+                            window.open(pdfUrl, '_blank');
+                        } else {
+                            alert('PDF aún no configurado. Agrega la URL del archivo PDF.');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Citas IA - Ecosistema Informacional</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-mobile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script src="https://unpkg.com/heroicons@2.0.18/24/outline/index.js"></script>
+
+    <style>
+        .results-area {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: var(--color-fondo-claro);
+            border-radius: 8px;
+            border-left: 4px solid var(--color-primario);
+        }
+
+        .results-area.active {
+            display: block;
+        }
+
+        #citation-output {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--color-texto);
+            border: 1px solid #ddd;
+            margin-bottom: 15px;
+        }
+
+        .citation-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .copy-btn {
+            background-color: var(--color-primario);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background-color: var(--color-secundario);
+        }
+
+        .download-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .download-btn {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background-color: #229954;
+        }
+
+        .loading {
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            background-color: #fadbd8;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .error-message.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .citation-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .download-group {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-wrapper">
+        <header class="header container">
+            <a href="index.html" class="logo">Ecosistema Informacional</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="buscar.html" class="active">Buscar y Descubrir</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="apoyo-ayuda.html">Apoyo y Ayuda</a></li>
+                    <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+<li><a href="normas-politicas.html">Normas y Políticas</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Abrir menú">
+                <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </button>
+            <a href="mi-cuenta.html" class="btn-cta">Mi Cuenta</a>
+        </header>
+    </div>
+    
+    <nav class="mobile-nav" id="mobile-nav">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="buscar.html">Buscar y Descubrir</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="apoyo-ayuda.html">Apoyo y Ayuda</a></li>
+            <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Generador de Citas IA</h1>
+            </div>
+        </section>
+
+        <section class="citation-tool container">
+            <div class="tool-box">
+                <h2>Cita tus fuentes en un instante.</h2>
+                <p>Pega un URL, un DOI o un ISBN y el asistente generará la referencia bibliográfica completa.</p>
+                
+                <form id="citation-form">
+                    <div class="form-group">
+                        <label for="source-input">URL, DOI, o ISBN:</label>
+                        <input type="text" id="source-input" placeholder="Ej: 10.1016/j.conc.2023.11.001 o https://... o 978-0134446377" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="citation-style">Estilo de Citación:</label>
+                        <select id="citation-style" required>
+                            <option value="APA">APA 7ma Edición</option>
+                            <option value="MLA">MLA 9na Edición</option>
+                            <option value="Chicago">Chicago</option>
+                            <option value="IEEE">IEEE</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-full">
+                        <span id="button-text">Generar Cita</span>
+                        <span class="loading" id="loading" style="display:none;">
+                            <i class="fas fa-spinner fa-spin"></i>
+                        </span>
+                    </button>
+                </form>
+
+                <div class="error-message" id="error-message">
+                    <i class="fas fa-exclamation-triangle"></i> <span id="error-text"></span>
+                </div>
+
+                <div class="results-area" id="results-area">
+                    <h3 style="margin-top:0; font-size:1.2rem;">Referencia Generada:</h3>
+                    
+                    <div style="overflow-x: auto;">
+                        <p id="citation-output"></p>
+                    </div>
+
+                    <div class="citation-actions">
+                        <button type="button" class="copy-btn" id="copy-btn">
+                            <i class="fas fa-copy"></i> Copiar Texto
+                        </button>
+                        
+                        <div class="download-group">
+                            <span style="font-size:0.9rem; color:var(--color-texto-sec); margin-right:5px;">Descargar:</span>
+                            <button type="button" class="download-btn" id="download-ris">
+                                <i class="fas fa-download"></i> RIS
+                            </button>
+                            <button type="button" class="download-btn" id="download-bibtex">
+                                <i class="fas fa-download"></i> BibTeX
+                            </button>
+                            <button type="button" class="download-btn" id="download-endnote">
+                                <i class="fas fa-download"></i> EndNote
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-col"><h4 class="logo" style="color: var(--color-blanco);">Ecosistema Informacional</h4><p>Av. Plutarco Elías Calles #1210<br>Fovissste Chamizal, C.P. 32310</p></div>
+            <div class="footer-col"><h4>Enlaces Rápidos</h4><ul><li><a href="sobre-nosotros.html">Sobre Nosotros</a></li><li><a href="https://catalogo.uacj.mx/">Catálogo</a></li><li><a href="servicios.html">Servicios</a></li><li><a href="apoyo-ayuda.html">Contacto</a></li></ul></div>
+            <div class="footer-col"><h4>Recursos</h4><ul><li><a href="bases-de-datos.html">Bases de Datos</a></li><li><a href="#">Repositorio</a></li><li><a href="guias-tematicas.html">Guías Temáticas</a></li><li><a href="#">Preguntas Frecuentes</a></li></ul></div>
+            
+            <div class="footer-col">
+                <h4>Redes Sociales</h4>
+                <ul class="footer-social-icons">
+                    <li><a href="#" aria-label="Facebook" title="Facebook"><i class="fa-brands fa-facebook"></i></a></li>
+                    <li><a href="#" aria-label="Twitter" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a></li>
+                    <li><a href="#" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+                </ul>
+            </div>
+
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="app.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('citation-form');
+            const sourceInput = document.getElementById('source-input');
+            const styleSelect = document.getElementById('citation-style');
+            const resultsArea = document.getElementById('results-area');
+            const citationOutput = document.getElementById('citation-output');
+            const copyBtn = document.getElementById('copy-btn');
+            const downloadRIS = document.getElementById('download-ris');
+            const downloadBibTeX = document.getElementById('download-bibtex');
+            const downloadEndNote = document.getElementById('download-endnote');
+            const errorMessage = document.getElementById('error-message');
+            const errorText = document.getElementById('error-text');
+            const buttonText = document.getElementById('button-text');
+            const loading = document.getElementById('loading');
+
+            let currentCitation = {};
+
+            // Generar cita al enviar formulario
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const source = sourceInput.value.trim();
+                const style = styleSelect.value;
+
+                // Mostrar loading
+                buttonText.style.display = 'none';
+                loading.style.display = 'inline-block';
+                errorMessage.classList.remove('active');
+
+                try {
+                    // Aquí conectarías con una API real como CrossRef, DataCite, o tu propio backend
+                    // Por ahora, simulamos la generación
+                    await simulateCitationGeneration(source, style);
+                    
+                    resultsArea.classList.add('active');
+                } catch (error) {
+                    showError(error.message);
+                } finally {
+                    buttonText.style.display = 'inline-block';
+                    loading.style.display = 'none';
+                }
+            });
+
+            // Simular generación de cita (aquí conectarías con API real)
+            async function simulateCitationGeneration(source, style) {
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        // Detectar tipo de fuente
+                        let sourceType = detectSourceType(source);
+                        
+                        if (!sourceType) {
+                            reject(new Error('No se pudo detectar el tipo de fuente. Verifica el formato.'));
+                            return;
+                        }
+
+                        // Generar cita simulada
+                        currentCitation = generateMockCitation(source, style, sourceType);
+                        citationOutput.textContent = currentCitation.formatted;
+                        resolve();
+                    }, 1500);
+                });
+            }
+
+            // Detectar tipo de fuente
+            function detectSourceType(source) {
+                if (source.match(/^10\.\d{4,}/)) return 'DOI';
+                if (source.match(/^(https?:\/\/|www\.)/)) return 'URL';
+                if (source.match(/^97[89]-?\d{9,10}$/)) return 'ISBN';
+                return null;
+            }
+
+            // Generar cita de ejemplo (en producción esto vendría de una API)
+            function generateMockCitation(source, style, sourceType) {
+                const citation = {
+                    formatted: '',
+                    ris: '',
+                    bibtex: '',
+                    endnote: ''
+                };
+
+                // Ejemplo de cita formateada
+                if (style === 'APA') {
+                    citation.formatted = 'Autor, A. A. (2024). Título del artículo. Nombre de la Revista, 15(3), 123-145. https://doi.org/' + (sourceType === 'DOI' ? source : '10.xxxx/xxxxx');
+                } else if (style === 'MLA') {
+                    citation.formatted = 'Autor, Nombre. "Título del artículo." Nombre de la Revista, vol. 15, no. 3, 2024, pp. 123-145.';
+                } else if (style === 'Chicago') {
+                    citation.formatted = 'Autor, Nombre. "Título del artículo." Nombre de la Revista 15, no. 3 (2024): 123-145.';
+                } else if (style === 'IEEE') {
+                    citation.formatted = '[1] N. Autor, "Título del artículo," Nombre de la Revista, vol. 15, no. 3, pp. 123-145, 2024.';
+                }
+
+                // Formato RIS (Zotero, Mendeley, EndNote)
+                citation.ris = `TY  - JOUR
+AU  - Autor, Nombre
+TI  - Título del artículo
+JO  - Nombre de la Revista
+VL  - 15
+IS  - 3
+SP  - 123
+EP  - 145
+PY  - 2024
+DO  - ${sourceType === 'DOI' ? source : '10.xxxx/xxxxx'}
+ER  -`;
+
+                // Formato BibTeX (LaTeX, Overleaf)
+                citation.bibtex = `@article{autor2024,
+  author = {Autor, Nombre},
+  title = {Título del artículo},
+  journal = {Nombre de la Revista},
+  volume = {15},
+  number = {3},
+  pages = {123--145},
+  year = {2024},
+  doi = {${sourceType === 'DOI' ? source : '10.xxxx/xxxxx'}}
+}`;
+
+                // Formato EndNote
+                citation.endnote = `%0 Journal Article
+%A Autor, Nombre
+%T Título del artículo
+%J Nombre de la Revista
+%V 15
+%N 3
+%P 123-145
+%D 2024
+%R ${sourceType === 'DOI' ? source : '10.xxxx/xxxxx'}`;
+
+                return citation;
+            }
+
+            // Copiar al portapapeles
+            copyBtn.addEventListener('click', function() {
+                navigator.clipboard.writeText(citationOutput.textContent).then(() => {
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-check"></i> ¡Copiado!';
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                    }, 2000);
+                });
+            });
+
+            // Descargar RIS
+            downloadRIS.addEventListener('click', function() {
+                downloadFile(currentCitation.ris, 'referencia.ris', 'application/x-research-info-systems');
+            });
+
+            // Descargar BibTeX
+            downloadBibTeX.addEventListener('click', function() {
+                downloadFile(currentCitation.bibtex, 'referencia.bib', 'application/x-bibtex');
+            });
+
+            // Descargar EndNote
+            downloadEndNote.addEventListener('click', function() {
+                downloadFile(currentCitation.endnote, 'referencia.enw', 'application/x-endnote-refer');
+            });
+
+            // Función para descargar archivo
+            function downloadFile(content, filename, mimeType) {
+                const blob = new Blob([content], { type: mimeType });
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+            }
+
+            // Mostrar error
+            function showError(message) {
+                errorText.textContent = message;
+                errorMessage.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

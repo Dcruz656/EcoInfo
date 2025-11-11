@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Ecosistema Informacional</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-mobile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script src="https://unpkg.com/heroicons@2.0.18/24/outline/index.js"></script>
+</head>
+<body>
+
+    <div class="header-wrapper">
+        <header class="header container">
+            <a href="index.html" class="logo">Ecosistema Informacional</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="buscar.html">Buscar y Descubrir</a></li> 
+                    <li><a href="servicios.html" class="active">Servicios</a></li> 
+                    <li><a href="apoyo-ayuda.html">Apoyo y Ayuda</a></li>
+                    <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+<li><a href="normas-politicas.html">Normas y Políticas</a></li>
+
+                </ul>
+            </nav>
+            <button class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Abrir menú">
+                <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </button>
+            <a href="mi-cuenta.html" class="btn-cta">Mi Cuenta</a>
+        </header>
+    </div>
+    
+    <nav class="mobile-nav" id="mobile-nav">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="buscar.html">Buscar y Descubrir</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="apoyo-ayuda.html">Apoyo y Ayuda</a></li>
+            <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+<li><a href="normas-politicas.html">Normas y Políticas</a></li>
+
+        </ul>
+    </nav>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Centro de Reservas</h1>
+            </div>
+        </section>
+
+        <div class="container">
+
+            <div class="tab-nav">
+                <div class="tab-link active" data-target="panel-salas">Reservar Salas</div>
+                <div class="tab-link" data-target="panel-equipo">Reservar Equipo</div>
+            </div>
+
+            <div id="panel-salas" class="tab-panel active">
+                <div class="reservation-layout">
+                    <aside class="reservation-form-container">
+                        <h2>Buscar una sala</h2>
+                        <form id="room-finder-form">
+                            <div class="form-group">
+                                <label for="nombre-usuario">Nombre Completo</label>
+                                <input type="text" id="nombre-usuario" name="nombre-usuario" required placeholder="Ingresa tu nombre completo">
+                            </div>
+                            <div class="form-group">
+                                <label for="correo-usuario">Correo Electrónico</label>
+                                <input type="email" id="correo-usuario" name="correo-usuario" required placeholder="ejemplo@uacj.mx">
+                            </div>
+                            <div class="form-group">
+                                <label for="biblioteca-sala">Elige la Sede</label>
+                                <select id="biblioteca-sala" name="biblioteca-sala" required>
+                                    <option value="">-- Selecciona una biblioteca --</option>
+                                    <option value="central">Biblioteca Central (ICSA)</option>
+                                    <option value="iit">Biblioteca IIT</option>
+                                    <option value="iada">Biblioteca IADA</option>
+                                    <option value="cu">Biblioteca Ciudad Universitaria</option>
+                                    <option value="cuauhtemoc">Campus Cuauhtémoc</option>
+                                    <option value="casas-grandes">Campus Casas Grandes</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="fecha-sala">Elige la Fecha (Solo días entre semana)</label>
+                                <input type="date" id="fecha-sala" name="fecha-sala" required>
+                                <small style="color: #666; font-size: 0.85rem; display: block; margin-top: 5px;">Solo puedes seleccionar de lunes a viernes</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="hora-sala">Elige la Hora de Inicio</label>
+                                <select id="hora-sala" name="hora-sala" required>
+                                    <option value="" disabled selected>-- Elige una hora --</option>
+                                    <option value="07:00">7:00 AM</option>
+                                    <option value="08:00">8:00 AM</option>
+                                    <option value="09:00">9:00 AM</option>
+                                    <option value="10:00">10:00 AM</option>
+                                    <option value="11:00">11:00 AM</option>
+                                    <option value="12:00">12:00 PM</option>
+                                    <option value="13:00">1:00 PM</option>
+                                    <option value="14:00">2:00 PM</option>
+                                    <option value="15:00">3:00 PM</option>
+                                    <option value="16:00">4:00 PM</option>
+                                    <option value="17:00">5:00 PM</option>
+                                    <option value="18:00">6:00 PM</option>
+                                    <option value="19:00">7:00 PM</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="duracion-sala">Elige la Duración</label>
+                                <select id="duracion-sala" name="duracion-sala" required>
+                                    <option value="1">1 Hora</option>
+                                    <option value="2">2 Horas</option>
+                                    <option value="3">3 Horas</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn-full">Buscar Disponibilidad de Salas</button>
+                        </form>
+                    </aside>
+                    <section class="reservation-results-container">
+                        <h2>Resultados de Salas</h2>
+                        <div id="results-list">
+                            <p>Por favor, completa el formulario de la izquierda para ver las salas disponibles.</p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            
+            <div id="panel-equipo" class="tab-panel">
+                <div class="reservation-layout">
+                    <aside class="reservation-form-container">
+                        <h2>Buscar equipo</h2>
+                        <form id="equipment-finder-form">
+                            <div class="form-group">
+                                <label for="biblioteca-equipo">1. Sede de Recolección</label>
+                                <select id="biblioteca-equipo" name="biblioteca-equipo" required>
+                                    <option value="">-- Selecciona una biblioteca --</option>
+                                    <option value="central">Biblioteca Central (ICSA)</option>
+                                    <option value="iit">Biblioteca IIT</option>
+                                    <option value="iada">Biblioteca IADA</option>
+                                    <option value="cu">Biblioteca Ciudad Universitaria</option>
+                                    <option value="cuauhtemoc">Campus Cuauhtémoc</option>
+                                    <option value="casas-grandes">Campus Casas Grandes</option>
+                                </select>
+                            </div>
+                            <div class="form-group"><label for="tipo-equipo">2. Tipo de Equipo</label><select id="tipo-equipo" name="tipo-equipo" required><option value="">-- Selecciona equipo --</option><option value="proyector">Proyector Multimedia</option><option value="laptop">Laptop (Préstamo en sala)</option><option value="camara">Cámara de Video</option><option value="tripoide">Tripié</option></select></div>
+                            <div class="form-group"><label for="fecha-equipo">3. Fecha de Préstamo</label><input type="date" id="fecha-equipo" name="fecha-equipo" required></div>
+                            <button type="submit" class="btn-full">Buscar Disponibilidad de Equipo</button>
+                        </form>
+                    </aside>
+                    <section class="reservation-results-container">
+                        <h2>Resultados de Equipo</h2>
+                        <div id="equipment-results-list">
+                            <p>Por favor, completa el formulario de la izquierda para ver el equipo disponible.</p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            
+        </div>
+    </main>
+
+<footer class="footer">
+        <div class="container">
+            <div class="footer-col"><h4 class="logo" style="color: var(--color-blanco);">Ecosistema Informacional</h4><p>Av. Plutarco Elías Calles #1210<br>Fovissste Chamizal, C.P. 32310</p></div>
+            <div class="footer-col"><h4>Enlaces Rápidos</h4><ul><li><a href="sobre-nosotros.html">Sobre Nosotros</a></li><li><a href="https://catalogo.uacj.mx/">Catálogo</a></li><li><a href="servicios.html">Servicios</a></li><li><a href="apoyo-ayuda.html">Contacto</a></li></ul></div>
+            <div class="footer-col"><h4>Recursos</h4><ul><li><a href="bases-de-datos.html">Bases de Datos</a></li><li><a href="#">Repositorio</a></li><li><a href="guias-tematicas.html">Guías Temáticas</a></li><li><a href="#">Preguntas Frecuentes</a></li></ul></div>
+            
+            <div class="footer-col">
+                <h4>Redes Sociales</h4>
+                <ul class="footer-social-icons">
+                    <li><a href="#" aria-label="Facebook" title="Facebook"><i class="fa-brands fa-facebook"></i></a></li>
+                    <li><a href="#" aria-label="Twitter" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a></li>
+                    <li><a href="#" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+                </ul>
+            </div>
+
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="app.js"></script>
+
+</body>
+</html>

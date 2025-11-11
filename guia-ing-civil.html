@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Ecosistema Informacional</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-mobile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script src="https://unpkg.com/heroicons@2.0.18/24/outline/index.js"></script>
+</head>
+<body>
+
+    <div class="header-wrapper">
+        <header class="header container">
+            <a href="index.html" class="logo">Ecosistema Informacional</a>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="buscar.html" class="active">Buscar y Descubrir</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="apoyo-ayuda.html">Apoyo y Ayuda</a></li> 
+                    <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+<li><a href="normas-politicas.html">Normas y Políticas</a></li>
+                </ul>
+            </nav>
+
+            <button class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Abrir menú">
+                <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </button>
+
+            <a href="mi-cuenta.html" class="btn-cta">Mi Cuenta</a>
+        </header>
+    </div>
+    
+    <nav class="mobile-nav" id="mobile-nav">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="buscar.html">Buscar y Descubrir</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="apoyo-ayuda.html">Apoyo y Ayuda</a></li>
+            <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Guía Temática: Ingeniería Civil (IIT)</h1>
+            </div>
+        </section>
+
+        <div class="guide-layout container">
+        
+            <div class="guide-content">
+                
+                <nav class="tab-nav">
+                    <div class="tab-link active" data-target="panel-db">Bases de Datos Clave</div>
+                    <div class="tab-link" data-target="panel-libros">Libros y Manuales</div>
+                    <div class="tab-link" data-target="panel-web">Recursos Abiertos</div>
+                    <div class="tab-link" data-target="panel-citar">Citar y Publicar</div>
+                </nav>
+
+                <div id="panel-db" class="tab-panel active">
+                    <h2>Bases de Datos Esenciales</h2>
+                    <ul class="resource-list">
+                        <li>
+                            <a href="#" target="_blank">ASCE Library (American Society of Civil Engineers)</a>
+                            <p>Acceso a revistas, proceedings de conferencias y estándares de la Sociedad Americana de Ingenieros Civiles.</p>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">Knovel</a>
+                            <p>Plataforma de libros electrónicos con manuales técnicos, datos interactivos y tablas para ingenieros.</p>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">IEEE Xplore</a>
+                            <p>Útil para temas de instrumentación, sensores y componentes electrónicos en la construcción.</p>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">Scopus</a>
+                            <p>Ideal para análisis bibliométricos y encontrar literatura científica sobre nuevos materiales y métodos.</p>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div id="panel-libros" class="tab-panel">
+                    <h2>Libros y Manuales (eBooks)</h2>
+                    <ul class="resource-list">
+                        <li>
+                            <a href="#" target="_blank">Springer eBooks (Colección Ingeniería Civil)</a>
+                            <p>Acceso a libros electrónicos sobre geotecnia, ingeniería estructural, transporte y más.</p>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">Manuales de Construcción (IMCYC, etc.)</a>
+                            <p>Consulta en el catálogo la disponibilidad de manuales y códigos de construcción locales e internacionales.</p>
+                        </li>
+                        <li>
+                            <a href="https://catalogo.uacj.mx/" target="_blank">Catálogo de la Biblioteca</a>
+                            <p>Busca en el catálogo principal libros impresos y electrónicos de nuestra colección.</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="panel-web" class="tab-panel">
+                    <h2>Sitios Web y Recursos Abiertos</h2>
+                    <ul class="resource-list">
+                        <li>
+                            <a href="https://www.asce.org/" target="_blank">American Society of Civil Engineers (ASCE)</a>
+                            <p>Noticias, estándares y publicaciones de la principal asociación de ingenieros civiles.</p>
+                        </li>
+                        <li>
+                            <a href="https://www.gob.mx/sct" target="_blank">Secretaría de Infraestructura, Com. y Transportes (SICT)</a>
+                            <p>Normativa, datos y publicaciones oficiales sobre la infraestructura en México.</p>
+                        </li>
+                        <li>
+                            <a href="acceso-abierto.html" target="_blank">Directorio de Acceso Abierto UACJ</a>
+                            <p>Explora más plataformas gratuitas como DOAJ y Redalyc.</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="panel-citar" class="tab-panel">
+                    <h2>Citar y Publicar</h2>
+                    <ul class="resource-list">
+                        <li>
+                            <a href="citas-ia.html" target="_blank">Generador de Citas IA</a>
+                            <p>Genera automáticamente tus referencias en APA, IEEE y más, usando un DOI o ISBN.</p>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">Guía Rápida: Estilo IEEE / ASCE</a>
+                            <p>Descarga el manual de estilo preferido en Ingeniería y Tecnología.</p>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">Manuales de Gestores (Zotero/Mendeley)</a>
+                            <p>Aprende a organizar tus referencias y bibliografía de forma automática.</p>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            
+            <aside class="guide-sidebar">
+                <div class="specialist-card">
+                    <h3>Tu Bibliotecario Especialista</h3>
+                    <div class="specialist-photo-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width:50px; height:50px;">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A1.5 1.5 0 0118 21.75H6a1.5 1.5 0 01-1.499-1.632z" />
+                        </svg>
+                    </div>
+                    <strong>Ing. Luis Rentería</strong>
+                    <p>Referencista Especializado<br>Ingeniería y Tecnología (IIT)</p>
+                    <a href="agendar-cita.html" class="btn-primary">Agendar Asesoría</a>
+                </div>
+            </aside>
+            
+        </div>
+    </main>
+
+<footer class="footer">
+        <div class="container">
+            <div class="footer-col"><h4 class="logo" style="color: var(--color-blanco);">Ecosistema Informacional</h4><p>Av. Plutarco Elías Calles #1210<br>Fovissste Chamizal, C.P. 32310</p></div>
+            <div class="footer-col"><h4>Enlaces Rápidos</h4><ul><li><a href="sobre-nosotros.html">Sobre Nosotros</a></li><li><a href="https://catalogo.uacj.mx/">Catálogo</a></li><li><a href="servicios.html">Servicios</a></li><li><a href="apoyo-ayuda.html">Contacto</a></li></ul></div>
+            <div class="footer-col"><h4>Recursos</h4><ul><li><a href="bases-de-datos.html">Bases de Datos</a></li><li><a href="#">Repositorio</a></li><li><a href="guias-tematicas.html">Guías Temáticas</a></li><li><a href="#">Preguntas Frecuentes</a></li></ul></div>
+            
+            <div class="footer-col">
+                <h4>Redes Sociales</h4>
+                <ul class="footer-social-icons">
+                    <li><a href="#" aria-label="Facebook" title="Facebook"><i class="fa-brands fa-facebook"></i></a></li>
+                    <li><a href="#" aria-label="Twitter" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a></li>
+                    <li><a href="#" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+                </ul>
+            </div>
+
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="app.js"></script>
+
+</body>
+</html>

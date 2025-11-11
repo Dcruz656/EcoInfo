@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Ecosistema Informacional</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script src="https://unpkg.com/heroicons@2.0.18/24/outline/index.js"></script>
+</head>
+<body>
+
+    <div class="header-wrapper">
+        <header class="header container">
+            <a href="index.html" class="logo">Ecosistema Informacional</a>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li> 
+                    <li><a href="buscar.html">Buscar y Descubrir</a></li> 
+                    <li><a href="servicios.html">Servicios</a></li> 
+                    <li><a href="apoyo-ayuda.html">Apoyo y Ayuda</a></li>
+                    <li><a href="sobre-nosotros.html" class="active">Sobre Nosotros</a></li>
+<li><a href="normas-politicas.html">Normas y Políticas</a></li>
+                </ul>
+            </nav>
+
+            <button class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Abrir menú">
+                <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </button>
+
+            <a href="mi-cuenta.html" class="btn-cta">Mi Cuenta</a>
+        </header>
+    </div>
+    
+    <nav class="mobile-nav" id="mobile-nav">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="buscar.html">Buscar y Descubrir</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="apoyo-ayuda.html">Apoyo y Ayuda</a></li>
+            <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Dashboard de Estadísticas</h1>
+                <p>Datos de uso del Ecosistema Informacional (Últimos 12 meses)</p>
+            </div>
+        </section>
+
+        <div class="container" style="padding: 40px 20px;">
+
+            <div class="tab-nav">
+                <div class="tab-link active" data-target="panel-general">Visión General</div>
+                <div class="tab-link" data-target="panel-campus">Datos por Campus</div>
+                <div class="tab-link" data-target="panel-historico">Histórico</div>
+            </div>
+
+            <div id="panel-general" class="tab-panel active">
+                
+                <div class="kpi-grid">
+                    <div class="kpi-box">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
+                        <div class="kpi-info">
+                            <span class="kpi-number">512,480</span>
+                            <span class="kpi-label">Préstamos Totales</span>
+                        </div>
+                    </div>
+                    <div class="kpi-box">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-4.682 2.72a3 3 0 01-4.682-2.72 9.094 9.094 0 013.741.479M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <div class="kpi-info">
+                            <span class="kpi-number">72,450</span>
+                            <span class="kpi-label">Usuarios Activos</span>
+                        </div>
+                    </div>
+                    <div class="kpi-box">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 100 15 7.5 7.5 0 000-15zM21 21l-5.69-5.69" /></svg>
+                        <div class="kpi-info">
+                            <span class="kpi-number">2,840,112</span>
+                            <span class="kpi-label">Búsquedas en Catálogo</span>
+                        </div>
+                    </div>
+                    <div class="kpi-box">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z" /></svg>
+                        <div class="kpi-info">
+                            <span class="kpi-number">1,582</span>
+                            <span class="kpi-label">Cursos ALFIN Impartidos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid-main">
+                    
+                    <div class="dashboard-widget">
+                        <h3 class="chart-title">Préstamos por Mes</h3>
+                        <div class="chart-placeholder-bar">
+                            <div class="bar-group">
+                                <span class="bar-data-label">38k</span>
+                                <span class="bar" style="height: 40%; background-color: var(--color-primario);" title="Ene: 38,400"></span>
+                                <span class="bar-label">Ene</span>
+                            </div>
+                            <div class="bar-group">
+                                <span class="bar-data-label">55k</span>
+                                <span class="bar" style="height: 60%; background-color: var(--color-secundario);" title="Feb: 55,200"></span>
+                                <span class="bar-label">Feb</span>
+                            </div>
+                            <div class="bar-group">
+                                <span class="bar-data-label">52k</span>
+                                <span class="bar" style="height: 55%; background-color: var(--color-exito);" title="Mar: 52,100"></span>
+                                <span class="bar-label">Mar</span>
+                            </div>
+                            <div class="bar-group">
+                                <span class="bar-data-label">68k</span>
+                                <span class="bar" style="height: 70%; background-color: var(--color-primario);" title="Abr: 68,000"></span>
+                                <span class="bar-label">Abr</span>
+                            </div>
+                            <div class="bar-group">
+                                <span class="bar-data-label">25k</span>
+                                <span class="bar" style="height: 30%; background-color: var(--color-secundario);" title="May: 25,500"></span>
+                                <span class="bar-label">May</span>
+                            </div>
+                            <div class="bar-group">
+                                <span class="bar-data-label">10k</span>
+                                <span class="bar" style="height: 10%; background-color: var(--color-exito);" title="Jun: 10,000"></span>
+                                <span class="bar-label">Jun</span>
+                            </div>
+                            <div class="bar-group">
+                                <span class="bar-data-label">12k</span>
+                                <span class="bar" style="height: 15%; background-color: var(--color-primario);" title="Jul: 12,300"></span>
+                                <span class="bar-label">Jul</span>
+                            </div>
+                            <div class="bar-group">
+                                <span class="bar-data-label">75k</span>
+                                <span class="bar" style="height: 80%; background-color: var(--color-secundario);" title="Ago: 75,000"></span>
+                                <span class="bar-label">Ago</span>
+                            </div>
+                            <div class="bar-group">
+                                <span class="bar-data-label">82k</span>
+                                <span class="bar" style="height: 90%; background-color: var(--color-exito);" title="Sep: 82,100"></span>
+                                <span class="bar-label">Sep</span>
+                            </div>
+                            <div class="bar-group">
+                                <span class="bar-data-label">90k</span>
+                                <span class="bar" style="height: 100%; background-color: var(--color-primario);" title="Oct: 90,000"></span>
+                                <span class="bar-label">Oct</span>
+                            </div>
+                            <div class="bar-group">
+                                <span class="bar-data-label">55k</span>
+                                <span class="bar" style="height: 60%; background-color: var(--color-secundario);" title="Nov: 55,000"></span>
+                                <span class="bar-label">Nov</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="dashboard-widget">
+                            <h3 class="chart-title">Colección por Formato</h3>
+                            <div class="chart-placeholder-donut">
+                                <div class="donut"></div>
+                                <ul class="chart-legend">
+                                    <li><span class="legend-color" style="background-color: var(--color-primario);"></span> Libros Físicos (45%)</li>
+                                    <li><span class="legend-color" style="background-color: var(--color-secundario);"></span> Revistas Digitales (25%)</li>
+                                    <li><span class="legend-color" style="background-color: var(--color-exito);"></span> Tesis y Repositorio (15%)</li>
+                                    <li><span class="legend-color" style="background-color: var(--color-fondo-claro);"></span> Multimedia y Otros (15%)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="dashboard-widget">
+                            <h3 class="chart-title">Reservas de Salas (Top Campus)</h3>
+                            <table class="history-table">
+                                <thead>
+                                    <tr><th>Campus</th><th>Reservas</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Bibl. Central (ICSA)</td><td>5,820</td></tr>
+                                    <tr><td>Bibl. Otto Campbell (IIT)</td><td>3,105</td></tr>
+                                    <tr><td>Biblioteca de ICB</td><td>2,450</td></tr>
+                                    <tr><td>Ciudad Universitaria</td><td>925</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="panel-campus" class="tab-panel">
+                
+                <div class="dashboard-widget">
+                    <h3 class="chart-title">Desglose por Campus (Últimos 12 meses)</h3>
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Campus/Biblioteca</th>
+                                <th>Préstamos</th>
+                                <th>Usuarios Activos</th>
+                                <th>Reservas de Sala</th>
+                                <th>Cursos ALFIN</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Bibl. Central (ICSA)</td>
+                                <td>180,450</td>
+                                <td>25,120</td>
+                                <td>5,820</td>
+                                <td>610</td>
+                            </tr>
+                            <tr>
+                                <td>Bibl. Otto Campbell (IIT/IADA)</td>
+                                <td>110,100</td>
+                                <td>18,800</td>
+                                <td>3,105</td>
+                                <td>350</td>
+                            </tr>
+                            <tr>
+                                <td>Biblioteca de ICB</td>
+                                <td>95,300</td>
+                                <td>15,200</td>
+                                <td>2,450</td>
+                                <td>320</td>
+                            </tr>
+                            <tr>
+                                <td>Ciudad Universitaria</td>
+                                <td>75,130</td>
+                                <td>8,130</td>
+                                <td>925</td>
+                                <td>180</td>
+                            </tr>
+                             <tr>
+                                <td>Campus Cuauhtémoc</td>
+                                <td>26,000</td>
+                                <td>2,600</td>
+                                <td>N/A</td>
+                                <td>61</td>
+                            </tr>
+                             <tr>
+                                <td>Campus Casas Grandes</td>
+                                <td>25,500</td>
+                                <td>2,600</td>
+                                <td>N/A</td>
+                                <td>61</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td>TOTALES</td>
+                                <td>512,480</td>
+                                <td>72,450</td>
+                                <td>12,300</td>
+                                <td>1,582</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+            </div>
+            
+            <div id="panel-historico" class="tab-panel">
+                
+                <div class="kpi-grid-2">
+                    <div class="kpi-box">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
+                        <div class="kpi-info">
+                            <span class="kpi-number">512,480</span>
+                            <span class="kpi-label">Préstamos (2024)</span>
+                            <div class="kpi-growth">+12.5% vs 2023</div>
+                        </div>
+                    </div>
+                    <div class="kpi-box">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125v-1.5c0-.621.504-1.125 1.125-1.125H20.625c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504-1.125-1.125 1.125m-17.25 0h17.25m-17.25 0h17.25" /></svg>
+                        <div class="kpi-info">
+                            <span class="kpi-number">3.1M+</span>
+                            <span class="kpi-label">Descargas Digitales (2024)</span>
+                            <div class="kpi-growth">+8.2% vs 2023</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-widget">
+                    <h3 class="chart-title">Comparativa Histórica (Totales Anuales)</h3>
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Año</th>
+                                <th>Préstamos Totales</th>
+                                <th>Usuarios Activos</th>
+                                <th>Descargas Digitales</th>
+                                <th>Cursos ALFIN</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2024 (YTD)</td>
+                                <td>512,480</td>
+                                <td>72,450</td>
+                                <td>3,105,900</td>
+                                <td>1,582</td>
+                            </tr>
+                            <tr>
+                                <td>2023</td>
+                                <td>455,530</td>
+                                <td>69,100</td>
+                                <td>2,870,200</td>
+                                <td>1,450</td>
+                            </tr>
+                            <tr>
+                                <td>2022</td>
+                                <td>398,120</td>
+                                <td>65,500</td>
+                                <td>2,510,000</td>
+                                <td>1,100</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            
+        </div>
+    </main>
+
+<footer class="footer">
+        <div class="container">
+            <div class="footer-col"><h4 class="logo" style="color: var(--color-blanco);">Ecosistema Informacional</h4><p>Av. Plutarco Elías Calles #1210<br>Fovissste Chamizal, C.P. 32310</p></div>
+            <div class="footer-col"><h4>Enlaces Rápidos</h4><ul><li><a href="sobre-nosotros.html">Sobre Nosotros</a></li><li><a href="https://catalogo.uacj.mx/">Catálogo</a></li><li><a href="servicios.html">Servicios</a></li><li><a href="apoyo-ayuda.html">Contacto</a></li></ul></div>
+            <div class="footer-col"><h4>Recursos</h4><ul><li><a href="bases-de-datos.html">Bases de Datos</a></li><li><a href="#">Repositorio</a></li><li><a href="guias-tematicas.html">Guías Temáticas</a></li><li><a href="#">Preguntas Frecuentes</a></li></ul></div>
+            
+            <div class="footer-col">
+                <h4>Redes Sociales</h4>
+                <ul class="footer-social-icons">
+                    <li><a href="#" aria-label="Facebook" title="Facebook"><i class="fa-brands fa-facebook"></i></a></li>
+                    <li><a href="#" aria-label="Twitter" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a></li>
+                    <li><a href="#" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+                </ul>
+            </div>
+
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="app.js"></script>
+
+</body>
+</html>

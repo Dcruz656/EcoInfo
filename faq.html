@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Preguntas Frecuentes - Ecosistema Informacional UACJ">
+    <title>Preguntas Frecuentes (FAQ) - Ecosistema Informacional UACJ</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script src="https://unpkg.com/heroicons@2.0.18/24/outline/index.js"></script>
+
+    <style>
+        .policy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .policy-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--color-primario);
+        }
+
+        .policy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .policy-card-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--color-fondo-claro);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .policy-card-icon i {
+            font-size: 1.5rem;
+            color: var(--color-primario);
+        }
+
+        .policy-card h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+            color: var(--color-primario);
+        }
+
+        .policy-card p {
+            color: var(--color-texto-sec);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .policy-card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--color-primario);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .policy-card-link:hover {
+            color: var(--color-secundario);
+        }
+
+        .policy-card-link i {
+            font-size: 0.9rem;
+        }
+
+        .policy-grid.highlight .policy-card {
+            opacity: 0.3;
+        }
+        .policy-grid.highlight .policy-card.highlight {
+            opacity: 1.0;
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 74, 153, 0.2);
+        }
+
+        .policy-intro {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-left: 4px solid var(--color-primario);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .policy-intro p {
+            color: var(--color-texto-sec);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .policy-intro strong {
+            color: var(--color-primario);
+        }
+
+        .faq-answer {
+            color: var(--color-texto-sec);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-top: 10px;
+        }
+
+        .faq-answer strong {
+            color: var(--color-primario);
+        }
+    </style>
+</head>
+<body>
+    <div class="header-wrapper">
+        <header class="header container">
+            <a href="index.html" class="logo">Ecosistema Informacional</a>
+            <nav class="main-nav" aria-label="Navegación principal">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="buscar.html">Buscar y Descubrir</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="apoyo-ayuda.html" class="active" aria-current="page">Apoyo y Ayuda</a></li>
+                    <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                    <li><a href="normas-politicas.html">Normas y Políticas</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Abrir menú de navegación" aria-expanded="false">
+                <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </button>
+            <a href="mi-cuenta.html" class="btn-cta">Mi Cuenta</a>
+        </header>
+    </div>
+
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Navegación móvil">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="buscar.html">Buscar y Descubrir</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="apoyo-ayuda.html">Apoyo y Ayuda</a></li>
+            <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+            <li><a href="normas-politicas.html">Normas y Políticas</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Preguntas Frecuentes (FAQ)</h1>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="policy-intro">
+                <p>Encuentra respuestas rápidas a las preguntas más comunes sobre nuestros servicios, recursos y políticas del Ecosistema Informacional de la UACJ.</p>
+                <p>Si no encuentras la respuesta que buscas, no dudes en <a href="apoyo-ayuda.html" style="color: var(--color-primario); font-weight: 600;">contactarnos</a> o visitar nuestro mostrador de información.</p>
+            </div>
+
+            <h2 class="section-title">Acceso y Recursos</h2>
+            
+            <div class="policy-grid">
+
+                <div class="policy-card">
+                    <div class="policy-card-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h3>¿Cómo accedo a las bases de datos desde casa?</h3>
+                    <div class="faq-answer">
+                        <p>Para acceder a las bases de datos suscritas fuera del campus, necesitas autenticarte con tus credenciales institucionales (matrícula y contraseña). Ingresa a través del portal de biblioteca o utiliza el acceso remoto VPN de la UACJ. Si tienes problemas, contacta al área de soporte técnico.</p>
+                    </div>
+                </div>
+
+                <div class="policy-card">
+                    <div class="policy-card-icon">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <h3>¿Necesito una cuenta para usar los servicios?</h3>
+                    <div class="faq-answer">
+                        <p><strong>Sí.</strong> Para solicitar préstamos, renovar materiales y acceder a recursos electrónicos, necesitas tu credencial de la UACJ vigente. El acceso al catálogo en línea y algunos recursos de acceso abierto no requieren autenticación.</p>
+                    </div>
+                </div>
+
+                <div class="policy-card">
+                    <div class="policy-card-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>¿Qué son los recursos de acceso abierto?</h3>
+                    <div class="faq-answer">
+                        <p>Son bases de datos, revistas y libros académicos disponibles gratuitamente en línea sin necesidad de suscripción. Nuestra sección de Recursos de Acceso Abierto incluye una selección curada de fuentes confiables para investigación y estudio.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <h2 class="section-title" style="margin-top: 50px;">Préstamos y Renovaciones</h2>
+
+            <div class="policy-grid">
+
+                <div class="policy-card">
+                    <div class="policy-card-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>¿Cuántos libros puedo tomar prestados?</h3>
+                    <div class="faq-answer">
+                        <p>Los estudiantes pueden solicitar hasta <strong>5 libros simultáneamente</strong> por un periodo de 7 días. El personal académico puede solicitar hasta 10 libros por 15 días. Las tesis y material de referencia no están disponibles para préstamo domiciliario.</p>
+                    </div>
+                </div>
+
+                <div class="policy-card">
+                    <div class="policy-card-icon">
+                        <i class="fas fa-redo"></i>
+                    </div>
+                    <h3>¿Cómo renuevo un préstamo?</h3>
+                    <div class="faq-answer">
+                        <p>Puedes renovar tus préstamos hasta <strong>2 veces</strong> a través de Mi Cuenta en el sitio web, por teléfono o en el mostrador de circulación. Las renovaciones deben hacerse antes de la fecha de vencimiento y solo si el material no está reservado por otro usuario.</p>
+                    </div>
+                </div>
+
+                <div class="policy-card">
+                    <div class="policy-card-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3>¿Cómo sé cuándo vencen mis préstamos?</h3>
+                    <div class="faq-answer">
+                        <p>Recibirás notificaciones por correo electrónico institucional 2 días antes del vencimiento. También puedes consultar tus préstamos activos y fechas de vencimiento en tu cuenta personal en línea.</p>
+                    </div>
+                </div>
+
+                <div class="policy-card">
+                    <div class="policy-card-icon">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <h3>¿Qué pasa si devuelvo un libro tarde?</h3>
+                    <div class="faq-answer">
+                        <p>Los préstamos vencidos generan una suspensión temporal del servicio. No se cobran multas monetarias, pero tu cuenta quedará bloqueada hasta devolver el material. Las suspensiones prolongadas pueden afectar tus trámites escolares.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <h2 class="section-title" style="margin-top: 50px;">Búsqueda y Catálogo</h2>
+
+            <div class="policy-grid">
+
+                <div class="policy-card">
+                    <div class="policy-card-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>¿Cómo busco un libro específico?</h3>
+                    <div class="faq-answer">
+                        <p>Utiliza nuestro <strong>Catálogo en línea (OPAC)</strong> donde puedes buscar por título, autor, tema, ISBN o palabras clave. Los resultados te mostrarán la ubicación física, disponibilidad y número de clasificación del material.</p>
+                    </div>
+                </div>
+
+                <div class="policy-card">
+                    <div class="policy-card-icon">
+                        <i class="fas fa-bookmark"></i>
+                    </div>
+                    <h3>¿Puedo reservar un libro que está prestado?</h3>
+                    <div class="faq-answer">
+                        <p><strong>Sí.</strong> Si el material que necesitas está prestado, puedes hacer una reserva en línea o en el mostrador. Te notificaremos por correo cuando el libro esté disponible y lo mantendremos apartado por 3 días hábiles.</p>
+                    </div>
+                </div>
+
+                <div class="policy-card">
+                    <div class="policy-card-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>¿Dónde encuentro el libro en la biblioteca?</h3>
+                    <div class="faq-answer">
+                        <p>El catálogo te muestra el número de clasificación (ej: 370.15 SMI) y la ubicación (ej: Piso 2, Colección General). Tenemos mapas disponibles en cada piso. Si necesitas ayuda, el personal de referencia te asistirá con gusto.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <h2 class="section-title" style="margin-top: 50px;">Servicios y Espacios</h2>
+
+            <div class="policy-grid">
+
+                <div class="policy-card">
+                    <div class="policy-card-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>¿Cuál es el horario de la biblioteca?</h3>
+                    <div class="faq-answer">
+                        <p><strong>Lunes a viernes:</strong> 7:00 AM - 10:00 PM<br><strong>Sábados:</strong> 9:00 AM - 6:00 PM<br><strong>Domingos:</strong> Cerrado<br><br>Los horarios pueden variar durante periodos vacacionales y exámenes finales. Consulta avisos en el sitio web.</p>
+                    </div>
+                </div>
+
+                <div class="policy-card">
+                    <div class="policy-card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>¿Puedo reservar un cubículo de estudio?</h3>
+                    <div class="faq-answer">
+                        <p><strong>Sí.</strong> Los cubículos de estudio grupal pueden reservarse por periodos de 2 horas a través del sistema de reservaciones en línea o en el mostrador de servicios. Se requiere credencial vigente y son para uso exclusivo de la comunidad UACJ.</p>
+                    </div>
+                </div>
+
+                <div class="policy-card">
+                    <div class="policy-card-icon">
+                        <i class="fas fa-print"></i>
+                    </div>
+                    <h3>¿Hay servicio de impresión y copiado?</h3>
+                    <div class="faq-answer">
+                        <p>Sí, contamos con equipos de impresión, copiado y escaneo disponibles. El servicio tiene un costo por página. Puedes cargar saldo en tu credencial en las máquinas expendedoras o en el mostrador de servicios.</p>
+                    </div>
+                </div>
+
+                <div class="policy-card">
+                    <div class="policy-card-icon">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <h3>¿Hay WiFi disponible?</h3>
+                    <div class="faq-answer">
+                        <p><strong>Sí.</strong> La biblioteca cuenta con acceso WiFi gratuito para toda la comunidad universitaria. Conéctate a la red "UACJ-WiFi" usando tus credenciales institucionales. También hay computadoras de escritorio disponibles para consulta.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <h2 class="section-title" style="margin-top: 50px;">Investigación y Apoyo</h2>
+
+            <div class="policy-grid">
+
+                <div class="policy-card">
+                    <div class="policy-card-icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <h3>¿Ofrecen ayuda para hacer investigaciones?</h3>
+                    <div class="faq-answer">
+                        <p><strong>Sí.</strong> Nuestros bibliotecarios especializados ofrecen asesoría personalizada para investigación. Puedes agendar una cita individual, asistir a talleres de alfabetización informacional o utilizar nuestro servicio de consulta en línea.</p>
+                    </div>
+                </div>
+
+                <div class="policy-card">
+                    <div class="policy-card-icon">
+                        <i class="fas fa-quote-right"></i>
+                    </div>
+                    <h3>¿Cómo cito correctamente mis fuentes?</h3>
+                    <div class="faq-answer">
+                        <p>Ofrecemos talleres sobre estilos de citación (APA, MLA, Chicago) y contamos con un <strong>Generador de Citas IA</strong> que crea referencias automáticas desde DOI o ISBN. También puedes consultar nuestras guías de citación en línea.</p>
+                    </div>
+                </div>
+
+                <div class="policy-card">
+                    <div class="policy-card-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>¿Qué son las Guías Temáticas?</h3>
+                    <div class="faq-answer">
+                        <p>Son recursos curados por bibliotecarios especializados para cada disciplina académica. Incluyen las mejores bases de datos, libros clave, revistas especializadas y consejos de búsqueda específicos para tu carrera o área de estudio.</p>
+                    </div>
+                </div>
+
+                <div class="policy-card">
+                    <div class="policy-card-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>¿Dónde encuentro tesis de la UACJ?</h3>
+                    <div class="faq-answer">
+                        <p>Las tesis de estudiantes de la UACJ están disponibles en nuestro <strong>Repositorio Institucional</strong> en formato digital. También contamos con una colección física de tesis en la sección de Colecciones Especiales para consulta in situ.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <h2 class="section-title" style="margin-top: 50px;">Otros Servicios</h2>
+
+            <div class="policy-grid">
+
+                <div class="policy-card">
+                    <div class="policy-card-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>¿Puedo solicitar libros de otras bibliotecas?</h3>
+                    <div class="faq-answer">
+                        <p>Sí, mediante el <strong>servicio de préstamo interbibliotecario</strong>. Si necesitas material que no está en nuestra colección, podemos solicitarlo a otras instituciones. Este servicio está disponible principalmente para investigadores y estudiantes de posgrado.</p>
+                    </div>
+                </div>
+
+                <div class="policy-card">
+                    <div class="policy-card-icon">
+                        <i class="fas fa-donate"></i>
+                    </div>
+                    <h3>¿Puedo donar libros a la biblioteca?</h3>
+                    <div class="faq-answer">
+                        <p>Aceptamos donaciones de material académico actualizado en buen estado. Las donaciones son evaluadas por nuestro comité de desarrollo de colecciones. Contacta al área de adquisiciones para más información sobre el proceso.</p>
+                    </div>
+                </div>
+
+                <div class="policy-card">
+                    <div class="policy-card-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>¿Existe una app móvil?</h3>
+                    <div class="faq-answer">
+                        <p>Actualmente no contamos con app nativa, pero nuestro sitio web es completamente responsive y funciona perfectamente en dispositivos móviles. Puedes acceder a todos los servicios desde tu smartphone o tablet.</p>
+                    </div>
+                </div>
+
+                <div class="policy-card">
+                    <div class="policy-card-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>¿Cómo puedo contactar a la biblioteca?</h3>
+                    <div class="faq-answer">
+                        <p><strong>Correo:</strong> biblioteca@uacj.mx<br><strong>Teléfono:</strong> (656) 688-2100 ext. 3450<br><strong>Chat en línea:</strong> Disponible en horario de servicio<br><strong>Redes sociales:</strong> Facebook, Twitter e Instagram</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-col">
+                <h4 class="logo" style="color: var(--color-blanco);">Ecosistema Informacional</h4>
+                <p>Av. Plutarco Elías Calles #1210<br>Fovissste Chamizal, C.P. 32310</p>
+            </div>
+            <div class="footer-col">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                    <li><a href="https://catalogo.uacj.mx/" target="_blank" rel="noopener noreferrer">Catálogo</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="apoyo-ayuda.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Recursos</h4>
+                <ul>
+                    <li><a href="bases-de-datos.html">Bases de Datos</a></li>
+                    <li><a href="#">Repositorio</a></li>
+                    <li><a href="guias-tematicas.html">Guías Temáticas</a></li>
+                    <li><a href="#">Preguntas Frecuentes</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Redes Sociales</h4>
+                <ul class="footer-social-icons">
+                    <li><a href="#" aria-label="Síguenos en Facebook" title="Facebook" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a href="#" aria-label="Síguenos en Twitter" title="Twitter" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a></li>
+                    <li><a href="#" aria-label="Síguenos en Instagram" title="Instagram" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

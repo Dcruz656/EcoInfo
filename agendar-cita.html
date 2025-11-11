@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendar Asesoría - Ecosistema Informacional</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-mobile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script src="https://unpkg.com/heroicons@2.0.18/24/outline/index.js"></script>
+
+    <style>
+        /* Estilos para el modal de cita */
+        .appointment-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .appointment-modal.active {
+            display: flex;
+        }
+
+        .appointment-modal-content {
+            background: white;
+            border-radius: 12px;
+            max-width: 550px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .appointment-modal-header {
+            background-color: var(--color-primario);
+            color: white;
+            padding: 20px 25px;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .appointment-modal-header h3 {
+            margin: 0;
+            font-size: 1.3rem;
+        }
+
+        .appointment-modal-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .appointment-modal-body {
+            padding: 25px;
+        }
+
+        .appointment-form-group {
+            margin-bottom: 18px;
+        }
+
+        .appointment-form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: var(--color-texto);
+        }
+
+        .appointment-form-group input,
+        .appointment-form-group select,
+        .appointment-form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-family: var(--fuente-cuerpo);
+        }
+
+        .appointment-form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .appointment-form-group input:focus,
+        .appointment-form-group select:focus,
+        .appointment-form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-primario);
+        }
+
+        .appointment-referencista-info {
+            background-color: var(--color-fondo-claro);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .appointment-referencista-info strong {
+            color: var(--color-primario);
+        }
+
+        .appointment-submit-btn {
+            background-color: var(--color-primario);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .appointment-submit-btn:hover {
+            background-color: var(--color-secundario);
+        }
+
+        .appointment-success-message {
+            display: none;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .appointment-success-message.active {
+            display: block;
+        }
+
+        .appointment-success-icon {
+            font-size: 4rem;
+            color: var(--color-exito);
+            margin-bottom: 15px;
+        }
+
+        .appointment-success-message h3 {
+            color: var(--color-exito);
+            margin-bottom: 10px;
+        }
+
+        .appointment-success-message p {
+            color: var(--color-texto-sec);
+            line-height: 1.6;
+        }
+
+        /* Estilos para la cuadrícula de referencistas */
+        .referencistas-section {
+            margin-top: 40px;
+        }
+
+        .referencistas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .referencistas-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .schedule-note {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 10px 12px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: #856404;
+        }
+
+        /* Estilos para días deshabilitados en el calendario */
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-wrapper">
+        <header class="header container">
+            <a href="index.html" class="logo">Ecosistema Informacional</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="buscar.html">Buscar y Descubrir</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="apoyo-ayuda.html" class="active">Apoyo y Ayuda</a></li>
+                    <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                    <li><a href="normas-politicas.html">Normas y Políticas</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Abrir menú">
+                <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </button>
+            <a href="mi-cuenta.html" class="btn-cta">Mi Cuenta</a>
+        </header>
+    </div>
+    
+    <nav class="mobile-nav" id="mobile-nav">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="buscar.html">Buscar y Descubrir</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="apoyo-ayuda.html">Apoyo y Ayuda</a></li>
+            <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Agendar Asesoría Personalizada</h1>
+            </div>
+        </section>
+
+        <div class="container">
+        
+            <section class="service-main-content">
+                <h3>¿En qué consiste una Asesoría?</h3>
+                <p>
+                    Es un servicio personalizado (presencial o virtual) donde un bibliotecario especializado en tu área de estudio te apoya de forma individual. La sesión dura entre 30 y 45 minutos.
+                </p>
+                <p>
+                    Este servicio es ideal si necesitas ayuda avanzada con:
+                </p>
+                <ul>
+                    <li>Definir estrategias de búsqueda para tu tesis o proyecto de investigación.</li>
+                    <li>Localizar artículos o datos en bases de datos especializadas (Scopus, Web of Science, etc.).</li>
+                    <li>Revisar la correcta aplicación de estilos de citación (APA, MLA, etc.).</li>
+                    <li>Usar gestores bibliográficos como Zotero o Mendeley.</li>
+                </ul>
+
+                <h3>Información Importante</h3>
+                <ul>
+                    <li><strong>Costo:</strong> El servicio es **gratuito** para toda la comunidad UACJ.</li>
+                    <li><strong>Modalidad:</strong> Puede ser presencial en la biblioteca de tu instituto o virtual (vía Zoom/Teams).</li>
+                    <li><strong>Horario:</strong> Lunes a viernes de 8:00 a 20:00 horas.</li>
+                    <li><strong>Tiempo de respuesta:</strong> Una vez enviada tu solicitud, el especialista te contactará en un plazo máximo de **24 horas hábiles** para confirmar la fecha y hora de la cita.</li>
+                </ul>
+
+                <h3>Consulta Rápida</h3>
+                <p>Si tu pregunta es sencilla (ej. "¿Dónde está un libro?", "¿Cuál es el horario?"), te recomendamos usar nuestros canales de consulta inmediata:</p>
+                <ul>
+                    <li><a href="index.html">Chatbot de Asistencia Virtual</a> (24/7)</li>
+                    <li><a href="mailto:referencia@uacj.mx">Consulta por Correo Electrónico</a> (Respuesta en < 24h)</li>
+                </ul>
+            </section>
+            
+            <section class="referencistas-section">
+                <h2 class="section-title">Referencistas Especializados</h2>
+                <p style="font-size: 0.95rem; color: var(--color-texto-sec); text-align: center; margin-bottom: 30px;">
+                    Elige un especialista y agenda tu cita personalizada.
+                </p>
+                
+                <div class="referencistas-grid">
+                    
+                    <div class="contact-card">
+                        <h4>Mtra. Sofía Ramírez</h4>
+                        <span class="specialty">Bibl. Central (C. Montemayor)</span>
+                        <p><a href="mailto:sramirez@uacj.mx">sramirez@uacj.mx</a> | Ext. 1236</p>
+                        <a href="#" class="btn-full open-appointment-modal" data-referencista="Mtra. Sofía Ramírez" data-ubicacion="Bibl. Central (C. Montemayor)">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+                            </svg>
+                            Agendar Cita
+                        </a>
+                    </div>
+
+                    <div class="contact-card">
+                        <h4>Lic. Carlos Mendoza</h4>
+                        <span class="specialty">Bibl. Otto Campbell (IIT/IADA)</span>
+                        <p><a href="mailto:cmendoza@uacj.mx">cmendoza@uacj.mx</a> | Ext. 1235</p>
+                        <a href="#" class="btn-full open-appointment-modal" data-referencista="Lic. Carlos Mendoza" data-ubicacion="Bibl. Otto Campbell (IIT/IADA)">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+                            </svg>
+                            Agendar Cita
+                        </a>
+                    </div>
+
+                    <div class="contact-card">
+                        <h4>Ing. Luis Rentería</h4>
+                        <span class="specialty">Biblioteca de ICB</span>
+                        <p><a href="mailto:lrenteria@uacj.mx">lrenteria@uacj.mx</a> | Ext. 1234</p>
+                        <a href="#" class="btn-full open-appointment-modal" data-referencista="Ing. Luis Rentería" data-ubicacion="Biblioteca de ICB">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+                            </svg>
+                            Agendar Cita
+                        </a>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <h4>Lic. Gabriela Soto</h4>
+                        <span class="specialty">Campus Ciudad Universitaria</span>
+                        <p><a href="mailto:gsoto@uacj.mx">gsoto@uacj.mx</a> | Ext. 2001</p>
+                        <a href="#" class="btn-full open-appointment-modal" data-referencista="Lic. Gabriela Soto" data-ubicacion="Campus Ciudad Universitaria">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+                            </svg>
+                            Agendar Cita
+                        </a>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <h4>Lic. David Perea</h4>
+                        <span class="specialty">Campus Cuauhtémoc</span>
+                        <p><a href="mailto:dperea@uacj.mx">dperea@uacj.mx</a> | Ext. 3001</p>
+                        <a href="#" class="btn-full open-appointment-modal" data-referencista="Lic. David Perea" data-ubicacion="Campus Cuauhtémoc">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+                            </svg>
+                            Agendar Cita
+                        </a>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <h4>Lic. Miguel Torres</h4>
+                        <span class="specialty">Campus NCG</span>
+                        <p><a href="mailto:mtorres@uacj.mx">mtorres@uacj.mx</a> | Ext. 4001</p>
+                        <a href="#" class="btn-full open-appointment-modal" data-referencista="Lic. Miguel Torres" data-ubicacion="Campus NCG">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+                            </svg>
+                            Agendar Cita
+                        </a>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <h4>Dra. Elena Parra</h4>
+                        <span class="specialty">Hospital Infantil</span>
+                        <p><a href="mailto:eparra@uacj.mx">eparra@uacj.mx</a> | Ext. 5001</p>
+                        <a href="#" class="btn-full open-appointment-modal" data-referencista="Dra. Elena Parra" data-ubicacion="Hospital Infantil">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+                            </svg>
+                            Agendar Cita
+                        </a>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <h4>Dr. Roberto Frías</h4>
+                        <span class="specialty">Hospital General</span>
+                        <p><a href="mailto:rfrias@uacj.mx">rfrias@uacj.mx</a> | Ext. 6001</p>
+                        <a href="#" class="btn-full open-appointment-modal" data-referencista="Dr. Roberto Frías" data-ubicacion="Hospital General">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+                            </svg>
+                            Agendar Cita
+                        </a>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <h4>Lic. Julia Solís</h4>
+                        <span class="specialty">Hospital de la Mujer</span>
+                        <p><a href="mailto:jsolis@uacj.mx">jsolis@uacj.mx</a> | Ext. 7001</p>
+                        <a href="#" class="btn-full open-appointment-modal" data-referencista="Lic. Julia Solís" data-ubicacion="Hospital de la Mujer">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+                            </svg>
+                            Agendar Cita
+                        </a>
+                    </div>
+
+                </div>
+            </section>
+        
+        </div>
+    </main>
+
+    <!-- Modal de Formulario de Cita -->
+    <div class="appointment-modal" id="appointmentModal">
+        <div class="appointment-modal-content">
+            <div class="appointment-modal-header">
+                <h3>Agendar Cita</h3>
+                <button class="appointment-modal-close" id="closeAppointmentModal">&times;</button>
+            </div>
+            <div class="appointment-modal-body">
+                <!-- Formulario -->
+                <form id="appointmentForm">
+                    <div class="appointment-referencista-info">
+                        <strong>Referencista:</strong> <span id="selectedReferencista"></span><br>
+                        <strong>Ubicación:</strong> <span id="selectedUbicacion"></span>
+                    </div>
+
+                    <div class="schedule-note">
+                        <strong>⏰ Horario de atención:</strong> Lunes a viernes de 8:00 a 20:00 horas.
+                    </div>
+
+                    <div class="appointment-form-group">
+                        <label for="nombreCompleto">Nombre Completo *</label>
+                        <input type="text" id="nombreCompleto" name="nombreCompleto" required>
+                    </div>
+
+                    <div class="appointment-form-group">
+                        <label for="matricula">Matrícula *</label>
+                        <input type="text" id="matricula" name="matricula" required>
+                    </div>
+
+                    <div class="appointment-form-group">
+                        <label for="carrera">Carrera *</label>
+                        <input type="text" id="carrera" name="carrera" required>
+                    </div>
+
+                    <div class="appointment-form-group">
+                        <label for="dia">Día Preferido (solo días laborables) *</label>
+                        <input type="date" id="dia" name="dia" required>
+                    </div>
+
+                    <div class="appointment-form-group">
+                        <label for="hora">Hora Preferida *</label>
+                        <select id="hora" name="hora" required>
+                            <option value="">Seleccione una hora</option>
+                            <option value="08:00">08:00</option>
+                            <option value="09:00">09:00</option>
+                            <option value="10:00">10:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="12:00">12:00</option>
+                            <option value="13:00">13:00</option>
+                            <option value="14:00">14:00</option>
+                            <option value="15:00">15:00</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:00">17:00</option>
+                            <option value="18:00">18:00</option>
+                            <option value="19:00">19:00</option>
+                            <option value="20:00">20:00</option>
+                        </select>
+                    </div>
+
+                    <div class="appointment-form-group">
+                        <label for="temaTratar">Tema a Tratar *</label>
+                        <textarea id="temaTratar" name="temaTratar" placeholder="Describe brevemente el tema de tu consulta..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="appointment-submit-btn">Enviar Solicitud</button>
+                </form>
+
+                <!-- Mensaje de Éxito -->
+                <div class="appointment-success-message" id="successMessage">
+                    <div class="appointment-success-icon">✓</div>
+                    <h3>¡Solicitud Enviada con Éxito!</h3>
+                    <p>Pronto el referencista se pondrá en contacto contigo para confirmar la fecha y hora de tu cita.</p>
+                    <p style="margin-top: 15px;"><strong>Tiempo de respuesta:</strong> Máximo 24 horas hábiles.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-col"><h4 class="logo" style="color: var(--color-blanco);">Ecosistema Informacional</h4><p>Av. Plutarco Elías Calles #1210<br>Fovissste Chamizal, C.P. 32310</p></div>
+            <div class="footer-col"><h4>Enlaces Rápidos</h4><ul><li><a href="sobre-nosotros.html">Sobre Nosotros</a></li><li><a href="https://catalogo.uacj.mx/">Catálogo</a></li><li><a href="servicios.html">Servicios</a></li><li><a href="apoyo-ayuda.html">Contacto</a></li></ul></div>
+            <div class="footer-col"><h4>Recursos</h4><ul><li><a href="bases-de-datos.html">Bases de Datos</a></li><li><a href="#">Repositorio</a></li><li><a href="guias-tematicas.html">Guías Temáticas</a></li><li><a href="#">Preguntas Frecuentes</a></li></ul></div>
+            
+            <div class="footer-col">
+                <h4>Redes Sociales</h4>
+                <ul class="footer-social-icons">
+                    <li><a href="#" aria-label="Facebook" title="Facebook"><i class="fa-brands fa-facebook"></i></a></li>
+                    <li><a href="#" aria-label="Twitter" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a></li>
+                    <li><a href="#" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+                </ul>
+            </div>
+
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="app.js"></script>
+
+    <script>
+        // Sistema de Modal para Agendar Citas
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('appointmentModal');
+            const closeBtn = document.getElementById('closeAppointmentModal');
+            const form = document.getElementById('appointmentForm');
+            const successMessage = document.getElementById('successMessage');
+            const openButtons = document.querySelectorAll('.open-appointment-modal');
+            const diaInput = document.getElementById('dia');
+
+            // Función para verificar si un día es fin de semana
+            function isWeekend(dateString) {
+                const date = new Date(dateString + 'T00:00:00');
+                const day = date.getDay();
+                return day === 0 || day === 6; // 0 = Domingo, 6 = Sábado
+            }
+
+            // Configurar fecha mínima (hoy)
+            const today = new Date();
+            const dd = String(today.getDate()).padStart(2, '0');
+            const mm = String(today.getMonth() + 1).padStart(2, '0');
+            const yyyy = today.getFullYear();
+            diaInput.min = yyyy + '-' + mm + '-' + dd;
+
+            // Deshabilitar sábados y domingos - Validación al cambiar la fecha
+            diaInput.addEventListener('change', function() {
+                if (this.value && isWeekend(this.value)) {
+                    alert('Por favor selecciona un día de lunes a viernes. Los fines de semana no están disponibles.');
+                    this.value = '';
+                }
+            });
+
+            // Validación adicional al intentar enviar
+            diaInput.addEventListener('blur', function() {
+                if (this.value && isWeekend(this.value)) {
+                    alert('Por favor selecciona un día de lunes a viernes. Los fines de semana no están disponibles.');
+                    this.value = '';
+                }
+            });
+
+            // Abrir modal al hacer clic en cualquier botón de "Agendar Cita"
+            openButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const referencista = this.getAttribute('data-referencista');
+                    const ubicacion = this.getAttribute('data-ubicacion');
+                    
+                    document.getElementById('selectedReferencista').textContent = referencista;
+                    document.getElementById('selectedUbicacion').textContent = ubicacion;
+                    
+                    modal.classList.add('active');
+                    form.style.display = 'block';
+                    successMessage.classList.remove('active');
+                });
+            });
+
+            // Cerrar modal
+            closeBtn.addEventListener('click', function() {
+                modal.classList.remove('active');
+                form.reset();
+            });
+
+            // Cerrar modal al hacer clic fuera
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    form.reset();
+                }
+            });
+
+            // Enviar formulario
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validar día laboral antes de enviar
+                if (diaInput.value && isWeekend(diaInput.value)) {
+                    alert('Por favor selecciona un día de lunes a viernes. Los fines de semana no están disponibles.');
+                    return;
+                }
+                
+                // Aquí puedes agregar código para enviar los datos al servidor
+                // Por ahora, solo mostramos el mensaje de éxito
+                
+                form.style.display = 'none';
+                successMessage.classList.add('active');
+                
+                // Cerrar modal después de 5 segundos
+                setTimeout(function() {
+                    modal.classList.remove('active');
+                    form.reset();
+                    form.style.display = 'block';
+                    successMessage.classList.remove('active');
+                }, 5000);
+            });
+        });
+    </script>
+</body>
+</html>

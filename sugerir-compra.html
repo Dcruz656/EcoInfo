@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Ecosistema Informacional</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-mobile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script src="https://unpkg.com/heroicons@2.0.18/24/outline/index.js"></script>
+</head>
+
+<body>
+
+    <div class="header-wrapper">
+        <header class="header container">
+            <a href="index.html" class="logo">Ecosistema Informacional</a>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="buscar.html">Buscar y Descubrir</a></li>
+                    <li><a href="servicios.html" class="active">Servicios</a></li>
+                    <li><a href="apoyo-ayuda.html">Apoyo y Ayuda</a></li> 
+                    <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+<li><a href="normas-politicas.html">Normas y Políticas</a></li>
+
+                </ul>
+            </nav>
+
+            <button class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Abrir menú">
+                <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </button>
+
+            <a href="mi-cuenta.html" class="btn-cta">Mi Cuenta</a>
+        </header>
+    </div>
+    
+    <nav class="mobile-nav" id="mobile-nav">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="buscar.html">Buscar y Descubrir</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="apoyo-ayuda.html">Apoyo y Ayuda</a></li>
+            <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+<li><a href="normas-politicas.html">Normas y Políticas</a></li>
+
+        </ul>
+    </nav>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Sugerencia de Compra de Recurso</h1>
+            </div>
+        </section>
+
+        <section class="purchase-section container">
+            <div class="form-container">
+                <h2>Sugiere un Recurso para el Acervo</h2>
+                <p style="color: var(--color-texto-sec); margin-bottom: 30px;">
+                    Tu sugerencia es evaluada por la Jefatura de Gestión y Desarrollo de Colecciones.
+                </p>
+                
+                <form id="purchase-suggestion-form">
+                    
+                    <div class="form-title-group">
+                        <h3>Paso 1: Identificación del Recurso</h3>
+                    </div>
+                    
+                    <div class="search-area">
+                        <div class="form-group">
+                            <label for="isbn-search">Código del Recurso (ISBN / DOI / ISSN)</label>
+                            <input type="text" id="isbn-search" placeholder="Ej: 978-0134446377 o un DOI">
+                        </div>
+                        <button type="button" class="btn-action" id="search-btn">
+                            Buscar 
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:1.2rem; height:1.2rem;"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg>
+                        </button>
+                    </div>
+
+                    <div id="search-feedback" class="alert-info">
+                        </div>
+                    
+                    <a href="#" class="manual-option-link" id="manual-fill-link">
+                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width:1rem; height:1rem; margin-right: 5px; vertical-align: middle;"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg>
+                        Llenar manualmente (Omitir búsqueda)
+                    </a>
+
+                    <div id="manual-form-fields" class="manual-fields hidden-fields">
+                        
+                        <h3>Paso 2: Datos y Justificación</h3>
+                        
+                        <div class="form-group">
+                            <label for="resource-type">Tipo de Recurso</label>
+                            <select id="resource-type" required>
+                                <option value="">-- Seleccionar --</option>
+                                <option value="Libro">Libro (Impreso o Electrónico)</option>
+                                <option value="Revista">Revista / Publicación Periódica</option>
+                                <option value="Tesis">Tesis / Investigación (Si es externa)</option>
+                                <option value="Base">Base de Datos / Software</option>
+                                <option value="Otro">Otro (Especificar en comentarios)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="title">Título del Recurso</label>
+                            <input type="text" id="title" placeholder="Título Completo" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="author">Autor(es) / Editor(es)</label>
+                            <input type="text" id="author" placeholder="Nombre completo del autor o autores" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="url">Enlace Web (URL)</label>
+                            <input type="url" id="url" placeholder="Enlace a la página del editor o vendedor">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="comments">Justificación de la Sugerencia</label>
+                            <textarea id="comments" rows="3" placeholder="¿Por qué es importante este recurso para tu materia o investigación?" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-action">
+                            Enviar Sugerencia de Compra
+                        </button>
+                    </div>
+                </form>
+                
+                <div id="success-message" class="alert-success">
+                    ¡Gracias! Tu sugerencia ha sido enviada con éxito y será evaluada.
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+<footer class="footer">
+        <div class="container">
+            <div class="footer-col"><h4 class="logo" style="color: var(--color-blanco);">Ecosistema Informacional</h4><p>Av. Plutarco Elías Calles #1210<br>Fovissste Chamizal, C.P. 32310</p></div>
+            <div class="footer-col"><h4>Enlaces Rápidos</h4><ul><li><a href="sobre-nosotros.html">Sobre Nosotros</a></li><li><a href="https://catalogo.uacj.mx/">Catálogo</a></li><li><a href="servicios.html">Servicios</a></li><li><a href="apoyo-ayuda.html">Contacto</a></li></ul></div>
+            <div class="footer-col"><h4>Recursos</h4><ul><li><a href="bases-de-datos.html">Bases de Datos</a></li><li><a href="#">Repositorio</a></li><li><a href="guias-tematicas.html">Guías Temáticas</a></li><li><a href="#">Preguntas Frecuentes</a></li></ul></div>
+            
+            <div class="footer-col">
+                <h4>Redes Sociales</h4>
+                <ul class="footer-social-icons">
+                    <li><a href="#" aria-label="Facebook" title="Facebook"><i class="fa-brands fa-facebook"></i></a></li>
+                    <li><a href="#" aria-label="Twitter" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a></li>
+                    <li><a href="#" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+                </ul>
+            </div>
+
+        </div>
+    </footer>
+    <!-- === Script de búsqueda real con validación visual + animación === -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const searchBtn = document.getElementById('search-btn');
+  const input = document.getElementById('isbn-search');
+  const feedback = document.getElementById('search-feedback');
+
+  // ===== Detectar tipo de entrada (DOI o ISBN) =====
+  function detectType(value) {
+    const doiRegex = /^10\.\d{4,9}\/[-._;()/:A-Z0-9]+$/i;
+    const isbnRegex = /^(97(8|9))?\d{9}(\d|X)$/;
+    if (doiRegex.test(value)) return 'doi';
+    if (isbnRegex.test(value)) return 'isbn';
+    return 'unknown';
+  }
+
+  // ===== Validación visual =====
+  function showValidationError(message) {
+    input.classList.add('input-error');
+    feedback.innerHTML = `<div class="alert-error fade-in">❌ ${message}</div>`;
+  }
+
+  function clearValidationError() {
+    input.classList.remove('input-error');
+    feedback.innerHTML = "";
+  }
+
+ // ===== Consultas a APIs =====
+async function searchGoogleBooks(query) {
+  const apiKey = "AIzaSyAWDGlEZunKc8yVytGEya1U5m8nGMd6RdU";
+
+  // Si es un ISBN (solo números), antepone isbn:
+  const isNumericISBN = /^[0-9Xx\-]+$/.test(query);
+  const formattedQuery = isNumericISBN ? `isbn:${query}` : query;
+
+  const url = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(formattedQuery)}&key=${apiKey}`;
+
+  const res = await fetch(url);
+  if (!res.ok) throw new Error("Error en la solicitud a Google Books");
+
+  const data = await res.json();
+  if (!data.items || data.items.length === 0) return null;
+
+  return data.items[0].volumeInfo;
+}
+
+
+
+  async function searchCrossRef(doi) {
+    const res = await fetch(`https://api.crossref.org/works/${doi}`);
+    const data = await res.json();
+    if (!data.message) return null;
+    const info = data.message;
+    return {
+      title: info.title ? info.title[0] : "No disponible",
+      authors: info.author ? info.author.map(a => `${a.given || ''} ${a.family || ''}`).join(", ") : "No disponible",
+      publisher: info.publisher || "No disponible",
+      year: info.created ? info.created['date-parts'][0][0] : "No disponible"
+    };
+  }
+
+ <!-- === Script de búsqueda real con validación visual + animación + API Key === -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const searchBtn = document.getElementById('search-btn');
+  const input = document.getElementById('isbn-search');
+  const feedback = document.getElementById('search-feedback');
+
+  // ===== Tu clave de Google Books API =====
+  const apiKey = "TU_API_KEY_AQUI"; // ← reemplaza esto con tu API key
+
+  // ===== Detectar tipo de entrada (DOI o ISBN) =====
+  function detectType(value) {
+    const doiRegex = /^10\.\d{4,9}\/[-._;()/:A-Z0-9]+$/i;
+    const isbnRegex = /^(97(8|9))?\d{9}(\d|X)$/;
+    if (doiRegex.test(value)) return 'doi';
+    if (isbnRegex.test(value)) return 'isbn';
+    return 'unknown';
+  }
+
+  // ===== Validación visual =====
+  function showValidationError(message) {
+    input.classList.add('input-error');
+    feedback.innerHTML = `<div class="alert-error fade-in">❌ ${message}</div>`;
+  }
+
+  function clearValidationError() {
+    input.classList.remove('input-error');
+    feedback.innerHTML = "";
+  }
+
+  // ===== Consultas a APIs =====
+  async function searchGoogleBooks(query) {
+    const url = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&key=${apiKey}`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error("Error en la solicitud a Google Books");
+    const data = await res.json();
+    if (!data.items || data.items.length === 0) return null;
+    return data.items[0].volumeInfo;
+  }
+
+  async function searchCrossRef(doi) {
+    const res = await fetch(`https://api.crossref.org/works/${doi}`);
+    if (!res.ok) throw new Error("Error en la solicitud a CrossRef");
+    const data = await res.json();
+    if (!data.message) return null;
+    const info = data.message;
+    return {
+      title: info.title ? info.title[0] : "No disponible",
+      authors: info.author ? info.author.map(a => `${a.given || ''} ${a.family || ''}`).join(", ") : "No disponible",
+      publisher: info.publisher || "No disponible",
+      year: info.created ? info.created['date-parts'][0][0] : "No disponible"
+    };
+  }
+
+  // ===== Acción al hacer clic en Buscar =====
+  searchBtn.addEventListener('click', async () => {
+    const query = input.value.trim();
+    clearValidationError();
+
+    if (!query) {
+      showValidationError("Por favor, ingresa un ISBN, DOI o título antes de buscar.");
+      return;
+    }
+
+    const type = detectType(query);
+    if (type === 'unknown' && isNaN(query.charAt(0))) {
+      showValidationError("El formato no parece un ISBN ni un DOI válido. Puedes probar con un título o código correcto.");
+      return;
+    }
+
+    feedback.innerHTML = `<div class="alert-info fade-in">🔎 Buscando información...</div>`;
+    input.classList.remove('input-error');
+
+    let book = null;
+    try {
+      if (type === 'doi') {
+        feedback.innerHTML = `<div class="alert-info fade-in">🌐 Conectando con CrossRef...</div>`;
+        book = await searchCrossRef(query);
+      } else {
+        feedback.innerHTML = `<div class="alert-info fade-in">📚 Conectando con Google Books...</div>`;
+        book = await searchGoogleBooks(query);
+      }
+
+      if (!book) {
+        feedback.innerHTML = `<div class="alert-warning fade-in">⚠️ No se encontró información. Puedes llenar el formulario manualmente.</div>`;
+        return;
+      }
+
+      feedback.innerHTML = `
+        <div class="alert-success fade-in">
+          ✅ <strong>Resultado encontrado:</strong><br>
+          <b>Título:</b> ${book.title || "No disponible"}<br>
+          <b>Autor:</b> ${book.authors || (book.authors ? book.authors.join(", ") : "No disponible")}<br>
+          <b>Editorial:</b> ${book.publisher || "No disponible"}<br>
+          <b>Año:</b> ${book.year || book.publishedDate || "No disponible"}<br>
+          ${book.imageLinks ? `<img src="${book.imageLinks.thumbnail}" alt="Portada">` : ""}
+        </div>`;
+
+      // Mostrar y llenar formulario
+      document.getElementById('manual-form-fields').classList.remove('hidden-fields');
+      document.getElementById('title').value = book.title || "";
+      document.getElementById('author').value = book.authors ? (Array.isArray(book.authors) ? book.authors.join(", ") : book.authors) : "";
+      document.getElementById('publisher').value = book.publisher || "";
+      document.getElementById('year').value = book.year || book.publishedDate || "";
+
+    } catch (error) {
+      console.error(error);
+      feedback.innerHTML = `<div class="alert-error fade-in">❌ Error al conectar con el servicio.</div>`;
+    }
+  });
+});
+</script>
+
+<!-- === Estilos visuales para los mensajes con animación === -->
+<style>
+.input-error {
+  border: 2px solid #e74c3c !important;
+  background-color: #fff6f6 !important;
+}
+
+.alert-info {
+  color: #004b8d;
+  background: #eaf1fb;
+  border-left: 4px solid #004b8d;
+  padding: 8px 10px;
+  margin-top: 8px;
+  border-radius: 4px;
+}
+
+.alert-success {
+  color: #0e7a2d;
+  background: #e6f6ea;
+  border-left: 4px solid #0e7a2d;
+  padding: 8px 10px;
+  margin-top: 8px;
+  border-radius: 4px;
+}
+
+.alert-warning {
+  color: #b36b00;
+  background: #fff4e5;
+  border-left: 4px solid #b36b00;
+  padding: 8px 10px;
+  margin-top: 8px;
+  border-radius: 4px;
+}
+
+.alert-error {
+  color: #a30000;
+  background: #ffe6e6;
+  border-left: 4px solid #a30000;
+  padding: 8px 10px;
+  margin-top: 8px;
+  border-radius: 4px;
+}
+
+/* === Animación fade-in suave === */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.6s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(3px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,466 @@
+<!DOCTYPE html> <html lang="es"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1" /> <title>Ecosistema Informacional</title>
+text
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+    href="https://fonts.googleapis.com/css2?family=Lato:wght@700;900&family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet"
+/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="style-mobile.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+<script src="https://unpkg.com/heroicons@2.0.18/24/outline/index.js"></script>
+</head> <body> <div class="header-wrapper"> <header class="header container"> <a href="index.html" class="logo">Ecosistema Informacional</a> <nav class="main-nav"> <ul> <li><a href="index.html" class="active">Inicio</a></li> <li><a href="buscar.html">Buscar y Descubrir</a></li> <li><a href="servicios.html">Servicios</a></li> <li><a href="apoyo-ayuda.html">Apoyo y Ayuda</a></li> <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li> <li><a href="normas-politicas.html">Normas y Políticas</a></li> </ul> </nav> <button class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Abrir menú"> <span class="icon-bar"></span ><span class="icon-bar"></span><span class="icon-bar"></span> </button> <a href="mi-cuenta.html" class="btn-cta">Mi Cuenta</a> </header> </div>
+text
+<nav class="mobile-nav" id="mobile-nav">
+    <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="buscar.html">Buscar y Descubrir</a></li>
+        <li><a href="servicios.html">Servicios</a></li>
+        <li><a href="apoyo-ayuda.html">Apoyo y Ayuda</a></li>
+        <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+        <li><a href="normas-politicas.html">Normas y Políticas</a></li>
+    </ul>
+</nav>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Recursos de Acceso Abierto</h1>
+            </div>
+        </section>
+
+        <section class="open-access-section container">
+            
+            <p class="intro-text">
+                Accede a una selección curada de contenido académico y científico de alta calidad, disponible de forma gratuita y sin restricciones.
+            </p>
+
+            <!-- CATEGORÍA 1 -->
+            <div class="resource-category">
+                <h3>Revistas y Artículos Académicos</h3>
+                <div class="resource-grid">
+                    
+                    <a href="https://doaj.org/" target="_blank" class="link-card">
+                        <div class="link-logo">DOAJ</div>
+                        <div class="link-info">
+                            <h4>Directory of Open Access Journals</h4>
+                            <p>Directorio con más de 8 millones de artículos de revistas científicas de acceso abierto revisadas por pares.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://www.redalyc.org/home.oa" target="_blank" class="link-card">
+                        <div class="link-logo">RDL</div>
+                        <div class="link-info">
+                            <h4>Redalyc</h4>
+                            <p>Red de Revistas Científicas de América Latina y el Caribe, España y Portugal.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://www.latindex.org/latindex/inicio" target="_blank" class="link-card">
+                        <div class="link-logo">LAT</div>
+                        <div class="link-info">
+                            <h4>Latindex</h4>
+                            <p>Sistema de información académica que cataloga revistas científicas y académicas.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://www.scielo.org/" target="_blank" class="link-card">
+                        <div class="link-logo">SciELO</div>
+                        <div class="link-info">
+                            <h4>Scientific Electronic Library Online</h4>
+                            <p>Biblioteca electrónica con revistas científicas de América Latina, España y Portugal.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://scienceopen.com/" target="_blank" class="link-card">
+                        <div class="link-logo">SO</div>
+                        <div class="link-info">
+                            <h4>ScienceOpen</h4>
+                            <p>Red de investigación con acceso a más de 74 millones de artículos en todas las áreas de ciencia.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://www.ncbi.nlm.nih.gov/pmc/" target="_blank" class="link-card">
+                        <div class="link-logo">PMC</div>
+                        <div class="link-info">
+                            <h4>PubMed Central</h4>
+                            <p>Archivo digital gratuito de literatura biomédica y ciencias de la vida del NIH.</p>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- CATEGORÍA 2 -->
+            <div class="resource-category">
+                <h3>Buscadores Académicos Multidisciplinarios</h3>
+                <div class="resource-grid">
+                    
+                    <a href="https://core.ac.uk/" target="_blank" class="link-card">
+                        <div class="link-logo">CORE</div>
+                        <div class="link-info">
+                            <h4>CORE</h4>
+                            <p>La mayor colección de artículos de acceso abierto con más de 219 millones de recursos.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://www.base-search.net/" target="_blank" class="link-card">
+                        <div class="link-logo">BASE</div>
+                        <div class="link-info">
+                            <h4>Bielefeld Academic Search Engine</h4>
+                            <p>Uno de los buscadores de recursos académicos de acceso abierto más grandes del mundo.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://unpaywall.org/" target="_blank" class="link-card">
+                        <div class="link-logo">UP</div>
+                        <div class="link-info">
+                            <h4>Unpaywall</h4>
+                            <p>Base de datos con más de 54 millones de artículos académicos gratuitos de 50,000+ editores.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://www.openaire.eu/" target="_blank" class="link-card">
+                        <div class="link-logo">OA</div>
+                        <div class="link-info">
+                            <h4>OpenAIRE</h4>
+                            <p>Infraestructura europea para ciencia abierta con millones de publicaciones científicas.</p>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- CATEGORÍA 3 -->
+            <div class="resource-category">
+                <h3>Ciencias Exactas y Naturales</h3>
+                <div class="resource-grid">
+                    
+                    <a href="https://arxiv.org/" target="_blank" class="link-card">
+                        <div class="link-logo">arXiv</div>
+                        <div class="link-info">
+                            <h4>arXiv</h4>
+                            <p>Repositorio de pre-prints en física, matemáticas, ciencias de la computación y estadística.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://www.science.gov/" target="_blank" class="link-card">
+                        <div class="link-logo">SCI</div>
+                        <div class="link-info">
+                            <h4>Science.gov</h4>
+                            <p>Busca en 60 bases de datos y 2,200 sitios web de 15 agencias federales de EE.UU.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://www.sciencedirect.com/browse/journals-and-books?contentType=JL&accessType=openAccess" target="_blank" class="link-card">
+                        <div class="link-logo">SD</div>
+                        <div class="link-info">
+                            <h4>ScienceDirect Open Access</h4>
+                            <p>Revistas de acceso abierto en ciencias, química, biología, matemáticas e ingeniería.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://link.springer.com/search?facet-content-type=%22Journal%22&package=openaccessarticles" target="_blank" class="link-card">
+                        <div class="link-logo">SO</div>
+                        <div class="link-info">
+                            <h4>SpringerOpen</h4>
+                            <p>Publicaciones científicas de acceso abierto en todas las disciplinas STEM.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://www.ncbi.nlm.nih.gov/pubmed/" target="_blank" class="link-card">
+                        <div class="link-logo">PM</div>
+                        <div class="link-info">
+                            <h4>PubMed</h4>
+                            <p>Base de datos con más de 37 millones de referencias en biomedicina y ciencias de la vida.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://www.biorxiv.org/" target="_blank" class="link-card">
+                        <div class="link-logo">bioRxiv</div>
+                        <div class="link-info">
+                            <h4>bioRxiv</h4>
+                            <p>Servidor de pre-prints para biología con más de 200,000 artículos científicos.</p>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- CATEGORÍA 4 -->
+            <div class="resource-category">
+                <h3>Ciencias de la Salud y Medicina</h3>
+                <div class="resource-grid">
+                    
+                    <a href="https://www.ncbi.nlm.nih.gov/pmc/" target="_blank" class="link-card">
+                        <div class="link-logo">PMC</div>
+                        <div class="link-info">
+                            <h4>PubMed Central</h4>
+                            <p>Archivo digital gratuito de literatura biomédica y ciencias de la vida del NIH.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://www.cochranelibrary.com/" target="_blank" class="link-card">
+                        <div class="link-logo">CCH</div>
+                        <div class="link-info">
+                            <h4>Cochrane Library</h4>
+                            <p>Revisiones sistemáticas de alta calidad sobre efectividad de intervenciones en salud.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://www.who.int/publications" target="_blank" class="link-card">
+                        <div class="link-logo">WHO</div>
+                        <div class="link-info">
+                            <h4>World Health Organization</h4>
+                            <p>Publicaciones de investigación de la OMS sobre temas de salud global.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://www.cdc.gov/library/researchguides/index.html" target="_blank" class="link-card">
+                        <div class="link-logo">CDC</div>
+                        <div class="link-info">
+                            <h4>CDC Databases</h4>
+                            <p>Recursos de investigación en salud pública de los Centros para el Control de Enfermedades.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://www.medrxiv.org/" target="_blank" class="link-card">
+                        <div class="link-logo">medRxiv</div>
+                        <div class="link-info">
+                            <h4>medRxiv</h4>
+                            <p>Servidor de pre-prints para ciencias de la salud y medicina clínica.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://wellcomecollection.org/works" target="_blank" class="link-card">
+                        <div class="link-logo">WC</div>
+                        <div class="link-info">
+                            <h4>Wellcome Collection</h4>
+                            <p>Biblioteca gratuita de historia médica útil para investigación de archivo.</p>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- CATEGORÍA 5 -->
+            <div class="resource-category">
+                <h3>Humanidades y Ciencias Sociales</h3>
+                <div class="resource-grid">
+                    
+                    <a href="https://openlibhums.org/" target="_blank" class="link-card">
+                        <div class="link-logo">OLH</div>
+                        <div class="link-info">
+                            <h4>Open Library of Humanities</h4>
+                            <p>Editor de acceso abierto con publicaciones académicas de primer nivel en humanidades.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://www.jstor.org/open/" target="_blank" class="link-card">
+                        <div class="link-logo">JSTOR</div>
+                        <div class="link-info">
+                            <h4>JSTOR Open Access</h4>
+                            <p>Acceso gratuito a más de 10 millones de artículos en humanidades y ciencias sociales.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://ssrn.com/" target="_blank" class="link-card">
+                        <div class="link-logo">SSRN</div>
+                        <div class="link-info">
+                            <h4>Social Science Research Network</h4>
+                            <p>Red de investigación dedicada a la difusión rápida de trabajos en ciencias sociales.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://eric.ed.gov/" target="_blank" class="link-card">
+                        <div class="link-logo">ERIC</div>
+                        <div class="link-info">
+                            <h4>Education Resources Information Center</h4>
+                            <p>Base de datos especializada en educación con artículos, informes y recursos pedagógicos.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://www.ceeol.com/" target="_blank" class="link-card">
+                        <div class="link-logo">CEEOL</div>
+                        <div class="link-info">
+                            <h4>Central and Eastern European Online Library</h4>
+                            <p>Colección especializada en humanidades y ciencias sociales de Europa Central y Oriental.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://oapen.org/" target="_blank" class="link-card">
+                        <div class="link-logo">OAPEN</div>
+                        <div class="link-info">
+                            <h4>OAPEN Library</h4>
+                            <p>Libros académicos de acceso abierto principalmente en humanidades y ciencias sociales.</p>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- CATEGORÍA 6 -->
+            <div class="resource-category">
+                <h3>Libros Académicos y Textos Completos</h3>
+                <div class="resource-grid">
+                    
+                    <a href="https://www.doabooks.org/" target="_blank" class="link-card">
+                        <div class="link-logo">DOAB</div>
+                        <div class="link-info">
+                            <h4>Directory of Open Access Books</h4>
+                            <p>Directorio de libros académicos de acceso abierto revisados por pares.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://www.gutenberg.org/" target="_blank" class="link-card">
+                        <div class="link-logo">PG</div>
+                        <div class="link-info">
+                            <h4>Project Gutenberg</h4>
+                            <p>Colección de más de 70,000 libros digitales de dominio público en múltiples idiomas.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://openstax.org/" target="_blank" class="link-card">
+                        <div class="link-logo">OS</div>
+                        <div class="link-info">
+                            <h4>OpenStax</h4>
+                            <p>Libros de texto universitarios de alta calidad, disponibles gratuitamente para estudiantes.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://archive.org/" target="_blank" class="link-card">
+                        <div class="link-logo">IA</div>
+                        <div class="link-info">
+                            <h4>Internet Archive</h4>
+                            <p>Biblioteca digital con millones de libros, películas, software, música y páginas web.</p>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- CATEGORÍA 7 -->
+            <div class="resource-category">
+                <h3>Tesis y Repositorios Institucionales</h3>
+                <div class="resource-grid">
+                    
+                    <a href="https://www.dart-europe.org/basic-search.php" target="_blank" class="link-card">
+                        <div class="link-logo">DART</div>
+                        <div class="link-info">
+                            <h4>DART-Europe E-theses Portal</h4>
+                            <p>Acceso a más de 1 millón de tesis de investigación europeas de acceso abierto.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://oatd.org/" target="_blank" class="link-card">
+                        <div class="link-logo">OATD</div>
+                        <div class="link-info">
+                            <h4>Open Access Theses and Dissertations</h4>
+                            <p>Buscador de tesis y disertaciones de acceso abierto de todo el mundo.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://zenodo.org/" target="_blank" class="link-card">
+                        <div class="link-logo">ZND</div>
+                        <div class="link-info">
+                            <h4>Zenodo</h4>
+                            <p>Repositorio de investigación multidisciplinario que permite compartir artículos, datos y software.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://figshare.com/" target="_blank" class="link-card">
+                        <div class="link-logo">FS</div>
+                        <div class="link-info">
+                            <h4>Figshare</h4>
+                            <p>Plataforma para compartir y preservar resultados de investigación en cualquier formato.</p>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- CATEGORÍA 8 -->
+            <div class="resource-category">
+                <h3>Recursos Educativos Abiertos (REA/OER)</h3>
+                <div class="resource-grid">
+                    
+                    <a href="https://www.oercommons.org/" target="_blank" class="link-card">
+                        <div class="link-logo">OER</div>
+                        <div class="link-info">
+                            <h4>OER Commons</h4>
+                            <p>Biblioteca digital y red de recursos educativos abiertos para docentes y estudiantes.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://www.merlot.org/" target="_blank" class="link-card">
+                        <div class="link-logo">MRL</div>
+                        <div class="link-info">
+                            <h4>MERLOT</h4>
+                            <p>Materiales educativos curados para aprendizaje en línea y herramientas de creación de contenido.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://oertx.highered.texas.gov/" target="_blank" class="link-card">
+                        <div class="link-logo">OERTX</div>
+                        <div class="link-info">
+                            <h4>OERTX Repository</h4>
+                            <p>Biblioteca digital pública de recursos educativos abiertos para educación superior.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://www.curriki.org/" target="_blank" class="link-card">
+                        <div class="link-logo">CRK</div>
+                        <div class="link-info">
+                            <h4>Curriki</h4>
+                            <p>Comunidad K-12 global para crear, compartir y buscar recursos educativos abiertos.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://wordpress.org/openverse/" target="_blank" class="link-card">
+                        <div class="link-logo">OV</div>
+                        <div class="link-info">
+                            <h4>Openverse</h4>
+                            <p>Buscador de más de 700 millones de obras de contenido abierto con licencias Creative Commons.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://www.open.edu/openlearn/" target="_blank" class="link-card">
+                        <div class="link-logo">OL</div>
+                        <div class="link-info">
+                            <h4>OpenLearn</h4>
+                            <p>Cursos gratuitos y recursos educativos de la Open University del Reino Unido.</p>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-col"><h4 class="logo" style="color: var(--color-blanco);">Ecosistema Informacional</h4><p>Av. Plutarco Elías Calles #1210<br>Fovissste Chamizal, C.P. 32310</p></div>
+            <div class="footer-col"><h4>Enlaces Rápidos</h4><ul><li><a href="sobre-nosotros.html">Sobre Nosotros</a></li><li><a href="buscar.html">Catálogo</a></li><li><a href="servicios.html">Servicios</a></li><li><a href="apoyo-ayuda.html">Contacto</a></li></ul></div>
+            <div class="footer-col"><h4>Recursos</h4><ul><li><a href="bases-de-datos.html">Bases de Datos</a></li><li><a href="#">Repositorio</a></li><li><a href="guias-tematicas.html">Guías Temáticas</a></li><li><a href="#">Preguntas Frecuentes</a></li></ul></div>
+            
+            <div class="footer-col">
+                <h4>Redes Sociales</h4>
+                <ul class="footer-social-icons">
+                    <li><a href="#" aria-label="Facebook" title="Facebook"><i class="fa-brands fa-facebook"></i></a></li>
+                    <li><a href="#" aria-label="Twitter" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a></li>
+                    <li><a href="#" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+                </ul>
+            </div>
+
+        </div>
+    </footer>
+    
+    <script src="app.js"></script>
+    </body>
+</html>

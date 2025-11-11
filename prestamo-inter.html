@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Préstamo Interbibliotecario - Ecosistema Informacional</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-mobile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script src="https://unpkg.com/heroicons@2.0.18/24/outline/index.js"></script>
+
+    <style>
+        .policy-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--color-primario);
+        }
+
+        .policy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .action-card, .info-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--color-primario);
+            margin-bottom: 25px;
+        }
+
+        .action-card:hover, .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            max-width: 700px;
+            width: 100%;
+            padding: 0;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--color-primario), var(--color-secundario));
+            color: white;
+            padding: 25px;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .modal-close {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--color-primario);
+        }
+
+        .form-group label .required {
+            color: var(--color-alerta);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-primario);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-submit {
+            background: var(--color-primario);
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s ease;
+        }
+
+        .form-submit:hover {
+            background: var(--color-secundario);
+        }
+
+        .form-note {
+            background: var(--color-fondo-claro);
+            padding: 15px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: var(--color-texto-sec);
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                margin: 20px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-wrapper">
+        <header class="header container">
+            <a href="index.html" class="logo">Ecosistema Informacional</a>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="buscar.html">Buscar y Descubrir</a></li>
+                    <li><a href="servicios.html" class="active">Servicios</a></li>
+                    <li><a href="apoyo-ayuda.html">Apoyo y Ayuda</a></li> 
+                    <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                    <li><a href="normas-politicas.html">Normas y Políticas</a></li>
+                </ul>
+            </nav>
+
+            <button class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Abrir menú">
+                <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </button>
+
+            <a href="mi-cuenta.html" class="btn-cta">Mi Cuenta</a>
+        </header>
+    </div>
+    
+    <nav class="mobile-nav" id="mobile-nav">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="buscar.html">Buscar y Descubrir</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="apoyo-ayuda.html">Apoyo y Ayuda</a></li>
+            <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+            <li><a href="normas-politicas.html">Normas y Políticas</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Préstamo Interbibliotecario</h1>
+            </div>
+        </section>
+
+        <div class="service-layout container">
+        
+            <section class="service-main-content">
+                <h3>¿Qué es el Préstamo Interbibliotecario?</h3>
+                <p>
+                    Este servicio te permite solicitar material bibliográfico (libros, capítulos de libros o artículos de revistas) que no se encuentra disponible en ninguna de las bibliotecas del Ecosistema Informacional UACJ.
+                </p>
+                <p>
+                    Actuamos como intermediarios para conseguir el material en otras instituciones con las que mantenemos convenio, tanto a nivel nacional como internacional.
+                </p>
+
+                <h3>Información Importante</h3>
+                <ul>
+                    <li>El servicio es exclusivo para <strong>docentes, investigadores y estudiantes de posgrado</strong> de la UACJ.</li>
+                    <li>Los estudiantes de licenciatura pueden solicitarlo a través de un profesor que avale la solicitud.</li>
+                    <li>Solo se pueden solicitar materiales que <strong>no existan</strong> en nuestro acervo físico o digital. Por favor, verifica el <a href="https://catalogo.uacj.mx/" target="_blank">catálogo</a> antes de solicitar.</li>
+                </ul>
+
+                <h3>Costos y Tiempos de Respuesta</h3>
+                <ul>
+                    <li><strong>Artículos y Capítulos (Digital):</strong> Generalmente son gratuitos. El tiempo de respuesta es de <strong>24 a 72 horas hábiles</strong>.</li>
+                    <li><strong>Libros (Préstamo Físico):</strong> El costo de la mensajería (envío de ida y vuelta) corre por cuenta del usuario. El tiempo de respuesta varía de <strong>5 a 15 días hábiles</strong>, dependiendo de la ubicación de la biblioteca prestataria.</li>
+                </ul>
+                
+                <h3>Principales Convenios</h3>
+                <p>Formamos parte de redes de colaboración que nos conectan con cientos de bibliotecas. Nuestros principales convenios incluyen:</p>
+                <ul>
+                    <li>Consorcio Nacional de Recursos de Información Científica y Tecnológica (CONRICYT)</li>
+                    <li>Asociación Nacional de Universidades e Instituciones de Educación Superior (ANUIES)</li>
+                    <li>Red de Bibliotecas de la Región Noroeste (REBINO)</li>
+                </ul>
+            </section>
+            
+            <aside class="service-sidebar">
+                <div class="action-card">
+                    <h3>Iniciar una Solicitud</h3>
+                    <p style="font-size: 0.95rem; margin-bottom: 20px;">
+                        ¿Listo para solicitar tu material? Inicia el proceso en nuestro formulario en línea.
+                    </p>
+                    <a href="#" class="btn-full" id="open-form-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                        </svg>
+                        Iniciar Solicitud
+                    </a>
+                </div>
+                
+                <div class="info-card"> 
+                    <h4>Responsable del Servicio</h4>
+                    <p>
+                        <strong>Mtra. Karla Ruiz</strong><br>
+                        Jefatura de Servicios<br>
+                        <a href="mailto:kruiz@uacj.mx">kruiz@uacj.mx</a><br>
+                        Ext. 1237
+                    </p>
+                </div>
+            </aside>
+        
+        </div>
+
+    </main>
+<!-- Modal del Formulario -->
+<div class="modal-overlay" id="form-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Solicitud de Préstamo Interbibliotecario</h2>
+            <button class="modal-close" id="close-modal-btn" aria-label="Cerrar formulario">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="form-note">
+                <strong>Nota importante:</strong> Verifica que el material no se encuentre en nuestro <a href="https://catalogo.uacj.mx/" target="_blank">catálogo</a> antes de solicitar.
+            </div>
+
+            <form id="prestamo-form">
+                <h3 style="margin-top: 0; color: var(--color-primario);">Datos del Solicitante</h3>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nombre Completo <span class="required">*</span></label>
+                        <input type="text" name="nombre" id="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Matrícula <span class="required">*</span></label>
+                        <input type="text" name="matricula" id="matricula" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Correo Electrónico <span class="required">*</span></label>
+                        <input type="email" name="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Teléfono <span class="required">*</span></label>
+                        <input type="tel" name="telefono" id="telefono" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Tipo de Usuario <span class="required">*</span></label>
+                    <select name="tipo_usuario" id="tipo_usuario" required>
+                        <option value="">Selecciona una opción</option>
+                        <option value="docente">Docente</option>
+                        <option value="investigador">Investigador</option>
+                        <option value="posgrado">Estudiante de Posgrado</option>
+                        <option value="licenciatura">Estudiante de Licenciatura (con aval)</option>
+                    </select>
+                </div>
+
+                <h3 style="margin-top: 30px; color: var(--color-primario);">Datos del Material Solicitado</h3>
+
+                <!-- Búsqueda Automática -->
+                <div class="form-note" style="background: #e3f2fd; border-left: 4px solid var(--color-primario);">
+                    <strong>💡 Búsqueda Automática:</strong> Si tienes el DOI o ISBN del material, ingrésalo aquí y autocompletaremos los datos por ti.
+                </div>
+
+                <div class="form-group">
+                    <label>Buscar por DOI o ISBN</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" id="identifier-search" placeholder="Ej: 10.1000/xyz123 o 978-3-16-148410-0" style="flex: 1;">
+                        <button type="button" id="search-btn" class="btn-secondary" style="padding: 12px 24px; background: var(--color-primario); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; white-space: nowrap;">
+                            <span id="search-btn-text">🔍 Buscar</span>
+                            <span id="search-spinner" style="display: none;">⏳ Buscando...</span>
+                        </button>
+                    </div>
+                    <small style="color: var(--color-texto-sec); display: block; margin-top: 5px;">
+                        O completa los datos manualmente a continuación
+                    </small>
+                </div>
+
+                <div id="search-result" style="display: none; background: #d4edda; padding: 15px; border-radius: 6px; margin-bottom: 20px; border-left: 4px solid #28a745;">
+                    <strong style="color: #155724;">✓ Material encontrado</strong>
+                    <p id="result-info" style="margin: 5px 0 0 0; color: #155724; font-size: 0.9rem;"></p>
+                </div>
+
+                <div id="search-error" style="display: none; background: #f8d7da; padding: 15px; border-radius: 6px; margin-bottom: 20px; border-left: 4px solid #dc3545;">
+                    <strong style="color: #721c24;">⚠ No se encontró el material</strong>
+                    <p style="margin: 5px 0 0 0; color: #721c24; font-size: 0.9rem;">Por favor, completa los datos manualmente.</p>
+                </div>
+
+                <div class="form-group">
+                    <label>Tipo de Material <span class="required">*</span></label>
+                    <select name="tipo_material" id="tipo_material" required>
+                        <option value="">Selecciona una opción</option>
+                        <option value="libro">Libro completo</option>
+                        <option value="capitulo">Capítulo de libro</option>
+                        <option value="articulo">Artículo de revista</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Título del Material <span class="required">*</span></label>
+                    <input type="text" name="titulo" id="titulo" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Autor(es) <span class="required">*</span></label>
+                        <input type="text" name="autor" id="autor" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Año de Publicación</label>
+                        <input type="text" name="anio" id="anio">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Editorial</label>
+                        <input type="text" name="editorial" id="editorial">
+                    </div>
+                    <div class="form-group">
+                        <label>ISBN / ISSN / DOI</label>
+                        <input type="text" name="isbn" id="isbn">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Información Adicional</label>
+                    <textarea name="informacion_adicional" id="informacion_adicional" placeholder="Número de páginas, volumen, número, URL, etc."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Justificación de la Solicitud <span class="required">*</span></label>
+                    <textarea name="justificacion" id="justificacion" placeholder="Describe brevemente para qué necesitas este material (investigación, tesis, curso, etc.)" required></textarea>
+                </div>
+
+                <button type="submit" class="form-submit">Enviar Solicitud</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+// Funcionalidad del modal
+const openFormBtn = document.getElementById('open-form-btn');
+const formModal = document.getElementById('form-modal');
+const closeModalBtn = document.getElementById('close-modal-btn');
+const prestamoForm = document.getElementById('prestamo-form');
+
+openFormBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    formModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+});
+
+closeModalBtn.addEventListener('click', function() {
+    formModal.classList.remove('active');
+    document.body.style.overflow = '';
+});
+
+formModal.addEventListener('click', function(e) {
+    if (e.target === formModal) {
+        formModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+});
+
+// Búsqueda automática por DOI/ISBN
+const searchBtn = document.getElementById('search-btn');
+const identifierSearch = document.getElementById('identifier-search');
+const searchResult = document.getElementById('search-result');
+const searchError = document.getElementById('search-error');
+const resultInfo = document.getElementById('result-info');
+const searchBtnText = document.getElementById('search-btn-text');
+const searchSpinner = document.getElementById('search-spinner');
+
+searchBtn.addEventListener('click', async function() {
+    const identifier = identifierSearch.value.trim();
+    
+    if (!identifier) {
+        alert('Por favor ingresa un DOI o ISBN');
+        return;
+    }
+
+    // Ocultar mensajes previos
+    searchResult.style.display = 'none';
+    searchError.style.display = 'none';
+    
+    // Mostrar spinner
+    searchBtnText.style.display = 'none';
+    searchSpinner.style.display = 'inline';
+    searchBtn.disabled = true;
+
+    try {
+        // Detectar si es DOI o ISBN
+        const isDOI = identifier.includes('/') || identifier.startsWith('10.');
+        
+        if (isDOI) {
+            await searchByDOI(identifier);
+        } else {
+            await searchByISBN(identifier);
+        }
+    } catch (error) {
+        console.error('Error en la búsqueda:', error);
+        searchError.style.display = 'block';
+    } finally {
+        // Ocultar spinner
+        searchBtnText.style.display = 'inline';
+        searchSpinner.style.display = 'none';
+        searchBtn.disabled = false;
+    }
+});
+
+// Búsqueda por DOI usando CrossRef API
+async function searchByDOI(doi) {
+    const cleanDOI = doi.replace('https://doi.org/', '').replace('http://dx.doi.org/', '');
+    const url = `https://api.crossref.org/works/${encodeURIComponent(cleanDOI)}`;
+    
+    const response = await fetch(url);
+    
+    if (!response.ok) {
+        throw new Error('DOI no encontrado');
+    }
+    
+    const data = await response.json();
+    const item = data.message;
+    
+    // Llenar formulario
+    document.getElementById('titulo').value = item.title?.[0] || '';
+    
+    // Autores
+    if (item.author && item.author.length > 0) {
+        const authors = item.author.map(a => `${a.given || ''} ${a.family || ''}`).join(', ');
+        document.getElementById('autor').value = authors;
+    }
+    
+    document.getElementById('anio').value = item.published?.['date-parts']?.[0]?.[0] || '';
+    document.getElementById('editorial').value = item.publisher || '';
+    document.getElementById('isbn').value = cleanDOI;
+    
+    // Determinar tipo
+    const type = item.type;
+    if (type === 'journal-article') {
+        document.getElementById('tipo_material').value = 'articulo';
+    } else if (type === 'book' || type === 'monograph') {
+        document.getElementById('tipo_material').value = 'libro';
+    } else if (type === 'book-chapter') {
+        document.getElementById('tipo_material').value = 'capitulo';
+    }
+    
+    // Información adicional
+    let info = [];
+    if (item.volume) info.push(`Volumen: ${item.volume}`);
+    if (item.issue) info.push(`Número: ${item.issue}`);
+    if (item.page) info.push(`Páginas: ${item.page}`);
+    if (item['container-title']) info.push(`Revista/Libro: ${item['container-title'][0]}`);
+    document.getElementById('informacion_adicional').value = info.join('\n');
+    
+    // Mostrar resultado
+    resultInfo.textContent = `${item.title?.[0] || 'Material'} - ${item.author?.[0]?.family || 'Autor desconocido'}`;
+    searchResult.style.display = 'block';
+}
+
+// Búsqueda por ISBN usando Open Library API
+async function searchByISBN(isbn) {
+    const cleanISBN = isbn.replace(/-/g, '').replace(/ /g, '');
+    const url = `https://openlibrary.org/api/books?bibkeys=ISBN:${cleanISBN}&format=json&jscmd=data`;
+    
+    const response = await fetch(url);
+    const data = await response.json();
+    
+    const bookKey = `ISBN:${cleanISBN}`;
+    if (!data[bookKey]) {
+        throw new Error('ISBN no encontrado');
+    }
+    
+    const book = data[bookKey];
+    
+    // Llenar formulario
+    document.getElementById('titulo').value = book.title || '';
+    
+    // Autores
+    if (book.authors && book.authors.length > 0) {
+        const authors = book.authors.map(a => a.name).join(', ');
+        document.getElementById('autor').value = authors;
+    }
+    
+    document.getElementById('anio').value = book.publish_date || '';
+    document.getElementById('editorial').value = book.publishers?.[0]?.name || '';
+    document.getElementById('isbn').value = cleanISBN;
+    document.getElementById('tipo_material').value = 'libro';
+    
+    // Información adicional
+    let info = [];
+    if (book.number_of_pages) info.push(`Páginas: ${book.number_of_pages}`);
+    if (book.subjects) info.push(`Temas: ${book.subjects.slice(0, 3).map(s => s.name).join(', ')}`);
+    document.getElementById('informacion_adicional').value = info.join('\n');
+    
+    // Mostrar resultado
+    resultInfo.textContent = `${book.title || 'Libro'} - ${book.authors?.[0]?.name || 'Autor desconocido'}`;
+    searchResult.style.display = 'block';
+}
+
+// Envío del formulario
+prestamoForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Aquí puedes agregar la lógica para enviar el formulario
+    // Por ejemplo, usando fetch() a un endpoint
+    
+    const formData = new FormData(prestamoForm);
+    const data = Object.fromEntries(formData);
+    
+    console.log('Datos del formulario:', data);
+    
+    alert('¡Solicitud enviada con éxito! Te contactaremos pronto por correo electrónico.');
+    formModal.classList.remove('active');
+    document.body.style.overflow = '';
+    prestamoForm.reset();
+    searchResult.style.display = 'none';
+    searchError.style.display = 'none';
+});
+
+// Permitir búsqueda con Enter
+identifierSearch.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        searchBtn.click();
+    }
+});
+</script>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-col"><h4 class="logo" style="color: var(--color-blanco);">Ecosistema Informacional</h4><p>Av. Plutarco Elías Calles #1210<br>Fovissste Chamizal, C.P. 32310</p></div>
+            <div class="footer-col"><h4>Enlaces Rápidos</h4><ul><li><a href="sobre-nosotros.html">Sobre Nosotros</a></li><li><a href="https://catalogo.uacj.mx/">Catálogo</a></li><li><a href="servicios.html">Servicios</a></li><li><a href="apoyo-ayuda.html">Contacto</a></li></ul></div>
+            <div class="footer-col"><h4>Recursos</h4><ul><li><a href="bases-de-datos.html">Bases de Datos</a></li><li><a href="#">Repositorio</a></li><li><a href="guias-tematicas.html">Guías Temáticas</a></li><li><a href="#">Preguntas Frecuentes</a></li></ul></div>
+            
+            <div class="footer-col">
+                <h4>Redes Sociales</h4>
+                <ul class="footer-social-icons">
+                    <li><a href="#" aria-label="Facebook" title="Facebook"><i class="fa-brands fa-facebook"></i></a></li>
+                    <li><a href="#" aria-label="Twitter" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a></li>
+                    <li><a href="#" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+                </ul>
+            </div>
+
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="app.js"></script>
+
+    <script>
+        // Funcionalidad del modal
+        const openFormBtn = document.getElementById('open-form-btn');
+        const formModal = document.getElementById('form-modal');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const prestamoForm = document.getElementById('prestamo-form');
+
+        openFormBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            formModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeModalBtn.addEventListener('click', function() {
+            formModal.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        formModal.addEventListener('click', function(e) {
+            if (e.target === formModal) {
+                formModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        prestamoForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Aquí puedes agregar la lógica para enviar el formulario
+            // Por ejemplo, usando fetch() a un endpoint
+            
+            alert('¡Solicitud enviada con éxito! Te contactaremos pronto por correo electrónico.');
+            formModal.classList.remove('active');
+            document.body.style.overflow = '';
+            prestamoForm.reset();
+        });
+    </script>
+
+</body>
+</html>

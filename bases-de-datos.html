@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bases de Datos A-Z - Ecosistema Informacional</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-mobile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script src="https://unpkg.com/heroicons@2.0.18/24/outline/index.js"></script>
+</head>
+<body>
+
+    <div class="header-wrapper">
+        <header class="header container">
+            <a href="index.html" class="logo">Ecosistema Informacional</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="buscar.html" class="active">Buscar y Descubrir</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="apoyo-ayuda.html">Apoyo y Ayuda</a></li>
+                    <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+<li><a href="normas-politicas.html">Normas y Políticas</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Abrir menú">
+                <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </button>
+            <a href="mi-cuenta.html" class="btn-cta">Mi Cuenta</a>
+        </header>
+    </div>
+    
+    <nav class="mobile-nav" id="mobile-nav">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="buscar.html">Buscar y Descubrir</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="apoyo-ayuda.html">Apoyo y Ayuda</a></li>
+            <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Bases de Datos A-Z</h1>
+            </div>
+        </section>
+
+        <div class="db-controls container">
+            <div class="search-bar">
+                <input type="search" id="db-search" placeholder="Buscar base de datos por nombre...">
+                <button type="submit" aria-label="Buscar">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:20px; height:20px;"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg>
+                </button>
+            </div>
+            <div class="filter-groups">
+                <div class="filter-group">
+                    <label for="filter-subject">Filtrar por Área:</label>
+                    <select id="filter-subject">
+                        <option value="all">Todas las Áreas</option>
+                        <option value="salud">Ciencias de la Salud (ICB)</option>
+                        <option value="ingenieria">Ingeniería y Tecnología (IIT)</option>
+                        <option value="sociales">Sociales y Administración (ICSA)</option>
+                        <option value="arte">Arte y Diseño (IADA)</option>
+                        <option value="multi">Multidisciplinarias</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-type">Filtrar por Tipo:</label>
+                    <select id="filter-type">
+                        <option value="all">Todos los Tipos</option>
+                        <option value="texto-completo">Texto Completo</option>
+                        <option value="resumenes">Resúmenes y Citas</option>
+                        <option value="ebooks">Libros Electrónicos</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <ul class="db-list-container" id="db-list">
+                
+                <li class="db-item" data-type="resumenes" data-subject="multi">
+                    <div class="db-logo">Scopus</div>
+                    <div class="db-info">
+                        <h4><a href="https://www.uacj.mx/bibliotecas/BIVIR/base_datos.html" target="_blank">Scopus</a></h4>
+                        <p>Base de datos de resúmenes y citas de literatura científica revisada por pares. Ideal para análisis bibliométricos.</p>
+                        <div class="db-tags">
+                            <span class="tag">Multidisciplinaria</span>
+                            <span class="tag">Resúmenes y Citas</span>
+                        </div>
+                    </div>
+                </li>
+                
+                <li class="db-item" data-type="resumenes" data-subject="multi">
+                    <div class="db-logo">WOS</div>
+                    <div class="db-info">
+                        <h4><a href="https://www.uacj.mx/bibliotecas/BIVIR/base_datos.html" target="_blank">Web of Science (WOS)</a></h4>
+                        <p>Plataforma de inteligencia en investigación. Ofrece acceso a bases de datos de citas de alta calidad.</p>
+                        <div class="db-tags">
+                            <span class="tag">Multidisciplinaria</span>
+                            <span class="tag">Resúmenes y Citas</span>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="db-item" data-type="texto-completo" data-subject="ingenieria">
+                    <div class="db-logo">IEEE</div>
+                    <div class="db-info">
+                        <h4><a href="https://www.uacj.mx/bibliotecas/BIVIR/base_datos.html" target="_blank">IEEE Xplore</a></h4>
+                        <p>Acceso al texto completo de la literatura técnica y de investigación en ingeniería eléctrica, informática y electrónica.</p>
+                        <div class="db-tags">
+                            <span class="tag">Ingeniería y Tecnología (IIT)</span>
+                            <span class="tag">Texto Completo</span>
+                        </div>
+                    </div>
+                </li>
+                
+                <li class="db-item" data-type="texto-completo" data-subject="multi">
+                    <div class="db-logo">EBSCO</div>
+                    <div class="db-info">
+                        <h4><a href="https://www.uacj.mx/bibliotecas/BIVIR/base_datos.html" target="_blank">EBSCOhost</a></h4>
+                        <p>Plataforma que agrupa múltiples bases de datos como Academic Search, Fuente Académica y Business Source.</p>
+                        <div class="db-tags">
+                            <span class="tag">Multidisciplinaria</span>
+                            <span class="tag">Texto Completo</span>
+                        </div>
+                    </div>
+                </li>
+                
+                <li class="db-item" data-type="texto-completo" data-subject="sociales">
+                    <div class="db-logo">JSTOR</div>
+                    <div class="db-info">
+                        <h4><a href="https://www.uacj.mx/bibliotecas/BIVIR/base_datos.html" target="_blank">JSTOR</a></h4>
+                        <p>Colección de revistas académicas, libros y fuentes primarias de alta calidad en humanidades y ciencias sociales.</p>
+                        <div class="db-tags">
+                            <span class="tag">Sociales y Administración (ICSA)</span>
+                            <span class="tag">Texto Completo</span>
+                        </div>
+                    </div>
+                </li>
+              
+            </ul>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-col"><h4 class="logo" style="color: var(--color-blanco);">Ecosistema Informacional</h4><p>Av. Plutarco Elías Calles #1210<br>Fovissste Chamizal, C.P. 32310</p></div>
+            <div class="footer-col"><h4>Enlaces Rápidos</h4><ul><li><a href="sobre-nosotros.html">Sobre Nosotros</a></li><li><a href="https://catalogo.uacj.mx/">Catálogo</a></li><li><a href="servicios.html">Servicios</a></li><li><a href="apoyo-ayuda.html">Contacto</a></li></ul></div>
+            <div class="footer-col"><h4>Recursos</h4><ul><li><a href="bases-de-datos.html">Bases de Datos</a></li><li><a href="#">Repositorio</a></li><li><a href="guias-tematicas.html">Guías Temáticas</a></li><li><a href="#">Preguntas Frecuentes</a></li></ul></div>
+            
+            <div class="footer-col">
+                <h4>Redes Sociales</h4>
+                <ul class="footer-social-icons">
+                    <li><a href="#" aria-label="Facebook" title="Facebook"><i class="fa-brands fa-facebook"></i></a></li>
+                    <li><a href="#" aria-label="Twitter" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a></li>
+                    <li><a href="#" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+                </ul>
+            </div>
+
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+    <script src="app.js"></script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const filterSubject = document.getElementById('filter-subject');
+            const filterType = document.getElementById('filter-type');
+            const searchInput = document.getElementById('db-search');
+            const dbList = document.getElementById('db-list');
+            
+            if(filterSubject && filterType && searchInput && dbList) {
+                const dbItems = dbList.querySelectorAll('.db-item');
+
+                function performFilter() {
+                    const subjectValue = filterSubject.value;
+                    const typeValue = filterType.value;
+                    const searchValue = searchInput.value.toLowerCase();
+
+                    dbItems.forEach(item => {
+                        const subjectMatch = (subjectValue === 'all') || item.getAttribute('data-subject') === subjectValue;
+                        const typeMatch = (typeValue === 'all') || item.getAttribute('data-type') === typeValue;
+                        const searchMatch = item.textContent.toLowerCase().includes(searchValue);
+                        
+                        if (subjectMatch && typeMatch && searchMatch) {
+                            item.style.display = 'flex';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                }
+
+                filterSubject.addEventListener('change', performFilter);
+                filterType.addEventListener('change', performFilter);
+                searchInput.addEventListener('keyup', performFilter);
+            }
+        });
+    </script>
+    
+</body>
+</html>

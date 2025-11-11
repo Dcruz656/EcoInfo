@@ -1,0 +1,607 @@
+/* ============================================
+   STYLE-MOBILE-OPTIMIZED.CSS
+   Archivo de parches para optimización móvil
+   Cargarse DESPUÉS de style.css en el <head>
+   ============================================ */
+
+/* --- BREAKPOINT 320px: Teléfonos antiguos --- */
+@media (max-width: 320px) {
+  .container {
+    padding: 0 10px;
+  }
+
+  .hero h1 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+
+  .hero min-height: 250px;
+  }
+
+  .btn-cta,
+  .btn-full,
+  .btn-primary,
+  .btn-secondary,
+  .btn-action {
+    padding: 10px 14px;
+    font-size: 0.95rem;
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .btn-small {
+    padding: 10px 12px;
+    min-height: 40px;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+  }
+
+  .access-card {
+    padding: 15px;
+  }
+
+  .access-card h3 {
+    font-size: 1rem;
+  }
+
+  .header {
+    padding: 10px 0;
+  }
+
+  .logo {
+    font-size: 1rem;
+  }
+
+  .page-header h1 {
+    font-size: 1.8rem;
+  }
+}
+
+/* --- OPTIMIZACIÓN BOTONES TÁCTILES WCAG 44x44px --- */
+.btn-cta,
+.btn-full,
+.btn-primary,
+.btn-secondary,
+.btn-action,
+.btn-small,
+.btn-generate,
+.btn-solicitar,
+.btn-enroll,
+.btn-reservar {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 16px;
+}
+
+/* Botones small manteniendo tamaño apropiado */
+.btn-small {
+  min-height: 40px;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+}
+
+/* --- OPTIMIZACIÓN INPUTS TÁCTILES --- */
+@media (max-width: 768px) {
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 14px 12px;
+    font-size: 16px; /* Previene zoom automático en iOS */
+    line-height: 1.5;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 3px rgba(0, 74, 153, 0.15);
+  }
+
+  /* Checkboxes más grandes */
+  .checkbox-group input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+}
+
+/* --- HERO RESPONSIVE MEJORADO --- */
+@media (max-width: 768px) {
+  .hero {
+    min-height: 350px;
+    padding: 30px 20px;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+  }
+
+  .search-unified {
+    flex-direction: column;
+  }
+
+  .search-unified input[type="search"] {
+    border-radius: 5px 5px 0 0;
+  }
+
+  .search-unified button {
+    border-radius: 0 0 5px 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    min-height: 280px;
+    padding: 20px 15px;
+  }
+
+  .hero h1 {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+  }
+
+  .ia-search-prompt {
+    font-size: 0.85rem;
+    margin-top: 10px;
+  }
+}
+
+/* --- TABLA LEGIBLE EN MÓVIL --- */
+@media (max-width: 768px) {
+  .history-table {
+    font-size: 0.85rem;
+  }
+
+  .history-table th,
+  .history-table td {
+    padding: 10px 8px;
+  }
+
+  .history-table th {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .history-table {
+    font-size: 0.75rem;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .history-table thead {
+    display: none;
+  }
+
+  .history-table tbody,
+  .history-table tr {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .history-table td {
+    display: block;
+    text-align: right;
+    padding: 8px;
+    position: relative;
+    padding-left: 50%;
+    border: none;
+    border-bottom: 1px solid #eee;
+  }
+
+  .history-table td:before {
+    content: attr(data-label);
+    position: absolute;
+    left: 6px;
+    font-weight: bold;
+    color: var(--color-primario);
+  }
+}
+
+/* --- MENÚ MÓVIL MEJORADO --- */
+.mobile-nav {
+  max-height: calc(100vh - 76px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobile-nav ul {
+  padding-bottom: 20px;
+  padding-top: 10px;
+}
+
+.mobile-nav li a {
+  padding: 16px 20px;
+  font-size: 1rem;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+/* --- CONTENEDOR PRINCIPAL CON PADDING TOP --- */
+main {
+  padding-top: 76px;
+}
+
+@media (max-width: 768px) {
+  main {
+    padding-top: 76px;
+  }
+}
+
+/* --- PREVENIR OVERFLOW HORIZONTAL --- */
+body {
+  overflow-x: hidden;
+}
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+}
+
+.container {
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+/* --- TARJETAS RESPONSIVE MEJORADAS --- */
+@media (max-width: 768px) {
+  .loan-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .loan-cover-placeholder {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  .resource-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .book-card {
+    width: 130px;
+    min-width: 130px;
+  }
+
+  .rec-cover-placeholder {
+    width: 130px;
+    height: 190px;
+  }
+}
+
+@media (max-width: 480px) {
+  .book-card {
+    width: 110px;
+    min-width: 110px;
+  }
+
+  .rec-cover-placeholder {
+    width: 110px;
+    height: 160px;
+  }
+
+  .book-card h4 {
+    font-size: 0.8rem;
+  }
+}
+
+/* --- RECOMENDACIONES CARRUSEL MEJORADO --- */
+@media (max-width: 768px) {
+  .recommendations {
+    margin-top: 30px;
+  }
+
+  .recommendations h2 {
+    font-size: 1.3rem;
+  }
+
+  .recommendations-carousel {
+    padding: 15px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .recommendations-carousel {
+    padding: 10px 0;
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    top: auto;
+    bottom: 10px;
+  }
+}
+
+/* --- DASHBOARD RESPONSIVE --- */
+@media (max-width: 768px) {
+  .dashboard-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px 0;
+  }
+
+  .dashboard-nav {
+    position: relative;
+    padding: 15px;
+  }
+
+  .dashboard-content {
+    padding: 20px;
+  }
+
+  .dashboard-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-nav {
+    padding: 10px;
+  }
+
+  .user-info .avatar {
+    width: 60px;
+    height: 60px;
+  }
+
+  .dashboard-nav li a {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
+
+  .dashboard-content {
+    padding: 15px;
+  }
+}
+
+/* --- FORMULARIOS MEJORADOS --- */
+@media (max-width: 768px) {
+  .form-container {
+    padding: 20px;
+  }
+
+  .form-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .search-area {
+    flex-direction: column;
+  }
+
+  .search-area .form-group {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .search-area button {
+    width: 100%;
+  }
+}
+
+/* --- CONTACT CARD RESPONSIVE --- */
+@media (max-width: 768px) {
+  .contact-card {
+    padding: 20px;
+    margin-bottom: 15px;
+  }
+
+  .contact-card h4 {
+    font-size: 1.1rem;
+  }
+
+  .specialist-photo-placeholder {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+/* --- LAYOUT HELP RESPONSIVE --- */
+@media (max-width: 768px) {
+  .help-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .contact-sidebar {
+    align-self: auto;
+    position: relative;
+    max-height: none;
+  }
+}
+
+/* --- STATS RESPONSIVE --- */
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .stat-item {
+    padding: 15px;
+    border-left: none;
+    border-right: 1px solid var(--color-secundario);
+  }
+
+  .stat-item:nth-child(odd) {
+    border-right: 1px solid var(--color-secundario);
+  }
+
+  .stat-item:nth-child(even) {
+    border-right: none;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-item {
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid var(--color-secundario);
+  }
+
+  .stat-item:last-child {
+    border-bottom: none;
+  }
+}
+
+/* --- KPI RESPONSIVE --- */
+@media (max-width: 768px) {
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .kpi-box {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .kpi-box .icon {
+    align-self: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .kpi-number {
+    font-size: 1.5rem;
+  }
+
+  .kpi-label {
+    font-size: 0.9rem;
+  }
+}
+
+/* --- COURSE CALENDAR RESPONSIVE --- */
+@media (max-width: 768px) {
+  .course-item {
+    flex-direction: column;
+  }
+
+  .course-date {
+    min-width: 100%;
+    padding: 15px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .course-date .month,
+  .course-date .day {
+    display: inline;
+    margin-right: 10px;
+  }
+
+  .course-enroll {
+    border-left: none;
+    border-top: 1px solid #eee;
+    min-width: 100%;
+    justify-content: flex-start;
+    padding: 15px;
+  }
+}
+
+/* --- EXPERT LIST RESPONSIVE --- */
+@media (max-width: 768px) {
+  .expert-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .expert-info {
+    width: 100%;
+  }
+}
+
+/* --- ACCESSIBILITY IMPROVEMENTS --- */
+/* Mejorar focus visible para navegación con teclado */
+button,
+a,
+input,
+select,
+textarea {
+  outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--color-primario);
+  outline-offset: 2px;
+}
+
+/* --- ESPACIADO MEJORADO --- */
+@media (max-width: 768px) {
+  .page-header {
+    padding: 30px 20px;
+  }
+
+  .page-header h1 {
+    font-size: 1.8rem;
+    margin: 0;
+  }
+
+  .section-title {
+    font-size: 1.6rem;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-header {
+    padding: 20px 15px;
+  }
+
+  .page-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .section-title {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+  }
+}
+
+/* --- FOOTER RESPONSIVE --- */
+@media (max-width: 768px) {
+  .footer .container {
+    gap: 20px;
+  }
+
+  .footer-col {
+    flex-basis: auto;
+  }
+
+  .footer

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nosotros - Ecosistema Informacional UACJ</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-mobile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        .policy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .policy-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--color-primario);
+        }
+
+        .policy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .policy-card-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--color-fondo-claro);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .policy-card-icon i {
+            font-size: 1.5rem;
+            color: var(--color-primario);
+        }
+
+        .policy-card h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+            color: var(--color-primario);
+        }
+
+        .policy-card p {
+            color: var(--color-texto-sec);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .policy-card-link {
+            color: var(--color-primario);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .policy-card-link:hover {
+            color: var(--color-secundario);
+        }
+
+        .dashboard-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 40px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--color-primario);
+            text-align: center;
+            max-width: 500px;
+            margin: 30px auto;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .dashboard-card-icon {
+            width: 70px;
+            height: 70px;
+            background-color: var(--color-fondo-claro);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .dashboard-card-icon i {
+            font-size: 2rem;
+            color: var(--color-primario);
+        }
+
+        .dashboard-card h3 {
+            margin: 0 0 15px 0;
+            font-size: 1.4rem;
+            color: var(--color-primario);
+        }
+
+        .dashboard-card p {
+            color: var(--color-texto-sec);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .dashboard-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--color-primario);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .dashboard-button:hover {
+            background: var(--color-secundario);
+        }
+
+        .dashboard-button i {
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header-wrapper">
+        <header class="header container">
+            <a href="index.html" class="logo">Ecosistema Informacional</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="buscar.html">Buscar y Descubrir</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="apoyo-ayuda.html">Apoyo y Ayuda</a></li>
+                    <li><a href="sobre-nosotros.html" class="active">Sobre Nosotros</a></li>
+                    <li><a href="normas-politicas.html">Normas y Políticas</a></li>
+                </ul>
+            </nav>
+            <a href="mi-cuenta.html" class="btn-cta">Mi Cuenta</a>
+        </header>
+    </div>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Sobre Nosotros</h1>
+            </div>
+        </section>
+
+        <section class="container">
+            <h2 class="section-title" style="margin-top: 60px;">Misión</h2>
+            <div class="policy-card">
+                <p>Facilitar el acceso equitativo a la información y el conocimiento, mediante la provisión de recursos, servicios y espacios que promuevan el aprendizaje continuo, la investigación y la innovación en la comunidad universitaria de la UACJ y la sociedad en general.</p>
+            </div>
+
+            <h2 class="section-title">Visión</h2>
+            <div class="policy-card">
+                <p>Ser reconocidos como un ecosistema informacional líder e innovador, que impulsa la excelencia académica, apoya la investigación de vanguardia y contribuye al desarrollo cultural y social de la región fronteriza.</p>
+            </div>
+
+            <h2 class="section-title">Objetivos Estratégicos</h2>
+            <div class="policy-grid">
+                <div class="policy-card">
+                    <div class="policy-card-icon"><i class="fas fa-book-reader"></i></div>
+                    <h3>Acceso Universal</h3>
+                    <p>Garantizar el acceso equitativo y oportuno a recursos de información de calidad para toda la comunidad universitaria, sin barreras físicas ni tecnológicas.</p>
+                </div>
+                <div class="policy-card">
+                    <div class="policy-card-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>Alfabetización Informacional</h3>
+                    <p>Desarrollar competencias informacionales y digitales en estudiantes, docentes e investigadores para el uso ético y efectivo de la información.</p>
+                </div>
+                <div class="policy-card">
+                    <div class="policy-card-icon"><i class="fas fa-rocket"></i></div>
+                    <h3>Innovación Continua</h3>
+                    <p>Incorporar tecnologías emergentes y metodologías innovadoras que mejoren la experiencia del usuario y optimicen nuestros servicios.</p>
+                </div>
+            </div>
+
+            <h2 class="section-title" style="margin-top: 60px;">Bibliotecas y Sedes</h2>
+            <div class="policy-grid">
+
+                <!-- Aquí inician las tarjetas de bibliotecas actualizadas -->
+                <div class="policy-card"><div class="policy-card-icon"><i class="fas fa-book-open"></i></div>
+                    <h3>Biblioteca Central Carlos Montemayor (BCCM) – Campus ICSA</h3>
+                    <p><strong>Responsable:</strong> Mtro. Israel Venteño Jaramillo</p>
+                    <p><strong>Correo:</strong> <a href="mailto:bce@uacj.mx" class="policy-card-link">bce@uacj.mx</a></p>
+                    <p><strong>Teléfono:</strong> +52 (656) 688-2100 ext. 3976</p>
+                    <p><strong>Dirección:</strong> Av. Heroico Colegio Militar 3775, Zona Chamizal, Cd. Juárez, Chih.</p>
+                    <p><strong>Horario:</strong> Lunes a viernes de 7:00 a.m. a 9:00 p.m. / Sábado de 10:00 a.m. a 5:00 p.m.</p>
+                </div>
+
+                <div class="policy-card"><div class="policy-card-icon"><i class="fas fa-microscope"></i></div>
+                    <h3>Biblioteca de Ciencias Biomédicas (BIO) – Campus ICB</h3>
+                    <p><strong>Responsable:</strong> Ing. Verónica Flores Olvera</p>
+                    <p><strong>Correo:</strong> <a href="mailto:bio@uacj.mx" class="policy-card-link">bio@uacj.mx</a></p>
+                    <p><strong>Teléfono:</strong> +52 (656) 688-1890 ext. 1890</p>
+                    <p><strong>Dirección:</strong> Av. Estocolmo s/n, Zona PRONAF, Cd. Juárez, Chih.</p>
+                    <p><strong>Horario:</strong> Lunes a viernes de 7:00 a.m. a 9:00 p.m. / Sábado de 10:00 a.m. a 5:00 p.m.</p>
+                </div>
+
+                <div class="policy-card"><div class="policy-card-icon"><i class="fas fa-building"></i></div>
+                    <h3>Biblioteca Otto Campbell (BOC) – Campus IIT/IADA</h3>
+                    <p><strong>Responsable:</strong> Mtra. Juana Martínez Martínez</p>
+                    <p><strong>Correo:</strong> <a href="mailto:boc@uacj.mx" class="policy-card-link">boc@uacj.mx</a></p>
+                    <p><strong>Teléfono:</strong> +52 (656) 688-4875 ext. 4778</p>
+                    <p><strong>Dirección:</strong> Av. del Charro No. 610, Cd. Juárez, Chih.</p>
+                    <p><strong>Horario:</strong> Lunes a viernes de 7:00 a.m. a 9:00 p.m. / Sábado de 10:00 a.m. a 5:00 p.m.</p>
+                </div>
+
+                <div class="policy-card"><div class="policy-card-icon"><i class="fas fa-university"></i></div>
+                    <h3>Biblioteca Ciudad Universitaria (BCC) – Campus Ciudad Universitaria</h3>
+                    <p><strong>Responsable:</strong> Lic. Javier Antemate Hernández</p>
+                    <p><strong>Correo:</strong> <a href="mailto:biblio.cu@uacj.mx" class="policy-card-link">biblio.cu@uacj.mx</a></p>
+                    <p><strong>Teléfono:</strong> +52 (656) 688-2100 ext. 6741</p>
+                    <p><strong>Dirección:</strong> Av. Del Desierto 18100 y Blvd. Fundadores, Cd. Juárez, Chih.</p>
+                    <p><strong>Horario:</strong> Lunes a viernes de 8:00 a.m. a 8:00 p.m.</p>
+                </div>
+
+                <div class="policy-card"><div class="policy-card-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <h3>Biblioteca Cuauhtémoc (BCU) – Campus Cuauhtémoc</h3>
+                    <p><strong>Responsable:</strong> Lic. Mónica Janeth González Leal</p>
+                    <p><strong>Correo:</strong> <a href="mailto:bcu@uacj.mx" class="policy-card-link">bcu@uacj.mx</a></p>
+                    <p><strong>Teléfono:</strong> +52 (625) 128-1700 ext. 1820</p>
+                    <p><strong>Dirección:</strong> Km 3.5 Carretera Anáhuac - Cuauhtémoc, Ejido Anáhuac, Cuauhtémoc, Chih.</p>
+                    <p><strong>Horario:</strong> Lunes a viernes de 7:00 a.m. a 9:00 p.m.</p>
+                </div>
+
+                <div class="policy-card"><div class="policy-card-icon"><i class="fas fa-book"></i></div>
+                    <h3>Biblioteca Nuevo Casas Grandes (BCG) – Campus Nuevo Casas Grandes</h3>
+                    <p><strong>Responsable:</strong> Nidia Matilde Orduño Valenzuela</p>
+                    <p><strong>Correo:</strong> <a href="mailto:bcg@uacj.mx" class="policy-card-link">bcg@uacj.mx</a></p>
+                    <p><strong>Teléfono:</strong> +52 (636) 692-9800 ext. 9760</p>
+                    <p><strong>Dirección:</strong> Av. Universidad #3003, Sección Hidalgo, C.P. 31803, Nuevo Casas Grandes, Chih.</p>
+                    <p><strong>Horario:</strong> Lunes a viernes de 7:00 a.m. a 9:00 p.m.</p>
+                </div>
+
+                <div class="policy-card"><div class="policy-card-icon"><i class="fas fa-hospital"></i></div>
+                    <h3>Biblioteca del Hospital General (BHG)</h3>
+                    <p><strong>Responsable:</strong> Mtro. Mario Flores Olvera</p>
+                    <p><strong>Correo:</strong> <a href="mailto:mflores@uacj.mx" class="policy-card-link">mflores@uacj.mx</a></p>
+                    <p><strong>Teléfono:</strong> +52 (656) 688-3870 ext. 2397</p>
+                    <p><strong>Dirección:</strong> P. T. de la República entre Fdo. Montes de Oca y Efrén Ornelas, Cd. Juárez, Chih.</p>
+                    <p><strong>Horario:</strong> Lunes a viernes de 8:00 a.m. a 3:00 p.m.</p>
+                </div>
+
+                <div class="policy-card"><div class="policy-card-icon"><i class="fas fa-child"></i></div>
+                    <h3>Biblioteca del Hospital Infantil de Especialidades (BHI)</h3>
+                    <p><strong>Responsable:</strong> Lic. Felipe Luna</p>
+                    <p><strong>Correo:</strong> <a href="mailto:felipe.luna@uacj.mx" class="policy-card-link">felipe.luna@uacj.mx</a></p>
+                    <p><strong>Teléfono:</strong> +52 (656) 688-4879</p>
+                    <p><strong>Dirección:</strong> Ave. Vicente Guerrero y Arizona S/N, Col. Los Parques, Cd. Juárez, Chih.</p>
+                    <p><strong>Horario:</strong> Lunes a viernes de 8:00 a.m. a 3:00 p.m.</p>
+                </div>
+
+                <div class="policy-card"><div class="policy-card-icon"><i class="fas fa-archive"></i></div>
+                    <h3>Colecciones Especiales – Biblioteca Central</h3>
+                    <p><strong>Responsable:</strong> Mtro. José Arturo Vargas Reyes</p>
+                    <p><strong>Correo:</strong> <a href="mailto:cesinfo@uacj.mx" class="policy-card-link">cesinfo@uacj.mx</a></p>
+                    <p><strong>Teléfono:</strong> +52 (656) 688-3870 ext. 3475</p>
+                    <p><strong>Dirección:</strong> Planta alta de la Biblioteca Central Carlos Montemayor, Campus ICSA.</p>
+                    <p><strong>Horario:</strong> Lunes a viernes de 9:00 a.m. a 4:00 p.m.</p>
+                </div>
+
+            </div>
+
+            <h2 class="section-title" style="margin-top: 60px;">Nuestro Equipo</h2>
+            <div class="policy-grid">
+                <div class="policy-card"><div class="policy-card-icon"><i class="fas fa-user-tie"></i></div>
+                    <h3>Dra. Patricia Martínez Gutiérrez</h3>
+                    <p><strong>Cargo:</strong> Subdirectora de Servicios Bibliotecarios</p>
+                    <p><strong>Correo:</strong> <a href="mailto:pamartin@uacj.mx" class="policy-card-link">pamartin@uacj.mx</a></p>
+                </div>
+
+                <div class="policy-card"><div class="policy-card-icon"><i class="fas fa-user-tie"></i></div>
+                    <h3>Mtro. Daniel Cruz Bautista</h3>
+                    <p><strong>Cargo:</strong> Jefe de Servicios Bibliotecarios</p>
+<p><strong>Correo:</strong> <a href="mailto:dcruz@uacj.mx" class="policy-card-link">dcruz@uacj.mx</a></p>
+</div>
+
+<div class="policy-card"><div class="policy-card-icon"><i class="fas fa-user-tie"></i></div>
+    <h3>Mtra. Brenda Rocha Saucedo</h3>
+    <p><strong>Cargo:</strong> Jefa de Gestión y Desarrollo de Acervos</p>
+    <p><strong>Correo:</strong> <a href="mailto:brenda.rocha@uacj.mx" class="policy-card-link">brenda.rocha@uacj.mx</a></p>
+</div>
+
+<div class="policy-card"><div class="policy-card-icon"><i class="fas fa-user-tie"></i></div>
+    <h3>Mtro. Iván Ortega Aranda</h3>
+    <p><strong>Cargo:</strong> Jefe de Inteligencia Informacional</p>
+    <p><strong>Correo:</strong> <a href="mailto:iortega@uacj.mx" class="policy-card-link">iortega@uacj.mx</a></p>
+</div>
+
+<div class="policy-card"><div class="policy-card-icon"><i class="fas fa-user-tie"></i></div>
+    <h3>Lic. Eduardo Hernández Juárez</h3>
+    <p><strong>Cargo:</strong> Jefe de Área Administrativa</p>
+    <p><strong>Correo:</strong> <a href="mailto:ehernand@uacj.mx" class="policy-card-link">ehernand@uacj.mx</a></p>
+</div>
+
+<div class="policy-card"><div class="policy-card-icon"><i class="fas fa-user-tie"></i></div>
+    <h3>Lic. Fabiola Quirarte Damas</h3>
+    <p><strong>Cargo:</strong> Responsable del Área de Desarrollo de Habilidades Informacionales y Vinculación Bibliotecaria</p>
+    <p><strong>Correo:</strong> <a href="mailto:fabiola.quirarte@uacj.mx" class="policy-card-link">fabiola.quirarte@uacj.mx</a></p>
+</div>
+</div>
+<h2 class="section-title" style="margin-top: 60px;">Towi: el Asistente Virtual</h2>
+<div class="policy-card">
+    <div class="policy-card-icon">
+        <i class="fas fa-robot"></i>
+    </div>
+    <h3>¿Por qué “Towi”?</h3>
+    <p>
+        El nombre <strong>Towi</strong> proviene del vocablo rarámuri <em>“Towi”</em>, que significa <strong>“niño”</strong> (Palma, 2010). 
+        Esta palabra fue elegida como símbolo del compromiso de nuestras bibliotecas con el aprendizaje, la curiosidad y el acompañamiento en la búsqueda de conocimiento.
+    </p>
+    <p>
+        <strong>Towi</strong> es el asistente virtual del <em>Ecosistema Informacional UACJ</em>, diseñado para ofrecer orientación inmediata sobre servicios, 
+        recursos académicos, estrategias de búsqueda y uso de las bibliotecas universitarias. Su objetivo es facilitar el acceso a la información 
+        y apoyar a los usuarios en el desarrollo de habilidades informacionales de manera cercana y amigable.
+    </p>
+    <p>
+        Con <strong>Towi</strong>, las bibliotecas de la UACJ dan un paso más hacia la innovación y la asistencia digital personalizada para la comunidad universitaria.
+    </p>
+ </p>
+Fuente:
+Palma Holguín G., . (2010). Traductor. Chihuahua, Chih., Mexico: Universidad Autonoma de Chihuahua.
+ <p>
+</div>
+
+<h2 class="section-title" style="margin-top: 60px;">Datos Estadísticos</h2>
+<div class="dashboard-card">
+    <div class="dashboard-card-icon">
+        <i class="fas fa-chart-bar"></i>
+    </div>
+    <h3>Dashboard de Estadísticas</h3>
+    <p>Consulta las estadísticas de uso, préstamos, recursos más consultados y datos sobre la actividad del Ecosistema Informacional de la UACJ.</p>
+    <a href="estadisticas-dashboard.html" class="dashboard-button">
+        Ver Dashboard <i class="fas fa-arrow-right"></i>
+    </a>
+</div>
+</section>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-col">
+            <h4 class="logo" style="color: var(--color-blanco);">Ecosistema Informacional</h4>
+            <p>Av. Plutarco Elías Calles #1210<br>Fovissste Chamizal, C.P. 32310</p>
+        </div>
+
+        <div class="footer-col">
+            <h4>Enlaces Rápidos</h4>
+            <ul>
+                <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                <li><a href="https://catalogo.uacj.mx/">Catálogo</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="apoyo-ayuda.html">Contacto</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Recursos</h4>
+            <ul>
+                <li><a href="bases-de-datos.html">Bases de Datos</a></li>
+                <li><a href="#">Repositorio</a></li>
+                <li><a href="guias-tematicas.html">Guías Temáticas</a></li>
+                <li><a href="#">Preguntas Frecuentes</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Redes Sociales</h4>
+            <ul class="footer-social-icons">
+                <li><a href="#" aria-label="Facebook" title="Facebook"><i class="fa-brands fa-facebook"></i></a></li>
+                <li><a href="#" aria-label="Twitter" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a></li>
+                <li><a href="#" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
+

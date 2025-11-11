@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Ecosistema Informacional</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-mobile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script src="https://unpkg.com/heroicons@2.0.18/24/outline/index.js"></script>
+</head>
+<body>
+
+    <div class="header-wrapper">
+        <header class="header container">
+            <a href="index.html" class="logo">Ecosistema Informacional</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="buscar.html">Buscar y Descubrir</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="apoyo-ayuda.html" class="active">Apoyo y Ayuda</a></li> 
+                    <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+<li><a href="normas-politicas.html">Normas y Políticas</a></li>
+
+                </ul>
+            </nav>
+            <button class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Abrir menú">
+                <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </button>
+            <a href="mi-cuenta.html" class="btn-cta">Mi Cuenta</a>
+        </header>
+    </div>
+    
+    <nav class="mobile-nav" id="mobile-nav">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="buscar.html">Buscar y Descubrir</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="apoyo-ayuda.html">Apoyo y Ayuda</a></li>
+            <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+<li><a href="normas-politicas.html">Normas y Políticas</a></li>
+
+        </ul>
+    </nav>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Referencia y Consulta Personalizada</h1>
+            </div>
+        </section>
+
+        <section class="reference-section container">
+            <h2 class="section-title">Encuentra la ayuda que necesitas</h2>
+            
+            <div class="method-grid">
+                
+                <div class="method-card">
+                    <svg class="icon-large" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm.375 0a.375.375 0 10-.75 0 .375.375 0 00.75 0zm.375 0a.375.375 0 10-.75 0 .375.375 0 00.75 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.056 3 12c0 4.556 4.03 8.25 9 8.25z" /></svg>
+                    <h3>Consulta Inmediata (Chat)</h3>
+                    <p>Ideal para preguntas rápidas sobre horarios, ubicación de material o dudas sencillas de citación. ¡El asistente está listo!</p>
+                    <a href="#" class="btn-primary" id="chatbot-trigger">Iniciar Chat</a>
+                </div>
+                
+                <div class="method-card">
+                    <svg class="icon-large" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" /></svg>
+                    <h3>Asesoría (Cita)</h3>
+                    <p>Agenda una sesión de 30 minutos con un especialista para temas avanzados: estrategias de búsqueda o gestión bibliográfica.</p>
+                    <a href="agendar-cita.html" class="btn-primary">Agendar Cita</a>
+                </div>
+
+                <div class="method-card">
+                    <svg class="icon-large" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a1.5 1.5 0 01-1.5 1.5h-15a1.5 1.5 0 01-1.5-1.5V6.75m18 0a1.5 1.5 0 00-1.5-1.5h-15a1.5 1.5 0 00-1.5 1.5m18 0h-15m8.25 0v3.75m1.5 0v-3.75m-9 7.5h9" /></svg>
+                    <h3>Consulta por Correo</h3>
+                    <p>Envía tu pregunta detallada. Recibirás una respuesta por escrito, ideal para solicitudes de préstamo interbibliotecario.</p>
+                    <a href="mailto:referencia@uacj.mx" class="btn-primary">Enviar Email</a>
+                </div>
+            </div>
+
+            <h2 class="section-title" style="margin-top: 50px;">Directorio de Referencistas Especializados</h2>
+            <p class="directory-header">Contacta directamente a un experto en tu área de conocimiento para obtener soporte especializado.</p>
+            
+            <ul class="expert-list">
+                <li class="expert-item">
+                    <div class="expert-info">
+                        <strong>Bibl. Central (C. Montemayor)</strong>
+                        <span>Contacto: Mtra. Sofía Ramírez | Email: sramirez@uacj.mx</span>
+                    </div>
+                    <a href="mailto:sramirez@uacj.mx" class="btn-primary">Email</a>
+                </li>
+                <li class="expert-item">
+                    <div class="expert-info">
+                        <strong>Bibl. Otto Campbell (IIT/IADA)</strong>
+                        <span>Contacto: Lic. Carlos Mendoza | Email: cmendoza@uacj.mx</span>
+                    </div>
+                    <a href="mailto:cmendoza@uacj.mx" class="btn-primary">Email</a>
+                </li>
+                <li class="expert-item">
+                    <div class="expert-info">
+                        <strong>Biblioteca de ICB</strong>
+                        <span>Contacto: Ing. Luis Rentería | Email: lrenteria@uacj.mx</span>
+                    </div>
+                    <a href="mailto:lrenteria@uacj.mx" class="btn-primary">Email</a>
+                </li>
+                <li class="expert-item">
+                    <div class="expert-info">
+                        <strong>Campus Ciudad Universitaria</strong>
+                        <span>Contacto: Lic. Gabriela Soto | Email: gsoto@uacj.mx</span>
+                    </div>
+                    <a href="mailto:gsoto@uacj.mx" class="btn-primary">Email</a>
+                </li>
+                <li class="expert-item">
+                    <div class="expert-info">
+                        <strong>Campus Cuauhtémoc</strong>
+                        <span>Contacto: Lic. David Perea | Email: dperea@uacj.mx</span>
+                    </div>
+                    <a href="mailto:dperea@uacj.mx" class="btn-primary">Email</a>
+                </li>
+                <li class="expert-item">
+                    <div class="expert-info">
+                        <strong>Campus NCG</strong>
+                        <span>Contacto: Lic. Miguel Torres | Email: mtorres@uacj.mx</span>
+                    </div>
+                    <a href="mailto:mtorres@uacj.mx" class="btn-primary">Email</a>
+                </li>
+                <li class="expert-item">
+                    <div class="expert-info">
+                        <strong>Hospital Infantil</strong>
+                        <span>Contacto: Dra. Elena Parra | Email: eparra@uacj.mx</span>
+                    </div>
+                    <a href="mailto:eparra@uacj.mx" class="btn-primary">Email</a>
+                </li>
+                <li class="expert-item">
+                    <div class="expert-info">
+                        <strong>Hospital General</strong>
+                        <span>Contacto: Dr. Roberto Frías | Email: rfrias@uacj.mx</span>
+                    </div>
+                    <a href="mailto:rfrias@uacj.mx" class="btn-primary">Email</a>
+                </li>
+                <li class="expert-item">
+                    <div class="expert-info">
+                        <strong>Hospital de la Mujer</strong>
+                        <span>Contacto: Lic. Julia Solís | Email: jsolis@uacj.mx</span>
+                    </div>
+                    <a href="mailto:jsolis@uacj.mx" class="btn-primary">Email</a>
+                </li>
+            </ul>
+        </section>
+
+    </main>
+
+<footer class="footer">
+        <div class="container">
+            <div class="footer-col"><h4 class="logo" style="color: var(--color-blanco);">Ecosistema Informacional</h4><p>Av. Plutarco Elías Calles #1210<br>Fovissste Chamizal, C.P. 32310</p></div>
+            <div class="footer-col"><h4>Enlaces Rápidos</h4><ul><li><a href="sobre-nosotros.html">Sobre Nosotros</a></li><li><a href="https://catalogo.uacj.mx/">Catálogo</a></li><li><a href="servicios.html">Servicios</a></li><li><a href="apoyo-ayuda.html">Contacto</a></li></ul></div>
+            <div class="footer-col"><h4>Recursos</h4><ul><li><a href="bases-de-datos.html">Bases de Datos</a></li><li><a href="#">Repositorio</a></li><li><a href="guias-tematicas.html">Guías Temáticas</a></li><li><a href="#">Preguntas Frecuentes</a></li></ul></div>
+            
+            <div class="footer-col">
+                <h4>Redes Sociales</h4>
+                <ul class="footer-social-icons">
+                    <li><a href="#" aria-label="Facebook" title="Facebook"><i class="fa-brands fa-facebook"></i></a></li>
+                    <li><a href="#" aria-label="Twitter" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a></li>
+                    <li><a href="#" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+                </ul>
+            </div>
+
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="app.js"></script>
+
+</body>
+</html>
